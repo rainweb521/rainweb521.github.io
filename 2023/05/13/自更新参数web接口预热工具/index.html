@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/05/13/自更新参数web接口预热工具/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="自更新参数web接口预热工具痛点日常上线流程中经常需要对接口进行预热，因为服务器每次启动后都有一定次数访问失败，如果不处理将此请求直接抛出，会降低用户体验。当服务器数量较少时，我们可以在发布机器后，待机器启动使用本地hosts更改IP，请求对应服务器接口看（1.刷新接口，2.校验返回数据） 然而当服务器数量较多时，这样的验证过程非常麻烦，每次需要修改完hosts，再去ping一下看看修改成功没，再">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AlgoRain">
+<meta property="og:url" content="http://example.com/2023/05/13/%E8%87%AA%E6%9B%B4%E6%96%B0%E5%8F%82%E6%95%B0web%E6%8E%A5%E5%8F%A3%E9%A2%84%E7%83%AD%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="自更新参数web接口预热工具痛点日常上线流程中经常需要对接口进行预热，因为服务器每次启动后都有一定次数访问失败，如果不处理将此请求直接抛出，会降低用户体验。当服务器数量较少时，我们可以在发布机器后，待机器启动使用本地hosts更改IP，请求对应服务器接口看（1.刷新接口，2.校验返回数据） 然而当服务器数量较多时，这样的验证过程非常麻烦，每次需要修改完hosts，再去ping一下看看修改成功没，再">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://uos.rain1024.com/image/202305132220363.png">
+<meta property="og:image" content="http://uos.rain1024.com/image/202305132150712.png">
+<meta property="og:image" content="http://uos.rain1024.com/image/202305132210486.png">
+<meta property="og:image" content="http://uos.rain1024.com/image/202305132212775.png">
+<meta property="og:image" content="http://uos.rain1024.com/image/202305132222635.png">
+<meta property="og:image" content="http://example.com/Users/algorain/SynologyDrive/document/markdown/%E7%9F%A5%E8%AF%86%E8%8A%B1%E5%9B%AD/assets/image-20230513224102398.png">
+<meta property="og:image" content="http://uos.rain1024.com/image/202305132213121.png">
+<meta property="article:published_time" content="2023-05-13T13:40:10.435Z">
+<meta property="article:modified_time" content="2023-05-13T14:42:38.859Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://uos.rain1024.com/image/202305132220363.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"http://uos.rain1024.com/image/202305141930001.jpeg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular"></h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-05-13 21:40:10</span>
+        <span class="mobile">2023-05-13 21:40</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-13 22:42:38</span>
+            <span class="mobile">2023-05-13 22:42</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h1 id="自更新参数web接口预热工具"><a href="#自更新参数web接口预热工具" class="headerlink" title="自更新参数web接口预热工具"></a>自更新参数web接口预热工具</h1><h3 id="痛点"><a href="#痛点" class="headerlink" title="痛点"></a>痛点</h3><p>日常上线流程中经常需要对接口进行预热，因为服务器每次启动后都有一定次数访问失败，如果不处理将此请求直接抛出，会降低用户体验。当服务器数量较少时，我们可以在发布机器后，待机器启动使用本地hosts更改IP，请求对应服务器接口看（1.刷新接口，2.校验返回数据）</p>
+<p>然而当服务器数量较多时，这样的验证过程非常麻烦，每次需要修改完hosts，再去ping一下看看修改成功没，再去请求接口，整个集群只能测试几台机器，不能完全覆盖，主要存在两个问题：</p>
+<ol>
+<li>可能存在上线后有机器没起来等问题，对于数据的校验不够完善，只能看看大致返回的量，看不出具体缺失数据。</li>
+<li>还有接口请求数据不够全面，都是使用很早以前的访问参数，如用户pin，经纬度，活动ID，版本号，客户端等，不能及时更新。</li>
+</ol>
+<p><strong>公司内部其实有很多预热工具，但都是基于固定参数的形式，类似于postman使用一套参数反复请求刷新</strong></p>
+<p>预热类型分为内部预热和外部预热</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://uos.rain1024.com/image/202305132220363.png"
+                      alt="image-20230513222042998"
+                ></p>
+<blockquote>
+<p> 由此想做自动预热和报文对比，减少人为干预成本，提高覆盖率，采用外部+内部预热的方式：最大程度减少对本地代码的入侵，同时还能全面覆盖服务器，并使用最新参数刷新接口。</p>
+</blockquote>
+<p>下面是自更新参数预热工具的交互流程图</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://uos.rain1024.com/image/202305132150712.png"
+                      alt="image.png"
+                ></p>
+<h2 id="服务端配置："><a href="#服务端配置：" class="headerlink" title="服务端配置："></a>服务端配置：</h2><p>这里开发了预热注解，在需要的地方加上注解，这里会拦截请求里的body+indexRequest参数，通过本地Cache缓存请求间隔次数，每隔一个小时保存一次，参数内容保存到本地缓存中，服务端不做多版本保存，每小时动态覆盖，再加上zk开关进行判断。</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 服务预热的切面</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">StartMockAspect</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> LoggerFactory.getLogger(StartMockAspect.class);</span><br><span class="line">    <span class="comment">/** */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">BODY</span> <span class="operator">=</span> <span class="string">&quot;body&quot;</span>;</span><br><span class="line">    <span class="comment">/** */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">INDEX_REQUEST</span> <span class="operator">=</span> <span class="string">&quot;indexRequest&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** */</span></span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> ZkConfigManager zkConfigManager;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 使用注解的方式定位需要拦截的方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Pointcut(&quot; @annotation(com.jd.o2o.app.common.mock.DeepHttpMock)&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">pointCut</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Cache&lt;String, Integer&gt; NUM_CACHE = CacheBuilder.newBuilder()</span><br><span class="line">            .expireAfterWrite(<span class="number">3600</span>, TimeUnit.SECONDS).build();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> proceedingJoinPoint</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> Throwable</span></span><br><span class="line"><span class="comment">     * InetAddress host = InetAddress.getLocalHost();</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Around(&quot;pointCut()&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Object <span class="title function_">handle</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//配置开关</span></span><br><span class="line">            <span class="type">boolean</span> <span class="variable">startFlag</span> <span class="operator">=</span> zkConfigManager.getConfig(ZkConfigPathEnum.START_PARAMETER_ASPECT_SWITCH);</span><br><span class="line">            <span class="keyword">if</span> (Boolean.FALSE.equals(startFlag)) &#123;</span><br><span class="line">                <span class="keyword">return</span> proceedingJoinPoint.proceed();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 获取参数</span></span><br><span class="line">            <span class="type">IndexRequest</span> <span class="variable">indexRequest</span> <span class="operator">=</span> LocaleContextHandler.getLocaleContext().getIndexRequest();</span><br><span class="line">            <span class="keyword">if</span> (proceedingJoinPoint.getSignature() <span class="keyword">instanceof</span> MethodSignature) &#123;</span><br><span class="line">                <span class="type">MethodSignature</span> <span class="variable">methodSignature</span> <span class="operator">=</span> (MethodSignature) proceedingJoinPoint.getSignature();</span><br><span class="line">                <span class="type">Method</span> <span class="variable">method</span> <span class="operator">=</span> methodSignature.getMethod();</span><br><span class="line">                Object[] args = proceedingJoinPoint.getArgs();</span><br><span class="line">                <span class="type">Object</span> <span class="variable">bodyRequest</span> <span class="operator">=</span> args[<span class="number">0</span>];</span><br><span class="line">                <span class="type">DeepHttpMock</span> <span class="variable">monitor</span> <span class="operator">=</span> method.getAnnotation(DeepHttpMock.class);</span><br><span class="line">                <span class="keyword">if</span> (monitor == <span class="literal">null</span> || indexRequest == <span class="literal">null</span> || bodyRequest == <span class="literal">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> proceedingJoinPoint.proceed();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (NUM_CACHE.get(monitor.pageSource(), () -&gt; -<span class="number">1</span>) == -<span class="number">1</span>) &#123;</span><br><span class="line">                    START_LOAD_REQUEST_MAP.put(monitor.pageSource(), ImmutableMap.of(BODY, bodyRequest, INDEX_REQUEST, indexRequest));</span><br><span class="line">                    NUM_CACHE.put(monitor.pageSource(), <span class="number">0</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            logger.error(<span class="string">&quot;StartMockAspect失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> proceedingJoinPoint.proceed();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>外部脚本通过特定接口访问每次缓存的一份数据</p>
+<div class="highlight-container" data-rel="Java"><figure class="iseeu highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> host</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@RequestMapping(value = &quot;testStartupParameters&quot;)</span></span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title function_">testStartupParameters</span><span class="params">(String host)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> START_LOAD_REQUEST_MAP.getOrDefault(host, Collections.emptyMap());</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<h2 id="python服务"><a href="#python服务" class="headerlink" title="python服务"></a>python服务</h2><p>这里采用python的原因是</p>
+<ol>
+<li><p>定时抓取参数的方式比较简单，适合用脚本开发，</p>
+</li>
+<li><p>python能够快速完成接口请求及提供web服务，开发成本较低，</p>
+</li>
+<li><p>可以随时更新脚本调整代码</p>
+</li>
+</ol>
+<blockquote>
+<p> python共三个模块</p>
+</blockquote>
+<h3 id="start-parameters模块"><a href="#start-parameters模块" class="headerlink" title="start_parameters模块"></a>start_parameters模块</h3><ol>
+<li>拉取集群下所有服务器IP</li>
+<li>根据host与IP配置的接口，拉取对应服务器上缓存的接口参数</li>
+<li>保存所有动态URL参数内容到文件中</li>
+</ol>
+<h3 id="server-verify模块"><a href="#server-verify模块" class="headerlink" title="server_verify模块"></a>server_verify模块</h3><ol>
+<li>使用保存的动态参数，自动&#x2F;主动-&gt;预热触发的接口</li>
+<li>使用保存的动态参数，进行新旧服务器接口的报文对比</li>
+</ol>
+<h3 id="web模块"><a href="#web模块" class="headerlink" title="web模块"></a>web模块</h3><ol>
+<li>提供主动预热服务操作页面</li>
+<li>手动选择报文对比接口列表</li>
+</ol>
+<h2 id="下面分为三类处理"><a href="#下面分为三类处理" class="headerlink" title="下面分为三类处理"></a>下面分为三类处理</h2><h3 id="自动服务预热："><a href="#自动服务预热：" class="headerlink" title="自动服务预热："></a>自动服务预热：</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://uos.rain1024.com/image/202305132210486.png"
+                      alt="img"
+                ></p>
+<h3 id="主动预热："><a href="#主动预热：" class="headerlink" title="主动预热："></a>主动预热：</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://uos.rain1024.com/image/202305132212775.png"
+                      alt="img"
+                ></p>
+<h3 id="报文对比："><a href="#报文对比：" class="headerlink" title="报文对比："></a>报文对比：</h3><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://uos.rain1024.com/image/202305132222635.png"
+                      alt="image-20230513222228067" style="zoom: 47%;" 
+                >
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="/Users/algorain/SynologyDrive/document/markdown/%E7%9F%A5%E8%AF%86%E8%8A%B1%E5%9B%AD/assets/image-20230513224102398.png"
+                      alt="image-20230513224102398"
+                ></p>
+<p>部分可操作界面</p>
+<img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://uos.rain1024.com/image/202305132213121.png"
+                      alt="image.png" style="zoom:50%;" 
+                >
+
+<p>通过引用自更新参数的预热工具，相比较传统固定参数的预热工具，上线之后服务器接口性能不再出现大幅度波动，有效提高接口可用率。</p>
+<p>start_before.sh</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取实例IP</span></span><br><span class="line">function_app_ip()&#123;</span><br><span class="line"><span class="keyword">if</span> [[ -n <span class="string">&quot;$def_host_ip&quot;</span> ]]; then</span><br><span class="line">echo $&#123;def_host_ip&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">echo `/sbin/ip addr sh | /<span class="built_in">bin</span>/grep -v <span class="string">&#x27;global secondary&#x27;</span> | /<span class="built_in">bin</span>/grep inet | /<span class="built_in">bin</span>/grep -v inet6 | /<span class="built_in">bin</span>/grep -v <span class="string">&#x27;127.0.0.1&#x27;</span> | /<span class="built_in">bin</span>/grep -v <span class="string">&#x27;lo:&#x27;</span> | /<span class="built_in">bin</span>/awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span> | /<span class="built_in">bin</span>/awk -<span class="string">F&#x27;/&#x27;</span> <span class="string">&#x27;&#123;print $1&#125;&#x27;</span>| /usr/<span class="built_in">bin</span>/head -n <span class="number">1</span>`</span><br><span class="line">fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 执行命令</span></span><br><span class="line">echo <span class="string">&quot;开始请求预热&quot;</span> </span><br><span class="line">_app_ip=$(function_app_ip);</span><br><span class="line">echo <span class="string">&quot;操作机器IP:$_app_ip&quot;</span>  </span><br><span class="line">echo $(date +%Y-%m-%d\ %H:%M:%S)</span><br><span class="line">curl http://preheat.local/start?local=pdjhome.local\&amp;ip=$_app_ip</span><br></pre></td></tr></table></figure></div>
+
+<p>这里是用来触发预热的任务，之后会通过python内部保存的参数URL来刷接口</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 服务器脚本中需要预热的访问地址</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">startHandler</span>(tornado.web.RequestHandler):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">get</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            ip = self.get_argument(<span class="string">&#x27;ip&#x27;</span>)</span><br><span class="line">            local = self.get_argument(<span class="string">&#x27;local&#x27;</span>)</span><br><span class="line">            <span class="built_in">print</span>(ip, local, <span class="string">&quot;发送机器预热请求&quot;</span>)</span><br><span class="line">            <span class="comment"># 启动线程异步执行</span></span><br><span class="line">            thead_one = threading.Thread(target=server_verify.web_one_start, args=(ip, local))</span><br><span class="line">            thead_one.start()</span><br><span class="line">            self.write(<span class="string">&quot;发送机器预热请求&quot;</span>)</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="built_in">print</span>(e)</span><br><span class="line">            self.write(<span class="string">&quot;参数错误&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">application = tornado.web.Application([(<span class="string">r&quot;/add&quot;</span>, MainHandler),</span><br><span class="line">                                       (<span class="string">r&quot;/diff_result&quot;</span>, diffHandler),</span><br><span class="line">                                       (<span class="string">r&quot;/tool&quot;</span>, toolHandler),</span><br><span class="line">                                       (<span class="string">r&quot;/start&quot;</span>, startHandler),</span><br><span class="line">                                       (<span class="string">r&quot;/serverDiff&quot;</span>, PdjserviceHandler)],</span><br><span class="line">                                      static_path=os.path.join(os.path.dirname(__file__), <span class="string">&quot;static&quot;</span>), )</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    application.listen(<span class="number">80</span>)</span><br><span class="line">    tornado.ioloop.IOLoop.instance().start()</span><br></pre></td></tr></table></figure></div>
+
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> </li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2023-05-13 21:40:10</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-13 22:42:38
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2023/05/13/自更新参数web接口预热工具/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2023/05/14/hello-world/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Hello World</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2022/03/21/%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item"></span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title"></div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E6%9B%B4%E6%96%B0%E5%8F%82%E6%95%B0web%E6%8E%A5%E5%8F%A3%E9%A2%84%E7%83%AD%E5%B7%A5%E5%85%B7"><span class="nav-text">自更新参数web接口预热工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%97%9B%E7%82%B9"><span class="nav-text">痛点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE%EF%BC%9A"><span class="nav-text">服务端配置：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E6%9C%8D%E5%8A%A1"><span class="nav-text">python服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#start-parameters%E6%A8%A1%E5%9D%97"><span class="nav-text">start_parameters模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#server-verify%E6%A8%A1%E5%9D%97"><span class="nav-text">server_verify模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web%E6%A8%A1%E5%9D%97"><span class="nav-text">web模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E5%88%86%E4%B8%BA%E4%B8%89%E7%B1%BB%E5%A4%84%E7%90%86"><span class="nav-text">下面分为三类处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%9C%8D%E5%8A%A1%E9%A2%84%E7%83%AD%EF%BC%9A"><span class="nav-text">自动服务预热：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%8A%A8%E9%A2%84%E7%83%AD%EF%BC%9A"><span class="nav-text">主动预热：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A5%E6%96%87%E5%AF%B9%E6%AF%94%EF%BC%9A"><span class="nav-text">报文对比：</span></a></li></ol></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
