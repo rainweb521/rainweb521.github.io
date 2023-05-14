@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2017/04/25/api-article74/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="好玩的API调用之—星座运势API与爬虫 平时写程序经常需要用到一些服务，像翻译，天气预报，星座什么的，我一般都是用Python写个爬虫去提供这些服务的网站爬数据，但是有些网站对爬虫有很多限制，一些关键字会定时更改，就像中国天气网经常变更HTML标签的class值，这就需要时常维护爬虫，而聚合数据API只对普通用户提供一个免费API接口，简直垃圾，而网上的一些网站其实有开放的API供开发者调用，所">
+<meta property="og:type" content="article">
+<meta property="og:title" content="好玩的API调用之---星座运势的API与爬虫爬取">
+<meta property="og:url" content="http://example.com/2017/04/25/api-article74/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="好玩的API调用之—星座运势API与爬虫 平时写程序经常需要用到一些服务，像翻译，天气预报，星座什么的，我一般都是用Python写个爬虫去提供这些服务的网站爬数据，但是有些网站对爬虫有很多限制，一些关键字会定时更改，就像中国天气网经常变更HTML标签的class值，这就需要时常维护爬虫，而聚合数据API只对普通用户提供一个免费API接口，简直垃圾，而网上的一些网站其实有开放的API供开发者调用，所">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/web6.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/web7.jpg">
+<meta property="article:published_time" content="2017-04-25T12:59:52.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:39:50.445Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="技术知识">
+<meta property="article:tag" content="扩展功能">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog-1252406596.costj.myqcloud.com/blog/web6.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            好玩的API调用之---星座运势的API与爬虫爬取 -
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"/images/zS9MZBsVYLI.jpg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">好玩的API调用之---星座运势的API与爬虫爬取</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2017-04-25 20:59:52</span>
+        <span class="mobile">2017-04-25 20:59</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 21:39:50</span>
+            <span class="mobile">2023-05-14 21:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/programme/">programme</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Technique/">Technique</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/programme/Python/">Python</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%8A%80%E6%9C%AF%E7%9F%A5%E8%AF%86/">技术知识</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/">扩展功能</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p>好玩的API调用之—星座运势API与爬虫</p>
+<h3 id="平时写程序经常需要用到一些服务，像翻译，天气预报，星座什么的，我一般都是用Python写个爬虫去提供这些服务的网站爬数据，但是有些网站对爬虫有很多限制，一些关键字会定时更改，就像中国天气网经常变更HTML标签的class值，这就需要时常维护爬虫，而聚合数据API只对普通用户提供一个免费API接口，简直垃圾，而网上的一些网站其实有开放的API供开发者调用，所以我想着把自己发现的好玩的API和自己写的爬虫写个博客专题供大家参考，我会继续补充和维护。"><a href="#平时写程序经常需要用到一些服务，像翻译，天气预报，星座什么的，我一般都是用Python写个爬虫去提供这些服务的网站爬数据，但是有些网站对爬虫有很多限制，一些关键字会定时更改，就像中国天气网经常变更HTML标签的class值，这就需要时常维护爬虫，而聚合数据API只对普通用户提供一个免费API接口，简直垃圾，而网上的一些网站其实有开放的API供开发者调用，所以我想着把自己发现的好玩的API和自己写的爬虫写个博客专题供大家参考，我会继续补充和维护。" class="headerlink" title="平时写程序经常需要用到一些服务，像翻译，天气预报，星座什么的，我一般都是用Python写个爬虫去提供这些服务的网站爬数据，但是有些网站对爬虫有很多限制，一些关键字会定时更改，就像中国天气网经常变更HTML标签的class值，这就需要时常维护爬虫，而聚合数据API只对普通用户提供一个免费API接口，简直垃圾，而网上的一些网站其实有开放的API供开发者调用，所以我想着把自己发现的好玩的API和自己写的爬虫写个博客专题供大家参考，我会继续补充和维护。"></a>平时写程序经常需要用到一些服务，像翻译，天气预报，星座什么的，我一般都是用Python写个爬虫去提供这些服务的网站爬数据，但是有些网站对爬虫有很多限制，一些关键字会定时更改，就像中国天气网经常变更HTML标签的class值，这就需要时常维护爬虫，而聚合数据API只对普通用户提供一个免费API接口，简直垃圾，而网上的一些网站其实有开放的API供开发者调用，所以我想着把自己发现的好玩的API和自己写的爬虫写个博客专题供大家参考，我会继续补充和维护。</h3><h2 id="第二个专题是关于星座运势查询的，平时无聊的时候会用到这个，平时放在网站里显示一下也是可以的，以前我是直接Python爬星座屋网站里的数据去分析的，后来发现聚合数据提供这个API，而且调用的方法也很简单，今天就把这两个方法写出来，有需要的可以自己参考着做。"><a href="#第二个专题是关于星座运势查询的，平时无聊的时候会用到这个，平时放在网站里显示一下也是可以的，以前我是直接Python爬星座屋网站里的数据去分析的，后来发现聚合数据提供这个API，而且调用的方法也很简单，今天就把这两个方法写出来，有需要的可以自己参考着做。" class="headerlink" title="第二个专题是关于星座运势查询的，平时无聊的时候会用到这个，平时放在网站里显示一下也是可以的，以前我是直接Python爬星座屋网站里的数据去分析的，后来发现聚合数据提供这个API，而且调用的方法也很简单，今天就把这两个方法写出来，有需要的可以自己参考着做。"></a>第二个专题是关于星座运势查询的，平时无聊的时候会用到这个，平时放在网站里显示一下也是可以的，以前我是直接Python爬星座屋网站里的数据去分析的，后来发现聚合数据提供这个API，而且调用的方法也很简单，今天就把这两个方法写出来，有需要的可以自己参考着做。</h2><h2 id="1-这是星座屋的网站"><a href="#1-这是星座屋的网站" class="headerlink" title="1. 这是星座屋的网站"></a>1. 这是星座屋的网站</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/web6.jpg"
+                     
+                ></p>
+<h3 id="然后用Python写个爬虫直接爬就可以了，我直接放出代码，不做解释了"><a href="#然后用Python写个爬虫直接爬就可以了，我直接放出代码，不做解释了" class="headerlink" title="然后用Python写个爬虫直接爬就可以了，我直接放出代码，不做解释了"></a>然后用Python写个爬虫直接爬就可以了，我直接放出代码，不做解释了</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">#-*- coding=utf8 -*-</span><br><span class="line">import sys</span><br><span class="line">import MySQLdb</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding( &quot;utf-8&quot; )</span><br><span class="line">import urllib2</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import time</span><br><span class="line">def download(url,headers):</span><br><span class="line">    try:</span><br><span class="line">        request = urllib2.Request(url,headers=headers)</span><br><span class="line">        html = urllib2.urlopen(request).read()</span><br><span class="line">        # html = urllib2.urlopen(url).read()</span><br><span class="line">    except urllib2.URLError as e:</span><br><span class="line">        print &quot;error&quot;</span><br><span class="line">        print e.code   #可以打印出来错误代号如404。</span><br><span class="line">        print e.reason  #可以捕获异常</span><br><span class="line">        html = None</span><br><span class="line">    return html</span><br><span class="line">def save(html):</span><br><span class="line">    f = open(&#x27;thefile.txt&#x27;, &#x27;w&#x27;)</span><br><span class="line">    f.write(html)</span><br><span class="line">    f.close()</span><br><span class="line">def read_file():</span><br><span class="line">    f = open(&#x27;thefile.txt&#x27;, &#x27;r&#x27;)</span><br><span class="line">    html = f.read()</span><br><span class="line">    f.close()</span><br><span class="line">    return html</span><br><span class="line">def get_html(url):</span><br><span class="line">    User_agent = &#x27;Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0&#x27;</span><br><span class="line">    headers = &#123;&#x27;User_agent&#x27;: User_agent&#125;</span><br><span class="line">    html = download(url, headers)</span><br><span class="line">    save(html)</span><br><span class="line">def constellation():</span><br><span class="line">    url = &#x27;http://www.xzw.com/fortune/pisces/1.html&#x27;</span><br><span class="line">    get_html(url)</span><br><span class="line">    html = read_file()</span><br><span class="line">    soup = BeautifulSoup(html)</span><br><span class="line">    # print soup.find_all(&#x27;dl&#x27;)</span><br><span class="line">    html2 = soup.find(&#x27;div&#x27;, class_=&#x27;c_cont&#x27;)</span><br><span class="line">    html2 = str(html2)</span><br><span class="line">    soup = BeautifulSoup(html2)</span><br><span class="line">    text = &#x27;双鱼座明日运势：&#x27; + &#x27;\n&#x27;</span><br><span class="line">    text = text + &#x27;整体运势：&#x27; + soup.find_all(&#x27;span&#x27;)[0].string + &#x27;\n&#x27;</span><br><span class="line">    text = text + &#x27;事业学业：&#x27; + soup.find_all(&#x27;span&#x27;)[2].string + &#x27;\n&#x27;</span><br><span class="line">    text = text + &#x27;健康运势：&#x27; + soup.find_all(&#x27;span&#x27;)[4].string + &#x27;\n&#x27;</span><br><span class="line">    return text</span><br><span class="line">    # html = urllib2.urlopen(url)</span><br><span class="line">    # print html</span><br><span class="line">if __name__==&#x27;__main__&#x27;:</span><br><span class="line">    weather_text = weather()</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="2-先在聚合数据里注册，然后再提交身份证照片进行个人认证，很烦的，最后在免费数据里找到星座运势，就是这样的"><a href="#2-先在聚合数据里注册，然后再提交身份证照片进行个人认证，很烦的，最后在免费数据里找到星座运势，就是这样的" class="headerlink" title="2.先在聚合数据里注册，然后再提交身份证照片进行个人认证，很烦的，最后在免费数据里找到星座运势，就是这样的"></a>2.先在聚合数据里注册，然后再提交身份证照片进行个人认证，很烦的，最后在免费数据里找到星座运势，就是这样的</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/web7.jpg"
+                     
+                ></p>
+<h3 id="然后点击申请数据，再进行一遍验证，不过很快就通过了，在控制台找的自己的key，我是使用Python来处理数据的，下面是代码，把key直接换成你的就可以，至于类型，根据需要切换today，tomorrow，week，year等。"><a href="#然后点击申请数据，再进行一遍验证，不过很快就通过了，在控制台找的自己的key，我是使用Python来处理数据的，下面是代码，把key直接换成你的就可以，至于类型，根据需要切换today，tomorrow，week，year等。" class="headerlink" title="然后点击申请数据，再进行一遍验证，不过很快就通过了，在控制台找的自己的key，我是使用Python来处理数据的，下面是代码，把key直接换成你的就可以，至于类型，根据需要切换today，tomorrow，week，year等。"></a>然后点击申请数据，再进行一遍验证，不过很快就通过了，在控制台找的自己的key，我是使用Python来处理数据的，下面是代码，把key直接换成你的就可以，至于类型，根据需要切换today，tomorrow，week，year等。</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">#-*- coding=utf8 -*-</span><br><span class="line">import sys</span><br><span class="line">reload(sys)</span><br><span class="line">sys.setdefaultencoding( &quot;utf-8&quot; )</span><br><span class="line">import urllib2</span><br><span class="line">import json</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">def download(url):</span><br><span class="line">    html = urllib2.urlopen(url)</span><br><span class="line">    return html.read()</span><br><span class="line">#星座运势api的调取</span><br><span class="line">def constellation():</span><br><span class="line">    today_url = &#x27;http://web.juhe.cn:8080/constellation/getAll?consName=双鱼座&amp;type=today&amp;key=&#x27;</span><br><span class="line">    tomorrow_url = &#x27;http://web.juhe.cn:8080/constellation/getAll?consName=双鱼座&amp;type=tomorrow&amp;key=&#x27;</span><br><span class="line">    html = download(tomorrow_url)</span><br><span class="line">    json_html = json.loads(html)</span><br><span class="line">    text = &#x27;&#x27;</span><br><span class="line">    text = text + str(json_html[&#x27;name&#x27;]) + &#x27; &#x27; + str(json_html[&#x27;datetime&#x27;]) + &#x27; 明日运势 \n&#x27;;</span><br><span class="line">    text = text + &#x27;综合指数：&#x27; + str(json_html[&#x27;all&#x27;]) + &#x27;\n&#x27;</span><br><span class="line">    text = text + &#x27;幸运色：&#x27; + str(json_html[&#x27;color&#x27;]) + &#x27;\n&#x27;</span><br><span class="line">    text = text + &#x27;健康指数：&#x27; + str(json_html[&#x27;health&#x27;]) + &#x27;\n&#x27;</span><br><span class="line">    text = text + &#x27;爱情指数：&#x27; + str(json_html[&#x27;love&#x27;]) + &#x27;\n&#x27;</span><br><span class="line">    text = text + &#x27;财运指数：&#x27; + str(json_html[&#x27;money&#x27;]) + &#x27;\n&#x27;</span><br><span class="line">    text = text + &#x27;幸运数字：&#x27; + str(json_html[&#x27;number&#x27;]) + &#x27;\n&#x27;</span><br><span class="line">    text = text + &#x27;明日概述：&#x27; + str(json_html[&#x27;summary&#x27;]) + &#x27;\n&#x27;</span><br><span class="line">    print text</span><br><span class="line">    return text</span><br><span class="line">def main():</span><br><span class="line">    text = constellation()</span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure></div>
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 好玩的API调用之---星座运势的API与爬虫爬取</li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2017-04-25 20:59:52</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 21:39:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2017/04/25/api-article74/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%8A%80%E6%9C%AF%E7%9F%A5%E8%AF%86/">#技术知识</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/">#扩展功能</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2017/04/25/api-article75/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">好玩的API调用之---三种翻译API调用</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2017/04/25/api-article73/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">好玩的API调用之---IP地址查询API</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">好玩的API调用之---星座运势的API与爬虫爬取</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E6%97%B6%E5%86%99%E7%A8%8B%E5%BA%8F%E7%BB%8F%E5%B8%B8%E9%9C%80%E8%A6%81%E7%94%A8%E5%88%B0%E4%B8%80%E4%BA%9B%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%83%8F%E7%BF%BB%E8%AF%91%EF%BC%8C%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5%EF%BC%8C%E6%98%9F%E5%BA%A7%E4%BB%80%E4%B9%88%E7%9A%84%EF%BC%8C%E6%88%91%E4%B8%80%E8%88%AC%E9%83%BD%E6%98%AF%E7%94%A8Python%E5%86%99%E4%B8%AA%E7%88%AC%E8%99%AB%E5%8E%BB%E6%8F%90%E4%BE%9B%E8%BF%99%E4%BA%9B%E6%9C%8D%E5%8A%A1%E7%9A%84%E7%BD%91%E7%AB%99%E7%88%AC%E6%95%B0%E6%8D%AE%EF%BC%8C%E4%BD%86%E6%98%AF%E6%9C%89%E4%BA%9B%E7%BD%91%E7%AB%99%E5%AF%B9%E7%88%AC%E8%99%AB%E6%9C%89%E5%BE%88%E5%A4%9A%E9%99%90%E5%88%B6%EF%BC%8C%E4%B8%80%E4%BA%9B%E5%85%B3%E9%94%AE%E5%AD%97%E4%BC%9A%E5%AE%9A%E6%97%B6%E6%9B%B4%E6%94%B9%EF%BC%8C%E5%B0%B1%E5%83%8F%E4%B8%AD%E5%9B%BD%E5%A4%A9%E6%B0%94%E7%BD%91%E7%BB%8F%E5%B8%B8%E5%8F%98%E6%9B%B4HTML%E6%A0%87%E7%AD%BE%E7%9A%84class%E5%80%BC%EF%BC%8C%E8%BF%99%E5%B0%B1%E9%9C%80%E8%A6%81%E6%97%B6%E5%B8%B8%E7%BB%B4%E6%8A%A4%E7%88%AC%E8%99%AB%EF%BC%8C%E8%80%8C%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AEAPI%E5%8F%AA%E5%AF%B9%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E6%8F%90%E4%BE%9B%E4%B8%80%E4%B8%AA%E5%85%8D%E8%B4%B9API%E6%8E%A5%E5%8F%A3%EF%BC%8C%E7%AE%80%E7%9B%B4%E5%9E%83%E5%9C%BE%EF%BC%8C%E8%80%8C%E7%BD%91%E4%B8%8A%E7%9A%84%E4%B8%80%E4%BA%9B%E7%BD%91%E7%AB%99%E5%85%B6%E5%AE%9E%E6%9C%89%E5%BC%80%E6%94%BE%E7%9A%84API%E4%BE%9B%E5%BC%80%E5%8F%91%E8%80%85%E8%B0%83%E7%94%A8%EF%BC%8C%E6%89%80%E4%BB%A5%E6%88%91%E6%83%B3%E7%9D%80%E6%8A%8A%E8%87%AA%E5%B7%B1%E5%8F%91%E7%8E%B0%E7%9A%84%E5%A5%BD%E7%8E%A9%E7%9A%84API%E5%92%8C%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E7%88%AC%E8%99%AB%E5%86%99%E4%B8%AA%E5%8D%9A%E5%AE%A2%E4%B8%93%E9%A2%98%E4%BE%9B%E5%A4%A7%E5%AE%B6%E5%8F%82%E8%80%83%EF%BC%8C%E6%88%91%E4%BC%9A%E7%BB%A7%E7%BB%AD%E8%A1%A5%E5%85%85%E5%92%8C%E7%BB%B4%E6%8A%A4%E3%80%82"><span class="nav-text">平时写程序经常需要用到一些服务，像翻译，天气预报，星座什么的，我一般都是用Python写个爬虫去提供这些服务的网站爬数据，但是有些网站对爬虫有很多限制，一些关键字会定时更改，就像中国天气网经常变更HTML标签的class值，这就需要时常维护爬虫，而聚合数据API只对普通用户提供一个免费API接口，简直垃圾，而网上的一些网站其实有开放的API供开发者调用，所以我想着把自己发现的好玩的API和自己写的爬虫写个博客专题供大家参考，我会继续补充和维护。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E4%B8%AA%E4%B8%93%E9%A2%98%E6%98%AF%E5%85%B3%E4%BA%8E%E6%98%9F%E5%BA%A7%E8%BF%90%E5%8A%BF%E6%9F%A5%E8%AF%A2%E7%9A%84%EF%BC%8C%E5%B9%B3%E6%97%B6%E6%97%A0%E8%81%8A%E7%9A%84%E6%97%B6%E5%80%99%E4%BC%9A%E7%94%A8%E5%88%B0%E8%BF%99%E4%B8%AA%EF%BC%8C%E5%B9%B3%E6%97%B6%E6%94%BE%E5%9C%A8%E7%BD%91%E7%AB%99%E9%87%8C%E6%98%BE%E7%A4%BA%E4%B8%80%E4%B8%8B%E4%B9%9F%E6%98%AF%E5%8F%AF%E4%BB%A5%E7%9A%84%EF%BC%8C%E4%BB%A5%E5%89%8D%E6%88%91%E6%98%AF%E7%9B%B4%E6%8E%A5Python%E7%88%AC%E6%98%9F%E5%BA%A7%E5%B1%8B%E7%BD%91%E7%AB%99%E9%87%8C%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8E%BB%E5%88%86%E6%9E%90%E7%9A%84%EF%BC%8C%E5%90%8E%E6%9D%A5%E5%8F%91%E7%8E%B0%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AE%E6%8F%90%E4%BE%9B%E8%BF%99%E4%B8%AAAPI%EF%BC%8C%E8%80%8C%E4%B8%94%E8%B0%83%E7%94%A8%E7%9A%84%E6%96%B9%E6%B3%95%E4%B9%9F%E5%BE%88%E7%AE%80%E5%8D%95%EF%BC%8C%E4%BB%8A%E5%A4%A9%E5%B0%B1%E6%8A%8A%E8%BF%99%E4%B8%A4%E4%B8%AA%E6%96%B9%E6%B3%95%E5%86%99%E5%87%BA%E6%9D%A5%EF%BC%8C%E6%9C%89%E9%9C%80%E8%A6%81%E7%9A%84%E5%8F%AF%E4%BB%A5%E8%87%AA%E5%B7%B1%E5%8F%82%E8%80%83%E7%9D%80%E5%81%9A%E3%80%82"><span class="nav-text">第二个专题是关于星座运势查询的，平时无聊的时候会用到这个，平时放在网站里显示一下也是可以的，以前我是直接Python爬星座屋网站里的数据去分析的，后来发现聚合数据提供这个API，而且调用的方法也很简单，今天就把这两个方法写出来，有需要的可以自己参考着做。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%BF%99%E6%98%AF%E6%98%9F%E5%BA%A7%E5%B1%8B%E7%9A%84%E7%BD%91%E7%AB%99"><span class="nav-text">1. 这是星座屋的网站</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%84%B6%E5%90%8E%E7%94%A8Python%E5%86%99%E4%B8%AA%E7%88%AC%E8%99%AB%E7%9B%B4%E6%8E%A5%E7%88%AC%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86%EF%BC%8C%E6%88%91%E7%9B%B4%E6%8E%A5%E6%94%BE%E5%87%BA%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%B8%8D%E5%81%9A%E8%A7%A3%E9%87%8A%E4%BA%86"><span class="nav-text">然后用Python写个爬虫直接爬就可以了，我直接放出代码，不做解释了</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%85%88%E5%9C%A8%E8%81%9A%E5%90%88%E6%95%B0%E6%8D%AE%E9%87%8C%E6%B3%A8%E5%86%8C%EF%BC%8C%E7%84%B6%E5%90%8E%E5%86%8D%E6%8F%90%E4%BA%A4%E8%BA%AB%E4%BB%BD%E8%AF%81%E7%85%A7%E7%89%87%E8%BF%9B%E8%A1%8C%E4%B8%AA%E4%BA%BA%E8%AE%A4%E8%AF%81%EF%BC%8C%E5%BE%88%E7%83%A6%E7%9A%84%EF%BC%8C%E6%9C%80%E5%90%8E%E5%9C%A8%E5%85%8D%E8%B4%B9%E6%95%B0%E6%8D%AE%E9%87%8C%E6%89%BE%E5%88%B0%E6%98%9F%E5%BA%A7%E8%BF%90%E5%8A%BF%EF%BC%8C%E5%B0%B1%E6%98%AF%E8%BF%99%E6%A0%B7%E7%9A%84"><span class="nav-text">2.先在聚合数据里注册，然后再提交身份证照片进行个人认证，很烦的，最后在免费数据里找到星座运势，就是这样的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%84%B6%E5%90%8E%E7%82%B9%E5%87%BB%E7%94%B3%E8%AF%B7%E6%95%B0%E6%8D%AE%EF%BC%8C%E5%86%8D%E8%BF%9B%E8%A1%8C%E4%B8%80%E9%81%8D%E9%AA%8C%E8%AF%81%EF%BC%8C%E4%B8%8D%E8%BF%87%E5%BE%88%E5%BF%AB%E5%B0%B1%E9%80%9A%E8%BF%87%E4%BA%86%EF%BC%8C%E5%9C%A8%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%89%BE%E7%9A%84%E8%87%AA%E5%B7%B1%E7%9A%84key%EF%BC%8C%E6%88%91%E6%98%AF%E4%BD%BF%E7%94%A8Python%E6%9D%A5%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%EF%BC%8C%E4%B8%8B%E9%9D%A2%E6%98%AF%E4%BB%A3%E7%A0%81%EF%BC%8C%E6%8A%8Akey%E7%9B%B4%E6%8E%A5%E6%8D%A2%E6%88%90%E4%BD%A0%E7%9A%84%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8C%E8%87%B3%E4%BA%8E%E7%B1%BB%E5%9E%8B%EF%BC%8C%E6%A0%B9%E6%8D%AE%E9%9C%80%E8%A6%81%E5%88%87%E6%8D%A2today%EF%BC%8Ctomorrow%EF%BC%8Cweek%EF%BC%8Cyear%E7%AD%89%E3%80%82"><span class="nav-text">然后点击申请数据，再进行一遍验证，不过很快就通过了，在控制台找的自己的key，我是使用Python来处理数据的，下面是代码，把key直接换成你的就可以，至于类型，根据需要切换today，tomorrow，week，year等。</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2017/06/18/article86/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="学钱帮网站开发总结关于学钱帮是个什么项目，在我上一篇博客中已有了阐述，不清楚的可以点击文章了解一下《学钱帮项目》 ，里面有内容介绍，还有大量截图，项目我已开源，有需要的可以找我要git库地址，比赛已经完成了，一个可以接受的结果，也不枉费这些天的努力，和写了一大堆的代码。又是一个完整的项目，而且还经过了一些用户测试，所以还是写一篇总结来反思一些，希望对以后的开发有更多的帮助。项目从一开始就经过了很长">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学钱帮网站开发总结">
+<meta property="og:url" content="http://example.com/2017/06/18/article86/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="学钱帮网站开发总结关于学钱帮是个什么项目，在我上一篇博客中已有了阐述，不清楚的可以点击文章了解一下《学钱帮项目》 ，里面有内容介绍，还有大量截图，项目我已开源，有需要的可以找我要git库地址，比赛已经完成了，一个可以接受的结果，也不枉费这些天的努力，和写了一大堆的代码。又是一个完整的项目，而且还经过了一些用户测试，所以还是写一篇总结来反思一些，希望对以后的开发有更多的帮助。项目从一开始就经过了很长">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb27.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb28.png">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb29.png">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb30.png">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb31.png">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb32.png">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb33.png">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb34.png">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb35.png">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb36.png">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb37.png">
+<meta property="article:published_time" content="2017-06-18T02:03:33.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:39:50.456Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="技术心得">
+<meta property="article:tag" content="技术知识">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb27.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            学钱帮网站开发总结 -
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"/images/zS9MZBsVYLI.jpg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">学钱帮网站开发总结</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2017-06-18 10:03:33</span>
+        <span class="mobile">2017-06-18 10:03</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 21:39:50</span>
+            <span class="mobile">2023-05-14 21:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/programme/">programme</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Technique/">Technique</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/programme/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Self/">Self</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/">技术心得</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%8A%80%E6%9C%AF%E7%9F%A5%E8%AF%86/">技术知识</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="学钱帮网站开发总结"><a href="#学钱帮网站开发总结" class="headerlink" title="学钱帮网站开发总结"></a>学钱帮网站开发总结</h2><h3 id="关于学钱帮是个什么项目，在我上一篇博客中已有了阐述，不清楚的可以点击文章了解一下《学钱帮项目》，里面有内容介绍，还有大量截图，项目我已开源，有需要的可以找我要git库地址，比赛已经完成了，一个可以接受的结果，也不枉费这些天的努力，和写了一大堆的代码。又是一个完整的项目，而且还经过了一些用户测试，所以还是写一篇总结来反思一些，希望对以后的开发有更多的帮助。"><a href="#关于学钱帮是个什么项目，在我上一篇博客中已有了阐述，不清楚的可以点击文章了解一下《学钱帮项目》，里面有内容介绍，还有大量截图，项目我已开源，有需要的可以找我要git库地址，比赛已经完成了，一个可以接受的结果，也不枉费这些天的努力，和写了一大堆的代码。又是一个完整的项目，而且还经过了一些用户测试，所以还是写一篇总结来反思一些，希望对以后的开发有更多的帮助。" class="headerlink" title="关于学钱帮是个什么项目，在我上一篇博客中已有了阐述，不清楚的可以点击文章了解一下《学钱帮项目》，里面有内容介绍，还有大量截图，项目我已开源，有需要的可以找我要git库地址，比赛已经完成了，一个可以接受的结果，也不枉费这些天的努力，和写了一大堆的代码。又是一个完整的项目，而且还经过了一些用户测试，所以还是写一篇总结来反思一些，希望对以后的开发有更多的帮助。"></a>关于学钱帮是个什么项目，在我上一篇博客中已有了阐述，不清楚的可以点击文章了解一下<a class="link"   target="_blank" rel="noopener" href="http://www.rain1024.com/2017/06/17/article85/" >《学钱帮项目》 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，里面有内容介绍，还有大量截图，项目我已开源，有需要的可以找我要git库地址，比赛已经完成了，一个可以接受的结果，也不枉费这些天的努力，和写了一大堆的代码。又是一个完整的项目，而且还经过了一些用户测试，所以还是写一篇总结来反思一些，希望对以后的开发有更多的帮助。</h3><h3 id="项目从一开始就经过了很长时间的分析，设计，也是有各种策划和想法，画了很多草图，写了很多笔记，做了数据库的设计，功能思维导图，设计了界面，一个人干了一个团队的事情，虽然最后界面不是很好看，功能也有些bug，但这些我也很满足，后期会慢慢的修改调整，最后会做到最好。这次开发我还学会了使用git，这个强大的工具，但不是从一开始就使用，所以只有后来的每次更新才同步到了git库中，并附加了一些commit，如果能从项目开始构建就使用git，每一次更改都使用commit说明的话，我就可以翻阅这些提交记录学到更多东西，有时间一定要写一篇git的介绍。项目设计的图我会放在博文下面。"><a href="#项目从一开始就经过了很长时间的分析，设计，也是有各种策划和想法，画了很多草图，写了很多笔记，做了数据库的设计，功能思维导图，设计了界面，一个人干了一个团队的事情，虽然最后界面不是很好看，功能也有些bug，但这些我也很满足，后期会慢慢的修改调整，最后会做到最好。这次开发我还学会了使用git，这个强大的工具，但不是从一开始就使用，所以只有后来的每次更新才同步到了git库中，并附加了一些commit，如果能从项目开始构建就使用git，每一次更改都使用commit说明的话，我就可以翻阅这些提交记录学到更多东西，有时间一定要写一篇git的介绍。项目设计的图我会放在博文下面。" class="headerlink" title="项目从一开始就经过了很长时间的分析，设计，也是有各种策划和想法，画了很多草图，写了很多笔记，做了数据库的设计，功能思维导图，设计了界面，一个人干了一个团队的事情，虽然最后界面不是很好看，功能也有些bug，但这些我也很满足，后期会慢慢的修改调整，最后会做到最好。这次开发我还学会了使用git，这个强大的工具，但不是从一开始就使用，所以只有后来的每次更新才同步到了git库中，并附加了一些commit，如果能从项目开始构建就使用git，每一次更改都使用commit说明的话，我就可以翻阅这些提交记录学到更多东西，有时间一定要写一篇git的介绍。项目设计的图我会放在博文下面。"></a>项目从一开始就经过了很长时间的分析，设计，也是有各种策划和想法，画了很多草图，写了很多笔记，做了数据库的设计，功能思维导图，设计了界面，一个人干了一个团队的事情，虽然最后界面不是很好看，功能也有些bug，但这些我也很满足，后期会慢慢的修改调整，最后会做到最好。这次开发我还学会了使用git，这个强大的工具，但不是从一开始就使用，所以只有后来的每次更新才同步到了git库中，并附加了一些commit，如果能从项目开始构建就使用git，每一次更改都使用commit说明的话，我就可以翻阅这些提交记录学到更多东西，有时间一定要写一篇git的介绍。项目设计的图我会放在博文下面。</h3><h2 id="下面是项目的结构："><a href="#下面是项目的结构：" class="headerlink" title="下面是项目的结构："></a>下面是项目的结构：</h2><h3 id="Home模块"><a href="#Home模块" class="headerlink" title="Home模块"></a>Home模块</h3><ol>
+<li>6个Controller控制器</li>
+<li>27个View视图层</li>
+</ol>
+<h3 id="Common模块"><a href="#Common模块" class="headerlink" title="Common模块"></a>Common模块</h3><ol>
+<li>function公共函数192行</li>
+<li>12个Model模型</li>
+</ol>
+<h3 id="Admin模块"><a href="#Admin模块" class="headerlink" title="Admin模块"></a>Admin模块</h3><ol>
+<li>7个Controller控制器</li>
+<li>11个View视图层</li>
+</ol>
+<h3 id="有13张数据表"><a href="#有13张数据表" class="headerlink" title="有13张数据表"></a>有13张数据表</h3><h3 id="所以整个项目的体系并不小了，手写的也有几千行代码，关于这次项目的总结："><a href="#所以整个项目的体系并不小了，手写的也有几千行代码，关于这次项目的总结：" class="headerlink" title="所以整个项目的体系并不小了，手写的也有几千行代码，关于这次项目的总结："></a>所以整个项目的体系并不小了，手写的也有几千行代码，关于这次项目的总结：</h3><ol>
+<li>要做整个项目时，不能急于去写代码，也不用直接去做数据库设计，应该先进行大量的设计和规划，做出整体的思维导图来控制以后项目的走向，思维导图并不需要有多详细，但必须要有大致的方向和目标，把控以后项目的功能构建。</li>
+<li>当有了项目框架，就应该查找显示的界面和设计数据库，界面是以后项目要显示的部分，如果边做后端开发，边设计前端的页面，设计和逻辑混在一起就会很乱，不能以一个方向为主，需要花费大量的时间去调整前后端，数据库的部分设计也可以在这个时候做，因为有一些表单的字段需要结合。</li>
+<li>数据库的设计，设计数据库也要做导图和一些笔记，尽量详细的分析每张表和每个需要的字段，字段设计多了没关系，但如果字段设计少了，后期增加字段很麻烦，尤其是有了数据以后，每个数据对于新增字段的值都需要修改，设计数据库时一定要想好每个功能，只有对应功能去设计，数据库才会比较完整。</li>
+<li>PHP后端的编写，其实这部分最复杂的是逻辑，除去逻辑，其他的无非都是增删改查，当然，最多的还是显示数据，都是大量重复的代码，但有一点需要注意，这是我以后也需要注意的，那就是函数名，一个项目有十多个model是很正常的，但model中总有相同功能的函数，由于开发时间长了，每个model中的函数名都是随便起的，这样调用的时候就会很乱，明明都是相同的功能，名字却不一样，只能打开model去一个一个的查看。</li>
+<li>后端逻辑，这是最复杂的，应该先写出来，有个大致的思路，逻辑部分所占的代码量很小，但却是最重要的，所以不要留下bug，思路不清会后患无穷。</li>
+<li>功能重载，说是重载，只不过是懒得多写一遍，但到了项目的后期开发时，重载的作用就不仅仅是少写几遍那么简单，它也意味着出现bug后可以少改几遍，项目的错误率会降低很多，比如三处完全相同的代码，如果出现bug，就需要挨个修改，如果忘记了修改某一个，就又会出现问题，但如果我写成一个重载公共函数，直接修改一遍就好，前端页面也是这样，比如header，menu，sadbar，footer，都可以放到一个页面中。</li>
+<li>参数不同的功能重载，在函数中，完全一样的函数是很少的，但大部分都是有共同点的，重载就是尽量提取那些容易出现bug的函数，千万不要把所有的函数都写成重载的，那样反而会更加麻烦。对于大致相同的函数，可以把不同点作为参数来传递，最后调用公共函数，这是一个好办法。</li>
+<li>function函数，function函数是很强大的，很多方法都可以放到这里面，作为我项目的必备方法就有，request()，请求参数提取方法，日期相差计算方法，文件上传的方法，session判断方法，当然还可以根据项目需要添加更多需要的方法。</li>
+</ol>
+<h3 id="总结：这次项目开发总体还是比较着急了，框架规划设计做的不够，数据库后期有很多修改，界面也没有一开始就做好（当然我不是做界面的），等等很多问题，下一个项目开发时要稳一些，不能急于求成，一步一步的写，总会得到满意的结果。"><a href="#总结：这次项目开发总体还是比较着急了，框架规划设计做的不够，数据库后期有很多修改，界面也没有一开始就做好（当然我不是做界面的），等等很多问题，下一个项目开发时要稳一些，不能急于求成，一步一步的写，总会得到满意的结果。" class="headerlink" title="总结：这次项目开发总体还是比较着急了，框架规划设计做的不够，数据库后期有很多修改，界面也没有一开始就做好（当然我不是做界面的），等等很多问题，下一个项目开发时要稳一些，不能急于求成，一步一步的写，总会得到满意的结果。"></a>总结：这次项目开发总体还是比较着急了，框架规划设计做的不够，数据库后期有很多修改，界面也没有一开始就做好（当然我不是做界面的），等等很多问题，下一个项目开发时要稳一些，不能急于求成，一步一步的写，总会得到满意的结果。</h3><h2 id="以下是commit的记录"><a href="#以下是commit的记录" class="headerlink" title="以下是commit的记录"></a>以下是commit的记录</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb27.jpg"
+                     
+                ></p>
+<h2 id="以下是项目思路，策划，笔记"><a href="#以下是项目思路，策划，笔记" class="headerlink" title="以下是项目思路，策划，笔记"></a>以下是项目思路，策划，笔记</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb28.png"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb29.png"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb30.png"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb31.png"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb32.png"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb33.png"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb34.png"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb35.png"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb36.png"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb37.png"
+                     
+                ></p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 学钱帮网站开发总结</li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2017-06-18 10:03:33</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 21:39:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2017/06/18/article86/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/">#技术心得</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%8A%80%E6%9C%AF%E7%9F%A5%E8%AF%86/">#技术知识</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/PHP/">#PHP</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2017/07/25/article87/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">7月1日关于博客备案说明</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2017/06/17/article85/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">学钱帮项目</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">学钱帮网站开发总结</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E9%92%B1%E5%B8%AE%E7%BD%91%E7%AB%99%E5%BC%80%E5%8F%91%E6%80%BB%E7%BB%93"><span class="nav-text">学钱帮网站开发总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%AD%A6%E9%92%B1%E5%B8%AE%E6%98%AF%E4%B8%AA%E4%BB%80%E4%B9%88%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%9C%A8%E6%88%91%E4%B8%8A%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E4%B8%AD%E5%B7%B2%E6%9C%89%E4%BA%86%E9%98%90%E8%BF%B0%EF%BC%8C%E4%B8%8D%E6%B8%85%E6%A5%9A%E7%9A%84%E5%8F%AF%E4%BB%A5%E7%82%B9%E5%87%BB%E6%96%87%E7%AB%A0%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%E3%80%8A%E5%AD%A6%E9%92%B1%E5%B8%AE%E9%A1%B9%E7%9B%AE%E3%80%8B%EF%BC%8C%E9%87%8C%E9%9D%A2%E6%9C%89%E5%86%85%E5%AE%B9%E4%BB%8B%E7%BB%8D%EF%BC%8C%E8%BF%98%E6%9C%89%E5%A4%A7%E9%87%8F%E6%88%AA%E5%9B%BE%EF%BC%8C%E9%A1%B9%E7%9B%AE%E6%88%91%E5%B7%B2%E5%BC%80%E6%BA%90%EF%BC%8C%E6%9C%89%E9%9C%80%E8%A6%81%E7%9A%84%E5%8F%AF%E4%BB%A5%E6%89%BE%E6%88%91%E8%A6%81git%E5%BA%93%E5%9C%B0%E5%9D%80%EF%BC%8C%E6%AF%94%E8%B5%9B%E5%B7%B2%E7%BB%8F%E5%AE%8C%E6%88%90%E4%BA%86%EF%BC%8C%E4%B8%80%E4%B8%AA%E5%8F%AF%E4%BB%A5%E6%8E%A5%E5%8F%97%E7%9A%84%E7%BB%93%E6%9E%9C%EF%BC%8C%E4%B9%9F%E4%B8%8D%E6%9E%89%E8%B4%B9%E8%BF%99%E4%BA%9B%E5%A4%A9%E7%9A%84%E5%8A%AA%E5%8A%9B%EF%BC%8C%E5%92%8C%E5%86%99%E4%BA%86%E4%B8%80%E5%A4%A7%E5%A0%86%E7%9A%84%E4%BB%A3%E7%A0%81%E3%80%82%E5%8F%88%E6%98%AF%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E7%9A%84%E9%A1%B9%E7%9B%AE%EF%BC%8C%E8%80%8C%E4%B8%94%E8%BF%98%E7%BB%8F%E8%BF%87%E4%BA%86%E4%B8%80%E4%BA%9B%E7%94%A8%E6%88%B7%E6%B5%8B%E8%AF%95%EF%BC%8C%E6%89%80%E4%BB%A5%E8%BF%98%E6%98%AF%E5%86%99%E4%B8%80%E7%AF%87%E6%80%BB%E7%BB%93%E6%9D%A5%E5%8F%8D%E6%80%9D%E4%B8%80%E4%BA%9B%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%AF%B9%E4%BB%A5%E5%90%8E%E7%9A%84%E5%BC%80%E5%8F%91%E6%9C%89%E6%9B%B4%E5%A4%9A%E7%9A%84%E5%B8%AE%E5%8A%A9%E3%80%82"><span class="nav-text">关于学钱帮是个什么项目，在我上一篇博客中已有了阐述，不清楚的可以点击文章了解一下《学钱帮项目》 ，里面有内容介绍，还有大量截图，项目我已开源，有需要的可以找我要git库地址，比赛已经完成了，一个可以接受的结果，也不枉费这些天的努力，和写了一大堆的代码。又是一个完整的项目，而且还经过了一些用户测试，所以还是写一篇总结来反思一些，希望对以后的开发有更多的帮助。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E4%BB%8E%E4%B8%80%E5%BC%80%E5%A7%8B%E5%B0%B1%E7%BB%8F%E8%BF%87%E4%BA%86%E5%BE%88%E9%95%BF%E6%97%B6%E9%97%B4%E7%9A%84%E5%88%86%E6%9E%90%EF%BC%8C%E8%AE%BE%E8%AE%A1%EF%BC%8C%E4%B9%9F%E6%98%AF%E6%9C%89%E5%90%84%E7%A7%8D%E7%AD%96%E5%88%92%E5%92%8C%E6%83%B3%E6%B3%95%EF%BC%8C%E7%94%BB%E4%BA%86%E5%BE%88%E5%A4%9A%E8%8D%89%E5%9B%BE%EF%BC%8C%E5%86%99%E4%BA%86%E5%BE%88%E5%A4%9A%E7%AC%94%E8%AE%B0%EF%BC%8C%E5%81%9A%E4%BA%86%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%AE%BE%E8%AE%A1%EF%BC%8C%E5%8A%9F%E8%83%BD%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE%EF%BC%8C%E8%AE%BE%E8%AE%A1%E4%BA%86%E7%95%8C%E9%9D%A2%EF%BC%8C%E4%B8%80%E4%B8%AA%E4%BA%BA%E5%B9%B2%E4%BA%86%E4%B8%80%E4%B8%AA%E5%9B%A2%E9%98%9F%E7%9A%84%E4%BA%8B%E6%83%85%EF%BC%8C%E8%99%BD%E7%84%B6%E6%9C%80%E5%90%8E%E7%95%8C%E9%9D%A2%E4%B8%8D%E6%98%AF%E5%BE%88%E5%A5%BD%E7%9C%8B%EF%BC%8C%E5%8A%9F%E8%83%BD%E4%B9%9F%E6%9C%89%E4%BA%9Bbug%EF%BC%8C%E4%BD%86%E8%BF%99%E4%BA%9B%E6%88%91%E4%B9%9F%E5%BE%88%E6%BB%A1%E8%B6%B3%EF%BC%8C%E5%90%8E%E6%9C%9F%E4%BC%9A%E6%85%A2%E6%85%A2%E7%9A%84%E4%BF%AE%E6%94%B9%E8%B0%83%E6%95%B4%EF%BC%8C%E6%9C%80%E5%90%8E%E4%BC%9A%E5%81%9A%E5%88%B0%E6%9C%80%E5%A5%BD%E3%80%82%E8%BF%99%E6%AC%A1%E5%BC%80%E5%8F%91%E6%88%91%E8%BF%98%E5%AD%A6%E4%BC%9A%E4%BA%86%E4%BD%BF%E7%94%A8git%EF%BC%8C%E8%BF%99%E4%B8%AA%E5%BC%BA%E5%A4%A7%E7%9A%84%E5%B7%A5%E5%85%B7%EF%BC%8C%E4%BD%86%E4%B8%8D%E6%98%AF%E4%BB%8E%E4%B8%80%E5%BC%80%E5%A7%8B%E5%B0%B1%E4%BD%BF%E7%94%A8%EF%BC%8C%E6%89%80%E4%BB%A5%E5%8F%AA%E6%9C%89%E5%90%8E%E6%9D%A5%E7%9A%84%E6%AF%8F%E6%AC%A1%E6%9B%B4%E6%96%B0%E6%89%8D%E5%90%8C%E6%AD%A5%E5%88%B0%E4%BA%86git%E5%BA%93%E4%B8%AD%EF%BC%8C%E5%B9%B6%E9%99%84%E5%8A%A0%E4%BA%86%E4%B8%80%E4%BA%9Bcommit%EF%BC%8C%E5%A6%82%E6%9E%9C%E8%83%BD%E4%BB%8E%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%A7%8B%E6%9E%84%E5%BB%BA%E5%B0%B1%E4%BD%BF%E7%94%A8git%EF%BC%8C%E6%AF%8F%E4%B8%80%E6%AC%A1%E6%9B%B4%E6%94%B9%E9%83%BD%E4%BD%BF%E7%94%A8commit%E8%AF%B4%E6%98%8E%E7%9A%84%E8%AF%9D%EF%BC%8C%E6%88%91%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%BF%BB%E9%98%85%E8%BF%99%E4%BA%9B%E6%8F%90%E4%BA%A4%E8%AE%B0%E5%BD%95%E5%AD%A6%E5%88%B0%E6%9B%B4%E5%A4%9A%E4%B8%9C%E8%A5%BF%EF%BC%8C%E6%9C%89%E6%97%B6%E9%97%B4%E4%B8%80%E5%AE%9A%E8%A6%81%E5%86%99%E4%B8%80%E7%AF%87git%E7%9A%84%E4%BB%8B%E7%BB%8D%E3%80%82%E9%A1%B9%E7%9B%AE%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%9B%BE%E6%88%91%E4%BC%9A%E6%94%BE%E5%9C%A8%E5%8D%9A%E6%96%87%E4%B8%8B%E9%9D%A2%E3%80%82"><span class="nav-text">项目从一开始就经过了很长时间的分析，设计，也是有各种策划和想法，画了很多草图，写了很多笔记，做了数据库的设计，功能思维导图，设计了界面，一个人干了一个团队的事情，虽然最后界面不是很好看，功能也有些bug，但这些我也很满足，后期会慢慢的修改调整，最后会做到最好。这次开发我还学会了使用git，这个强大的工具，但不是从一开始就使用，所以只有后来的每次更新才同步到了git库中，并附加了一些commit，如果能从项目开始构建就使用git，每一次更改都使用commit说明的话，我就可以翻阅这些提交记录学到更多东西，有时间一定要写一篇git的介绍。项目设计的图我会放在博文下面。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E6%98%AF%E9%A1%B9%E7%9B%AE%E7%9A%84%E7%BB%93%E6%9E%84%EF%BC%9A"><span class="nav-text">下面是项目的结构：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Home%E6%A8%A1%E5%9D%97"><span class="nav-text">Home模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Common%E6%A8%A1%E5%9D%97"><span class="nav-text">Common模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Admin%E6%A8%A1%E5%9D%97"><span class="nav-text">Admin模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8913%E5%BC%A0%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-text">有13张数据表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%80%E4%BB%A5%E6%95%B4%E4%B8%AA%E9%A1%B9%E7%9B%AE%E7%9A%84%E4%BD%93%E7%B3%BB%E5%B9%B6%E4%B8%8D%E5%B0%8F%E4%BA%86%EF%BC%8C%E6%89%8B%E5%86%99%E7%9A%84%E4%B9%9F%E6%9C%89%E5%87%A0%E5%8D%83%E8%A1%8C%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%85%B3%E4%BA%8E%E8%BF%99%E6%AC%A1%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-text">所以整个项目的体系并不小了，手写的也有几千行代码，关于这次项目的总结：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A%E8%BF%99%E6%AC%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%80%BB%E4%BD%93%E8%BF%98%E6%98%AF%E6%AF%94%E8%BE%83%E7%9D%80%E6%80%A5%E4%BA%86%EF%BC%8C%E6%A1%86%E6%9E%B6%E8%A7%84%E5%88%92%E8%AE%BE%E8%AE%A1%E5%81%9A%E7%9A%84%E4%B8%8D%E5%A4%9F%EF%BC%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E5%90%8E%E6%9C%9F%E6%9C%89%E5%BE%88%E5%A4%9A%E4%BF%AE%E6%94%B9%EF%BC%8C%E7%95%8C%E9%9D%A2%E4%B9%9F%E6%B2%A1%E6%9C%89%E4%B8%80%E5%BC%80%E5%A7%8B%E5%B0%B1%E5%81%9A%E5%A5%BD%EF%BC%88%E5%BD%93%E7%84%B6%E6%88%91%E4%B8%8D%E6%98%AF%E5%81%9A%E7%95%8C%E9%9D%A2%E7%9A%84%EF%BC%89%EF%BC%8C%E7%AD%89%E7%AD%89%E5%BE%88%E5%A4%9A%E9%97%AE%E9%A2%98%EF%BC%8C%E4%B8%8B%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91%E6%97%B6%E8%A6%81%E7%A8%B3%E4%B8%80%E4%BA%9B%EF%BC%8C%E4%B8%8D%E8%83%BD%E6%80%A5%E4%BA%8E%E6%B1%82%E6%88%90%EF%BC%8C%E4%B8%80%E6%AD%A5%E4%B8%80%E6%AD%A5%E7%9A%84%E5%86%99%EF%BC%8C%E6%80%BB%E4%BC%9A%E5%BE%97%E5%88%B0%E6%BB%A1%E6%84%8F%E7%9A%84%E7%BB%93%E6%9E%9C%E3%80%82"><span class="nav-text">总结：这次项目开发总体还是比较着急了，框架规划设计做的不够，数据库后期有很多修改，界面也没有一开始就做好（当然我不是做界面的），等等很多问题，下一个项目开发时要稳一些，不能急于求成，一步一步的写，总会得到满意的结果。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E4%B8%8B%E6%98%AFcommit%E7%9A%84%E8%AE%B0%E5%BD%95"><span class="nav-text">以下是commit的记录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A5%E4%B8%8B%E6%98%AF%E9%A1%B9%E7%9B%AE%E6%80%9D%E8%B7%AF%EF%BC%8C%E7%AD%96%E5%88%92%EF%BC%8C%E7%AC%94%E8%AE%B0"><span class="nav-text">以下是项目思路，策划，笔记</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

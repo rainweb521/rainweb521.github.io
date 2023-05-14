@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2020/04/10/springboot中configurationproperties对于多层嵌套参数的正确加载方法/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="SpringBoot中@ConfigurationProperties对于多层嵌套参数的正确加载方法今天想重构一下Kafka代码，将之前用@Value引入的一些参数全部替换掉，因为可读性和维护性太差，这是以前的样子。12345678910111213141516171819202122    @Value(&quot;$&amp;#123;spring.kafka.bootstrap-servers&amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBoot中@ConfigurationProperties对于多层嵌套参数的正确加载方法">
+<meta property="og:url" content="http://example.com/2020/04/10/springboot%E4%B8%ADconfigurationproperties%E5%AF%B9%E4%BA%8E%E5%A4%9A%E5%B1%82%E5%B5%8C%E5%A5%97%E5%8F%82%E6%95%B0%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%8A%A0%E8%BD%BD%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="SpringBoot中@ConfigurationProperties对于多层嵌套参数的正确加载方法今天想重构一下Kafka代码，将之前用@Value引入的一些参数全部替换掉，因为可读性和维护性太差，这是以前的样子。12345678910111213141516171819202122    @Value(&quot;$&amp;#123;spring.kafka.bootstrap-servers&amp;#1">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-10T14:13:31.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:39:50.492Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            SpringBoot中@ConfigurationProperties对于多层嵌套参数的正确加载方法 -
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"/images/zS9MZBsVYLI.jpg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">SpringBoot中@ConfigurationProperties对于多层嵌套参数的正确加载方法</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2020-04-10 22:13:31</span>
+        <span class="mobile">2020-04-10 22:13</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 21:39:50</span>
+            <span class="mobile">2023-05-14 21:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/programme/">programme</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/programme/JAVA/">JAVA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h1 id="SpringBoot中-ConfigurationProperties对于多层嵌套参数的正确加载方法"><a href="#SpringBoot中-ConfigurationProperties对于多层嵌套参数的正确加载方法" class="headerlink" title="SpringBoot中@ConfigurationProperties对于多层嵌套参数的正确加载方法"></a>SpringBoot中@ConfigurationProperties对于多层嵌套参数的正确加载方法</h1><h3 id="今天想重构一下Kafka代码，将之前用-Value引入的一些参数全部替换掉，因为可读性和维护性太差，这是以前的样子。"><a href="#今天想重构一下Kafka代码，将之前用-Value引入的一些参数全部替换掉，因为可读性和维护性太差，这是以前的样子。" class="headerlink" title="今天想重构一下Kafka代码，将之前用@Value引入的一些参数全部替换掉，因为可读性和维护性太差，这是以前的样子。"></a>今天想重构一下Kafka代码，将之前用@Value引入的一些参数全部替换掉，因为可读性和维护性太差，这是以前的样子。</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">    @Value(&quot;$&#123;spring.kafka.bootstrap-servers&#125;&quot;)</span><br><span class="line">private String servers;</span><br><span class="line">@Value(&quot;$&#123;spring.kafka.consumer.group-id&#125;&quot;)</span><br><span class="line">private String groupId;</span><br><span class="line">@Value(&quot;$&#123;spring.kafka.consumer.auto-offset-reset:&#125;&quot;)</span><br><span class="line">private String reset;</span><br><span class="line">@Value(&quot;$&#123;spring.kafka.consumer.enable-auto-commit&#125;&quot;)</span><br><span class="line">private String commit;</span><br><span class="line">@Value(&quot;$&#123;spring.kafka.consumer.max-poll-records&#125;&quot;)</span><br><span class="line">private String records;</span><br><span class="line">@Value(&quot;$&#123;spring.kafka.consumer.max-poll-interval-ms&#125;&quot;)</span><br><span class="line">private String intervams;</span><br><span class="line">@Value(&quot;$&#123;spring.kafka.consumer.auto-commit-interval&#125;&quot;)</span><br><span class="line">private String interval;</span><br><span class="line">@Value(&quot;$&#123;spring.kafka.consumer.key-deserializer&#125;&quot;)</span><br><span class="line">private String key;</span><br><span class="line">@Value(&quot;$&#123;spring.kafka.consumer.value-deserializer&#125;&quot;)</span><br><span class="line">private String value;</span><br><span class="line">@Value(&quot;$&#123;spring.kafka.consumer.properties.sasl.mechanism:&#125;&quot;)</span><br><span class="line">private String mechanism;</span><br><span class="line">@Value(&quot;$&#123;spring.kafka.consumer.properties.security.protocol:&#125;&quot;)</span><br><span class="line">private String protocol;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="有同学可能会问，为什么不直接用spring集成好的Kafka，因为它封装的太好，反而不能使用一些原生的接口，所以打算重构一遍代码，至于重构的过程和优化的内容，留给以后的文章去讲解，这篇只是想使用-ConfigurationProperties把参数格式化掉，可以直接提取使用，在网上搜了一些文章，写的很乱，有的甚至完全不能实现功能，最后在一通乱怼下终于符合了自己的需求，Kafka的配置参数存在多层结构，所以不能直接配置参数。"><a href="#有同学可能会问，为什么不直接用spring集成好的Kafka，因为它封装的太好，反而不能使用一些原生的接口，所以打算重构一遍代码，至于重构的过程和优化的内容，留给以后的文章去讲解，这篇只是想使用-ConfigurationProperties把参数格式化掉，可以直接提取使用，在网上搜了一些文章，写的很乱，有的甚至完全不能实现功能，最后在一通乱怼下终于符合了自己的需求，Kafka的配置参数存在多层结构，所以不能直接配置参数。" class="headerlink" title="有同学可能会问，为什么不直接用spring集成好的Kafka，因为它封装的太好，反而不能使用一些原生的接口，所以打算重构一遍代码，至于重构的过程和优化的内容，留给以后的文章去讲解，这篇只是想使用@ConfigurationProperties把参数格式化掉，可以直接提取使用，在网上搜了一些文章，写的很乱，有的甚至完全不能实现功能，最后在一通乱怼下终于符合了自己的需求，Kafka的配置参数存在多层结构，所以不能直接配置参数。"></a>有同学可能会问，为什么不直接用spring集成好的Kafka，因为它封装的太好，反而不能使用一些原生的接口，所以打算重构一遍代码，至于重构的过程和优化的内容，留给以后的文章去讲解，这篇只是想使用@ConfigurationProperties把参数格式化掉，可以直接提取使用，在网上搜了一些文章，写的很乱，有的甚至完全不能实现功能，最后在一通乱怼下终于符合了自己的需求，Kafka的配置参数存在多层结构，所以不能直接配置参数。</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">spring:</span><br><span class="line">  kafka:</span><br><span class="line">    bootstrap-servers: xxx.xxx.xxx.xxx:9092</span><br><span class="line">    producer:</span><br><span class="line">      retries: 0</span><br><span class="line">      batch-size: 16384</span><br><span class="line">      buffer-memory: 33554432</span><br><span class="line">      key-serializer: org.apache.kafka.common.serialization.StringSerializer</span><br><span class="line">      value-serializer: org.apache.kafka.common.serialization.StringSerializer</span><br><span class="line">    consumer:</span><br><span class="line">      group-id: views.invoke</span><br><span class="line">      auto-offset-reset: earliest</span><br><span class="line">      enable-auto-commit: true</span><br><span class="line">      max-poll-records: 100</span><br><span class="line">      max-poll-interval-ms: 60000</span><br><span class="line">      auto-commit-interval: 100</span><br><span class="line">      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer</span><br><span class="line">      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer</span><br></pre></td></tr></table></figure></div>
+
+<p>只要是类似于这样结构的参数，都可以参考我的写法，理论上是没有问题的。</p>
+<h3 id="下面是我怼出来的写法"><a href="#下面是我怼出来的写法" class="headerlink" title="下面是我怼出来的写法"></a>下面是我怼出来的写法</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">@Component</span><br><span class="line">@ConfigurationProperties(prefix = &quot;spring.kafka&quot;)</span><br><span class="line">@Getter</span><br><span class="line">@Setter</span><br><span class="line">public class KafkaConfig &#123;</span><br><span class="line"></span><br><span class="line">    private String bootstrapServers;</span><br><span class="line">    private ProducerProperties producer = new ProducerProperties() ;</span><br><span class="line">    private ConsumerProperties consumer = new ConsumerProperties();</span><br><span class="line"></span><br><span class="line">    @NoArgsConstructor</span><br><span class="line">    @AllArgsConstructor</span><br><span class="line">    @Getter</span><br><span class="line">    @Setter</span><br><span class="line">    public class ProducerProperties &#123;</span><br><span class="line">        private String retries;</span><br><span class="line">        private String batchSize;</span><br><span class="line">        private String bufferMemory;</span><br><span class="line">        private String keySerializer;</span><br><span class="line">        private String valueSerializer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @NoArgsConstructor</span><br><span class="line">    @AllArgsConstructor</span><br><span class="line">    @Getter</span><br><span class="line">    @Setter</span><br><span class="line">    public class ConsumerProperties &#123;</span><br><span class="line">        private String groupId;</span><br><span class="line">        private String autoOffsetReset;</span><br><span class="line">        private String enableAutoCommit;</span><br><span class="line">        private String maxPollRecords;</span><br><span class="line">        private String maxPollIntervalMs;</span><br><span class="line">        private String autoCommitInterval;</span><br><span class="line">        private String keyDeserializer;</span><br><span class="line">        private String valueDeserializer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="这里用到了lombok，代码结构也比较简洁，参数中间的-可以用大写来替代，spring会自动匹配的。"><a href="#这里用到了lombok，代码结构也比较简洁，参数中间的-可以用大写来替代，spring会自动匹配的。" class="headerlink" title="这里用到了lombok，代码结构也比较简洁，参数中间的-可以用大写来替代，spring会自动匹配的。"></a>这里用到了lombok，代码结构也比较简洁，参数中间的-可以用大写来替代，spring会自动匹配的。</h3><h2 id="错误的做法"><a href="#错误的做法" class="headerlink" title="错误的做法"></a>错误的做法</h2><h3 id="下面这种是很多文章里写的，测试了很多遍，基本获取不到参数，就能得到bootstrapServers。"><a href="#下面这种是很多文章里写的，测试了很多遍，基本获取不到参数，就能得到bootstrapServers。" class="headerlink" title="下面这种是很多文章里写的，测试了很多遍，基本获取不到参数，就能得到bootstrapServers。"></a>下面这种是很多文章里写的，测试了很多遍，基本获取不到参数，就能得到bootstrapServers。</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@EnableAutoConfiguration</span><br><span class="line">@Getter</span><br><span class="line">@Setter</span><br><span class="line">public class KafkaConfig &#123;</span><br><span class="line"></span><br><span class="line">    private String bootstrapServers;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    @ConfigurationProperties(prefix=&quot;spring.kafka.producer&quot;)</span><br><span class="line">    public ProducerMyConfig getProducerConfig()&#123;</span><br><span class="line">        return new ProducerMyConfig();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Bean</span><br><span class="line">    @ConfigurationProperties(prefix=&quot;spring.kafka.consumer&quot;)</span><br><span class="line">    public ConsumerMyConfig getConsumerConfig()&#123;</span><br><span class="line">        return new ConsumerMyConfig();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private  class ProducerMyConfig &#123;</span><br><span class="line">        private String retries;</span><br><span class="line">        private String batchSize;</span><br><span class="line">        private String bufferMemory;</span><br><span class="line">        private String keySerializer;</span><br><span class="line">        private String valueSerializer;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private  class ConsumerMyConfig &#123;</span><br><span class="line">        private String groupId;</span><br><span class="line">        private String autoOffsetReset;</span><br><span class="line">        private String enableAutoCommit;</span><br><span class="line">        private String maxPollRecords;</span><br><span class="line">        private String maxPollIntervalMs;</span><br><span class="line">        private String autoCommitInterval;</span><br><span class="line">        private String keyDeserializer;</span><br><span class="line">        private String valueDeserializer;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> SpringBoot中@ConfigurationProperties对于多层嵌套参数的正确加载方法</li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2020-04-10 22:13:31</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 21:39:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2020/04/10/springboot中configurationproperties对于多层嵌套参数的正确加载方法/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2020/04/21/%E4%BD%BF%E7%94%A8hutool-poi%E5%9C%A8%E6%9C%AA%E5%AE%89%E8%A3%85office%E6%88%96wps%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%94%B5%E8%84%91%E4%B8%AD%E7%94%9F%E6%88%90excel%E7%9A%84xls%E5%90%8E%E7%BC%80%E6%B6%88/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">使用hutool-poi在未安装Office或wps软件的电脑中生成Excel的xls后缀消失问题</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2020/03/21/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E7%9A%84%E5%A4%9A%E7%A7%8D%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">微服务架构的多种部署模式</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">SpringBoot中@ConfigurationProperties对于多层嵌套参数的正确加载方法</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringBoot%E4%B8%AD-ConfigurationProperties%E5%AF%B9%E4%BA%8E%E5%A4%9A%E5%B1%82%E5%B5%8C%E5%A5%97%E5%8F%82%E6%95%B0%E7%9A%84%E6%AD%A3%E7%A1%AE%E5%8A%A0%E8%BD%BD%E6%96%B9%E6%B3%95"><span class="nav-text">SpringBoot中@ConfigurationProperties对于多层嵌套参数的正确加载方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8A%E5%A4%A9%E6%83%B3%E9%87%8D%E6%9E%84%E4%B8%80%E4%B8%8BKafka%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%B0%86%E4%B9%8B%E5%89%8D%E7%94%A8-Value%E5%BC%95%E5%85%A5%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%82%E6%95%B0%E5%85%A8%E9%83%A8%E6%9B%BF%E6%8D%A2%E6%8E%89%EF%BC%8C%E5%9B%A0%E4%B8%BA%E5%8F%AF%E8%AF%BB%E6%80%A7%E5%92%8C%E7%BB%B4%E6%8A%A4%E6%80%A7%E5%A4%AA%E5%B7%AE%EF%BC%8C%E8%BF%99%E6%98%AF%E4%BB%A5%E5%89%8D%E7%9A%84%E6%A0%B7%E5%AD%90%E3%80%82"><span class="nav-text">今天想重构一下Kafka代码，将之前用@Value引入的一些参数全部替换掉，因为可读性和维护性太差，这是以前的样子。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%90%8C%E5%AD%A6%E5%8F%AF%E8%83%BD%E4%BC%9A%E9%97%AE%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%9B%B4%E6%8E%A5%E7%94%A8spring%E9%9B%86%E6%88%90%E5%A5%BD%E7%9A%84Kafka%EF%BC%8C%E5%9B%A0%E4%B8%BA%E5%AE%83%E5%B0%81%E8%A3%85%E7%9A%84%E5%A4%AA%E5%A5%BD%EF%BC%8C%E5%8F%8D%E8%80%8C%E4%B8%8D%E8%83%BD%E4%BD%BF%E7%94%A8%E4%B8%80%E4%BA%9B%E5%8E%9F%E7%94%9F%E7%9A%84%E6%8E%A5%E5%8F%A3%EF%BC%8C%E6%89%80%E4%BB%A5%E6%89%93%E7%AE%97%E9%87%8D%E6%9E%84%E4%B8%80%E9%81%8D%E4%BB%A3%E7%A0%81%EF%BC%8C%E8%87%B3%E4%BA%8E%E9%87%8D%E6%9E%84%E7%9A%84%E8%BF%87%E7%A8%8B%E5%92%8C%E4%BC%98%E5%8C%96%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%8C%E7%95%99%E7%BB%99%E4%BB%A5%E5%90%8E%E7%9A%84%E6%96%87%E7%AB%A0%E5%8E%BB%E8%AE%B2%E8%A7%A3%EF%BC%8C%E8%BF%99%E7%AF%87%E5%8F%AA%E6%98%AF%E6%83%B3%E4%BD%BF%E7%94%A8-ConfigurationProperties%E6%8A%8A%E5%8F%82%E6%95%B0%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%8E%89%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E6%8F%90%E5%8F%96%E4%BD%BF%E7%94%A8%EF%BC%8C%E5%9C%A8%E7%BD%91%E4%B8%8A%E6%90%9C%E4%BA%86%E4%B8%80%E4%BA%9B%E6%96%87%E7%AB%A0%EF%BC%8C%E5%86%99%E7%9A%84%E5%BE%88%E4%B9%B1%EF%BC%8C%E6%9C%89%E7%9A%84%E7%94%9A%E8%87%B3%E5%AE%8C%E5%85%A8%E4%B8%8D%E8%83%BD%E5%AE%9E%E7%8E%B0%E5%8A%9F%E8%83%BD%EF%BC%8C%E6%9C%80%E5%90%8E%E5%9C%A8%E4%B8%80%E9%80%9A%E4%B9%B1%E6%80%BC%E4%B8%8B%E7%BB%88%E4%BA%8E%E7%AC%A6%E5%90%88%E4%BA%86%E8%87%AA%E5%B7%B1%E7%9A%84%E9%9C%80%E6%B1%82%EF%BC%8CKafka%E7%9A%84%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E5%AD%98%E5%9C%A8%E5%A4%9A%E5%B1%82%E7%BB%93%E6%9E%84%EF%BC%8C%E6%89%80%E4%BB%A5%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E3%80%82"><span class="nav-text">有同学可能会问，为什么不直接用spring集成好的Kafka，因为它封装的太好，反而不能使用一些原生的接口，所以打算重构一遍代码，至于重构的过程和优化的内容，留给以后的文章去讲解，这篇只是想使用@ConfigurationProperties把参数格式化掉，可以直接提取使用，在网上搜了一些文章，写的很乱，有的甚至完全不能实现功能，最后在一通乱怼下终于符合了自己的需求，Kafka的配置参数存在多层结构，所以不能直接配置参数。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E6%98%AF%E6%88%91%E6%80%BC%E5%87%BA%E6%9D%A5%E7%9A%84%E5%86%99%E6%B3%95"><span class="nav-text">下面是我怼出来的写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%99%E9%87%8C%E7%94%A8%E5%88%B0%E4%BA%86lombok%EF%BC%8C%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E4%B9%9F%E6%AF%94%E8%BE%83%E7%AE%80%E6%B4%81%EF%BC%8C%E5%8F%82%E6%95%B0%E4%B8%AD%E9%97%B4%E7%9A%84-%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%A4%A7%E5%86%99%E6%9D%A5%E6%9B%BF%E4%BB%A3%EF%BC%8Cspring%E4%BC%9A%E8%87%AA%E5%8A%A8%E5%8C%B9%E9%85%8D%E7%9A%84%E3%80%82"><span class="nav-text">这里用到了lombok，代码结构也比较简洁，参数中间的-可以用大写来替代，spring会自动匹配的。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E7%9A%84%E5%81%9A%E6%B3%95"><span class="nav-text">错误的做法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E8%BF%99%E7%A7%8D%E6%98%AF%E5%BE%88%E5%A4%9A%E6%96%87%E7%AB%A0%E9%87%8C%E5%86%99%E7%9A%84%EF%BC%8C%E6%B5%8B%E8%AF%95%E4%BA%86%E5%BE%88%E5%A4%9A%E9%81%8D%EF%BC%8C%E5%9F%BA%E6%9C%AC%E8%8E%B7%E5%8F%96%E4%B8%8D%E5%88%B0%E5%8F%82%E6%95%B0%EF%BC%8C%E5%B0%B1%E8%83%BD%E5%BE%97%E5%88%B0bootstrapServers%E3%80%82"><span class="nav-text">下面这种是很多文章里写的，测试了很多遍，基本获取不到参数，就能得到bootstrapServers。</span></a></li></ol></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

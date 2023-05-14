@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2017/03/15/python-article67/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="使用Python编写的文件备份程序 作为程序员平时需要备份许多东西，生怕有些文件改了就找不回来了，尤其是U盘里的经常会被修改，而我又不能一个文件一个文件的对比着去备份，全复制又太浪费时间，网上关于备份的程序很多，但有很多限制，没有我想要的功能，而且有的还会收费，所以决定自己来造个轮子。平时用PHP比较多，我也有想过用PHP写一个类似的文件游览器，但这个轮子就造的有些大了，我只是想自动备份U盘里的东">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Python编写的文件备份程序">
+<meta property="og:url" content="http://example.com/2017/03/15/python-article67/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="使用Python编写的文件备份程序 作为程序员平时需要备份许多东西，生怕有些文件改了就找不回来了，尤其是U盘里的经常会被修改，而我又不能一个文件一个文件的对比着去备份，全复制又太浪费时间，网上关于备份的程序很多，但有很多限制，没有我想要的功能，而且有的还会收费，所以决定自己来造个轮子。平时用PHP比较多，我也有想过用PHP写一个类似的文件游览器，但这个轮子就造的有些大了，我只是想自动备份U盘里的东">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/python40.jpg">
+<meta property="article:published_time" content="2017-03-15T13:34:57.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:39:50.447Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="文件IO">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog-1252406596.costj.myqcloud.com/blog/python40.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            使用Python编写的文件备份程序 -
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"/images/zS9MZBsVYLI.jpg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">使用Python编写的文件备份程序</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2017-03-15 21:34:57</span>
+        <span class="mobile">2017-03-15 21:34</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 21:39:50</span>
+            <span class="mobile">2023-05-14 21:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/programme/">programme</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/programme/Python/">Python</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Python/">Python</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%96%87%E4%BB%B6IO/">文件IO</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p>使用Python编写的文件备份程序</p>
+<h2 id="作为程序员平时需要备份许多东西，生怕有些文件改了就找不回来了，尤其是U盘里的经常会被修改，而我又不能一个文件一个文件的对比着去备份，全复制又太浪费时间，网上关于备份的程序很多，但有很多限制，没有我想要的功能，而且有的还会收费，所以决定自己来造个轮子。"><a href="#作为程序员平时需要备份许多东西，生怕有些文件改了就找不回来了，尤其是U盘里的经常会被修改，而我又不能一个文件一个文件的对比着去备份，全复制又太浪费时间，网上关于备份的程序很多，但有很多限制，没有我想要的功能，而且有的还会收费，所以决定自己来造个轮子。" class="headerlink" title="作为程序员平时需要备份许多东西，生怕有些文件改了就找不回来了，尤其是U盘里的经常会被修改，而我又不能一个文件一个文件的对比着去备份，全复制又太浪费时间，网上关于备份的程序很多，但有很多限制，没有我想要的功能，而且有的还会收费，所以决定自己来造个轮子。"></a>作为程序员平时需要备份许多东西，生怕有些文件改了就找不回来了，尤其是U盘里的经常会被修改，而我又不能一个文件一个文件的对比着去备份，全复制又太浪费时间，网上关于备份的程序很多，但有很多限制，没有我想要的功能，而且有的还会收费，所以决定自己来造个轮子。</h2><h2 id="平时用PHP比较多，我也有想过用PHP写一个类似的文件游览器，但这个轮子就造的有些大了，我只是想自动备份U盘里的东西，能够自动对比匹配目标文件就可以，不需要太臃肿，而Python简单，快速，连界面都不用写，每次直接运行就行。所以我决定使用Python来编写，原理就是对备份目录进行递归，把找到的文件和本地的文件进行对比，对比时使用文件生成md5码来匹配，如果本地不存在，则创建目录，再复制文件。如果没有Python环境，可以直接下载我编译好的-exe程序直接使用，输入时要注意，由于没有写图形界面，文件夹的地址需要输入，一定要保证文件地址的正确，如果是主盘符如d盘，直接写’d-’-n如果是文件夹，例如d盘下的test文件夹，则输入d-x2F-test。下面是源代码，注释写的非常详细，需要的可以按照自己的需求更改。"><a href="#平时用PHP比较多，我也有想过用PHP写一个类似的文件游览器，但这个轮子就造的有些大了，我只是想自动备份U盘里的东西，能够自动对比匹配目标文件就可以，不需要太臃肿，而Python简单，快速，连界面都不用写，每次直接运行就行。所以我决定使用Python来编写，原理就是对备份目录进行递归，把找到的文件和本地的文件进行对比，对比时使用文件生成md5码来匹配，如果本地不存在，则创建目录，再复制文件。如果没有Python环境，可以直接下载我编译好的-exe程序直接使用，输入时要注意，由于没有写图形界面，文件夹的地址需要输入，一定要保证文件地址的正确，如果是主盘符如d盘，直接写’d-’-n如果是文件夹，例如d盘下的test文件夹，则输入d-x2F-test。下面是源代码，注释写的非常详细，需要的可以按照自己的需求更改。" class="headerlink" title="平时用PHP比较多，我也有想过用PHP写一个类似的文件游览器，但这个轮子就造的有些大了，我只是想自动备份U盘里的东西，能够自动对比匹配目标文件就可以，不需要太臃肿，而Python简单，快速，连界面都不用写，每次直接运行就行。所以我决定使用Python来编写，原理就是对备份目录进行递归，把找到的文件和本地的文件进行对比，对比时使用文件生成md5码来匹配，如果本地不存在，则创建目录，再复制文件。如果没有Python环境，可以直接下载我编译好的.exe程序直接使用，输入时要注意，由于没有写图形界面，文件夹的地址需要输入，一定要保证文件地址的正确，如果是主盘符如d盘，直接写’d:’,\n如果是文件夹，例如d盘下的test文件夹，则输入d:&#x2F;test。下面是源代码，注释写的非常详细，需要的可以按照自己的需求更改。"></a>平时用PHP比较多，我也有想过用PHP写一个类似的文件游览器，但这个轮子就造的有些大了，我只是想自动备份U盘里的东西，能够自动对比匹配目标文件就可以，不需要太臃肿，而Python简单，快速，连界面都不用写，每次直接运行就行。所以我决定使用Python来编写，原理就是对备份目录进行递归，把找到的文件和本地的文件进行对比，对比时使用文件生成md5码来匹配，如果本地不存在，则创建目录，再复制文件。如果没有Python环境，可以直接下载我编译好的.exe程序直接使用，输入时要注意，由于没有写图形界面，文件夹的地址需要输入，一定要保证文件地址的正确，如果是主盘符如d盘，直接写’d:’,\n如果是文件夹，例如d盘下的test文件夹，则输入d:&#x2F;test。下面是源代码，注释写的非常详细，需要的可以按照自己的需求更改。</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line">#-*- coding=utf8 -*-</span><br><span class="line">#使用函数对指定目录进行深层次遍历，先列出来所有的文件和目录</span><br><span class="line">#再去指定的目录里再次查找文件和目录，一直深入下去</span><br><span class="line"># 如果是文件，就不再深入下去，而去判断路径是否存在于电脑中，</span><br><span class="line"># 不存在则将其复制</span><br><span class="line">import hashlib</span><br><span class="line">import os</span><br><span class="line">import shutil</span><br><span class="line">#用于判断两个文件是否相同，提取每个文件中的前4字节的内容然后输出md5码进行比较</span><br><span class="line">def md5check(fname):</span><br><span class="line">    m = hashlib.md5()</span><br><span class="line">    with open(fname) as fobj:</span><br><span class="line">        while True:</span><br><span class="line">            data = fobj.read(4096)</span><br><span class="line">            if not data:</span><br><span class="line">                break</span><br><span class="line">            m.update(data)</span><br><span class="line">    return m.hexdigest()</span><br><span class="line">#文件复制的函数</span><br><span class="line">def copy(path):</span><br><span class="line">    new_path = path</span><br><span class="line">    new_path = new_path.replace(old_scoure, new_scoure) #将原盘符替换为我所要存放的目标盘符</span><br><span class="line">    print path + &quot;---copy---&quot; + new_path</span><br><span class="line">    if os.path.isfile(new_path): #如果目标文件存在</span><br><span class="line">        old_md = md5check(path)  #提取源文件的md5</span><br><span class="line">        new_md = md5check(new_path)  #提取目标文件的md5</span><br><span class="line">        if old_md != new_md:  #如果不相等，说明源文件有修改</span><br><span class="line">            shutil.copy(path, new_path) #因为已经判断了目标文件的存在，所以不需要创建目录，直接复制就可以</span><br><span class="line">    else: #如果目标文件不存在</span><br><span class="line">        dirname = os.path.dirname(new_path) # 提取目标的目录</span><br><span class="line">        if os.path.exists(dirname): #目录存在</span><br><span class="line">            shutil.copy(path, new_path) #直接复制文件</span><br><span class="line">        else: #目录不存在</span><br><span class="line">            try:</span><br><span class="line">                os.makedirs(dirname) #使用多级目录创建函数创建目录</span><br><span class="line">                shutil.copy(path, new_path) #直接复制文件</span><br><span class="line">            except WindowsError: #错误反馈，而不会停止操作</span><br><span class="line">                print &quot;创建目录出错&quot;</span><br><span class="line"># 查找所有目录文件的递归函数</span><br><span class="line">def lsdir(forder):</span><br><span class="line">    path = os.listdir(forder) #分离出来的文件列表</span><br><span class="line">    # print forder</span><br><span class="line">    # print path</span><br><span class="line">    for line in path: #逐个判断</span><br><span class="line">        line = forder + &quot;/&quot; + line #没有使用join函数，因为会出现 \</span><br><span class="line">        if (os.path.isdir(line)): #是目录就继续进行递归</span><br><span class="line">            lsdir(line)</span><br><span class="line">        else:</span><br><span class="line">            # path = os.path.join(forder,line)</span><br><span class="line">            # print &#x27;l:&#x27;+line</span><br><span class="line">            copy(line) #将文件的地址传到copy函数中去复制</span><br><span class="line">        # break</span><br><span class="line">def test():</span><br><span class="line">    print new_scoure</span><br><span class="line">if __name__==&#x27;__main__&#x27;:</span><br><span class="line">    # lsdir(&#x27;e:/test&#x27;)</span><br><span class="line">    global old_scoure</span><br><span class="line">    global new_scoure #设置为全局变量</span><br><span class="line">    concent = &quot;请保证地址的正确性，如果是主盘符如d盘，直接写&#x27;d:&#x27;,\n如果是文件夹，例如d盘下的test文件夹，则输入d:/test&quot;</span><br><span class="line">    c_unicode = concent.decode(&quot;utf-8&quot;) #为了在cmd显示中文，需要进行转码</span><br><span class="line">    # c_gbk = c_unicode.encode(&quot;gbk&quot;)</span><br><span class="line">    print c_unicode</span><br><span class="line">    concent = &quot;输入要备份的文件地址：&quot;</span><br><span class="line">    c_unicode = concent.decode(&quot;utf-8&quot;)</span><br><span class="line">    print c_unicode</span><br><span class="line">    old_scoure = raw_input()</span><br><span class="line">    concent = &quot;输入备份文件要存放的地址,请保证地址存在：&quot;</span><br><span class="line">    c_unicode = concent.decode(&quot;utf-8&quot;)</span><br><span class="line">    print c_unicode</span><br><span class="line">    new_scoure = raw_input()</span><br><span class="line">    # path = &#x27;e:/Markdown&#x27;</span><br><span class="line">    lsdir(old_scoure)</span><br><span class="line">    concent = &quot;输入任意键关闭&quot;</span><br><span class="line">    c_unicode = concent.decode(&quot;utf-8&quot;)</span><br><span class="line">    print c_unicode</span><br><span class="line">    raw_input()</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="下载地址http-blog-1252406596-costj-myqcloud-com-blog-test-exe"><a href="#下载地址http-blog-1252406596-costj-myqcloud-com-blog-test-exe" class="headerlink" title="下载地址http://blog-1252406596.costj.myqcloud.com/blog/test.exe"></a><a class="link"   target="_blank" rel="noopener" href="http://blog-1252406596.costj.myqcloud.com/blog/test.exe" >下载地址http://blog-1252406596.costj.myqcloud.com/blog/test.exe <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h2><h2 id="下面是运行的效果图片"><a href="#下面是运行的效果图片" class="headerlink" title="下面是运行的效果图片"></a>下面是运行的效果图片</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/python40.jpg"
+                     
+                ></p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 使用Python编写的文件备份程序</li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2017-03-15 21:34:57</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 21:39:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2017/03/15/python-article67/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Python/">#Python</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%96%87%E4%BB%B6IO/">#文件IO</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2017/03/22/article68/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">博客网站开发的总结</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2017/03/15/java-article66/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Java基于TCP的网络编程</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">使用Python编写的文件备份程序</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%9C%E4%B8%BA%E7%A8%8B%E5%BA%8F%E5%91%98%E5%B9%B3%E6%97%B6%E9%9C%80%E8%A6%81%E5%A4%87%E4%BB%BD%E8%AE%B8%E5%A4%9A%E4%B8%9C%E8%A5%BF%EF%BC%8C%E7%94%9F%E6%80%95%E6%9C%89%E4%BA%9B%E6%96%87%E4%BB%B6%E6%94%B9%E4%BA%86%E5%B0%B1%E6%89%BE%E4%B8%8D%E5%9B%9E%E6%9D%A5%E4%BA%86%EF%BC%8C%E5%B0%A4%E5%85%B6%E6%98%AFU%E7%9B%98%E9%87%8C%E7%9A%84%E7%BB%8F%E5%B8%B8%E4%BC%9A%E8%A2%AB%E4%BF%AE%E6%94%B9%EF%BC%8C%E8%80%8C%E6%88%91%E5%8F%88%E4%B8%8D%E8%83%BD%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E7%9A%84%E5%AF%B9%E6%AF%94%E7%9D%80%E5%8E%BB%E5%A4%87%E4%BB%BD%EF%BC%8C%E5%85%A8%E5%A4%8D%E5%88%B6%E5%8F%88%E5%A4%AA%E6%B5%AA%E8%B4%B9%E6%97%B6%E9%97%B4%EF%BC%8C%E7%BD%91%E4%B8%8A%E5%85%B3%E4%BA%8E%E5%A4%87%E4%BB%BD%E7%9A%84%E7%A8%8B%E5%BA%8F%E5%BE%88%E5%A4%9A%EF%BC%8C%E4%BD%86%E6%9C%89%E5%BE%88%E5%A4%9A%E9%99%90%E5%88%B6%EF%BC%8C%E6%B2%A1%E6%9C%89%E6%88%91%E6%83%B3%E8%A6%81%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%8C%E8%80%8C%E4%B8%94%E6%9C%89%E7%9A%84%E8%BF%98%E4%BC%9A%E6%94%B6%E8%B4%B9%EF%BC%8C%E6%89%80%E4%BB%A5%E5%86%B3%E5%AE%9A%E8%87%AA%E5%B7%B1%E6%9D%A5%E9%80%A0%E4%B8%AA%E8%BD%AE%E5%AD%90%E3%80%82"><span class="nav-text">作为程序员平时需要备份许多东西，生怕有些文件改了就找不回来了，尤其是U盘里的经常会被修改，而我又不能一个文件一个文件的对比着去备份，全复制又太浪费时间，网上关于备份的程序很多，但有很多限制，没有我想要的功能，而且有的还会收费，所以决定自己来造个轮子。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B3%E6%97%B6%E7%94%A8PHP%E6%AF%94%E8%BE%83%E5%A4%9A%EF%BC%8C%E6%88%91%E4%B9%9F%E6%9C%89%E6%83%B3%E8%BF%87%E7%94%A8PHP%E5%86%99%E4%B8%80%E4%B8%AA%E7%B1%BB%E4%BC%BC%E7%9A%84%E6%96%87%E4%BB%B6%E6%B8%B8%E8%A7%88%E5%99%A8%EF%BC%8C%E4%BD%86%E8%BF%99%E4%B8%AA%E8%BD%AE%E5%AD%90%E5%B0%B1%E9%80%A0%E7%9A%84%E6%9C%89%E4%BA%9B%E5%A4%A7%E4%BA%86%EF%BC%8C%E6%88%91%E5%8F%AA%E6%98%AF%E6%83%B3%E8%87%AA%E5%8A%A8%E5%A4%87%E4%BB%BDU%E7%9B%98%E9%87%8C%E7%9A%84%E4%B8%9C%E8%A5%BF%EF%BC%8C%E8%83%BD%E5%A4%9F%E8%87%AA%E5%8A%A8%E5%AF%B9%E6%AF%94%E5%8C%B9%E9%85%8D%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81%E5%A4%AA%E8%87%83%E8%82%BF%EF%BC%8C%E8%80%8CPython%E7%AE%80%E5%8D%95%EF%BC%8C%E5%BF%AB%E9%80%9F%EF%BC%8C%E8%BF%9E%E7%95%8C%E9%9D%A2%E9%83%BD%E4%B8%8D%E7%94%A8%E5%86%99%EF%BC%8C%E6%AF%8F%E6%AC%A1%E7%9B%B4%E6%8E%A5%E8%BF%90%E8%A1%8C%E5%B0%B1%E8%A1%8C%E3%80%82%E6%89%80%E4%BB%A5%E6%88%91%E5%86%B3%E5%AE%9A%E4%BD%BF%E7%94%A8Python%E6%9D%A5%E7%BC%96%E5%86%99%EF%BC%8C%E5%8E%9F%E7%90%86%E5%B0%B1%E6%98%AF%E5%AF%B9%E5%A4%87%E4%BB%BD%E7%9B%AE%E5%BD%95%E8%BF%9B%E8%A1%8C%E9%80%92%E5%BD%92%EF%BC%8C%E6%8A%8A%E6%89%BE%E5%88%B0%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E6%9C%AC%E5%9C%B0%E7%9A%84%E6%96%87%E4%BB%B6%E8%BF%9B%E8%A1%8C%E5%AF%B9%E6%AF%94%EF%BC%8C%E5%AF%B9%E6%AF%94%E6%97%B6%E4%BD%BF%E7%94%A8%E6%96%87%E4%BB%B6%E7%94%9F%E6%88%90md5%E7%A0%81%E6%9D%A5%E5%8C%B9%E9%85%8D%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%AC%E5%9C%B0%E4%B8%8D%E5%AD%98%E5%9C%A8%EF%BC%8C%E5%88%99%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95%EF%BC%8C%E5%86%8D%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E3%80%82%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89Python%E7%8E%AF%E5%A2%83%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E4%B8%8B%E8%BD%BD%E6%88%91%E7%BC%96%E8%AF%91%E5%A5%BD%E7%9A%84-exe%E7%A8%8B%E5%BA%8F%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%EF%BC%8C%E8%BE%93%E5%85%A5%E6%97%B6%E8%A6%81%E6%B3%A8%E6%84%8F%EF%BC%8C%E7%94%B1%E4%BA%8E%E6%B2%A1%E6%9C%89%E5%86%99%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%EF%BC%8C%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E5%9C%B0%E5%9D%80%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%EF%BC%8C%E4%B8%80%E5%AE%9A%E8%A6%81%E4%BF%9D%E8%AF%81%E6%96%87%E4%BB%B6%E5%9C%B0%E5%9D%80%E7%9A%84%E6%AD%A3%E7%A1%AE%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%98%AF%E4%B8%BB%E7%9B%98%E7%AC%A6%E5%A6%82d%E7%9B%98%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%86%99%E2%80%99d-%E2%80%99-n%E5%A6%82%E6%9E%9C%E6%98%AF%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%8C%E4%BE%8B%E5%A6%82d%E7%9B%98%E4%B8%8B%E7%9A%84test%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%8C%E5%88%99%E8%BE%93%E5%85%A5d-x2F-test%E3%80%82%E4%B8%8B%E9%9D%A2%E6%98%AF%E6%BA%90%E4%BB%A3%E7%A0%81%EF%BC%8C%E6%B3%A8%E9%87%8A%E5%86%99%E7%9A%84%E9%9D%9E%E5%B8%B8%E8%AF%A6%E7%BB%86%EF%BC%8C%E9%9C%80%E8%A6%81%E7%9A%84%E5%8F%AF%E4%BB%A5%E6%8C%89%E7%85%A7%E8%87%AA%E5%B7%B1%E7%9A%84%E9%9C%80%E6%B1%82%E6%9B%B4%E6%94%B9%E3%80%82"><span class="nav-text">平时用PHP比较多，我也有想过用PHP写一个类似的文件游览器，但这个轮子就造的有些大了，我只是想自动备份U盘里的东西，能够自动对比匹配目标文件就可以，不需要太臃肿，而Python简单，快速，连界面都不用写，每次直接运行就行。所以我决定使用Python来编写，原理就是对备份目录进行递归，把找到的文件和本地的文件进行对比，对比时使用文件生成md5码来匹配，如果本地不存在，则创建目录，再复制文件。如果没有Python环境，可以直接下载我编译好的.exe程序直接使用，输入时要注意，由于没有写图形界面，文件夹的地址需要输入，一定要保证文件地址的正确，如果是主盘符如d盘，直接写’d:’,\n如果是文件夹，例如d盘下的test文件夹，则输入d:&#x2F;test。下面是源代码，注释写的非常详细，需要的可以按照自己的需求更改。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80http-blog-1252406596-costj-myqcloud-com-blog-test-exe"><span class="nav-text">下载地址http:&#x2F;&#x2F;blog-1252406596.costj.myqcloud.com&#x2F;blog&#x2F;test.exe </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E6%98%AF%E8%BF%90%E8%A1%8C%E7%9A%84%E6%95%88%E6%9E%9C%E5%9B%BE%E7%89%87"><span class="nav-text">下面是运行的效果图片</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2017/06/17/article85/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="学钱帮项目最近没有更新博客，一直在忙互联网+比赛的项目，我们所做的项目叫学钱帮， “学钱帮”是基于轻量级的ThinkPHP框架开发的，使用面向对象的开发结构和MVC模式的习惯养成与学习资源整合的平台。“学钱帮”主要面向大学生，平台内容独特丰富，涵盖了大学生面临的各类学习、生活方面的问题，更有多样化的功能。首先，平台通过独特的金钱奖惩机制对用户进行督促，用户可以根据自身需求，选择是否需要通过在学钱帮">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学钱帮项目">
+<meta property="og:url" content="http://example.com/2017/06/17/article85/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="学钱帮项目最近没有更新博客，一直在忙互联网+比赛的项目，我们所做的项目叫学钱帮， “学钱帮”是基于轻量级的ThinkPHP框架开发的，使用面向对象的开发结构和MVC模式的习惯养成与学习资源整合的平台。“学钱帮”主要面向大学生，平台内容独特丰富，涵盖了大学生面临的各类学习、生活方面的问题，更有多样化的功能。首先，平台通过独特的金钱奖惩机制对用户进行督促，用户可以根据自身需求，选择是否需要通过在学钱帮">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb1.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb2.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb3.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb4.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb5.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb6.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb7.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb8.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb9.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb10.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb11.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb12.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb13.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb14.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb15.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb16.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb17.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb18.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb19.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb20.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb21.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb22.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb23.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb24.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb25.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb26.jpg">
+<meta property="article:published_time" content="2017-06-17T14:22:27.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:39:50.456Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog-1252406596.costj.myqcloud.com/blog/xqb1.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            学钱帮项目 -
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"/images/zS9MZBsVYLI.jpg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">学钱帮项目</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2017-06-17 22:22:27</span>
+        <span class="mobile">2017-06-17 22:22</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 21:39:50</span>
+            <span class="mobile">2023-05-14 21:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/programme/">programme</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Technique/">Technique</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/programme/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h1 id="学钱帮项目"><a href="#学钱帮项目" class="headerlink" title="学钱帮项目"></a>学钱帮项目</h1><h2 id="最近没有更新博客，一直在忙互联网-比赛的项目，我们所做的项目叫学钱帮，-“学钱帮”是基于轻量级的ThinkPHP框架开发的，使用面向对象的开发结构和MVC模式的习惯养成与学习资源整合的平台。“学钱帮”主要面向大学生，平台内容独特丰富，涵盖了大学生面临的各类学习、生活方面的问题，更有多样化的功能。首先，平台通过独特的金钱奖惩机制对用户进行督促，用户可以根据自身需求，选择是否需要通过在学钱帮网站暂存金钱的方式来督促自己的学习，并可以选择一定的金额数，在其坚持单词记忆的时间里，如果用户每日坚持学习，可根据暂存金额数获得相应比例的金钱奖励，如果用户忘记学习，则也会相应的扣除一定比例的金钱。其次，平台通过好友的交互陪伴与互动来互相督促；而且，平台还有其它推荐功能、提醒功能、查询功能等。我们通过这种方式来督促用户养成良好生活和学习习惯。最后，本平台还有交互陪伴功能，学生可以邀请好友共同学习；平台还会给每天未完成的同学发送实时提醒；还会根据学生的学习内容智能推送用户可能感兴趣的消息；最重要的是在用户的个人资金上我们绝对保证用户的资金透明，用户可以随时查询自己的账户余额和交易记录，同时资金灵活，充值、提取非常方便。"><a href="#最近没有更新博客，一直在忙互联网-比赛的项目，我们所做的项目叫学钱帮，-“学钱帮”是基于轻量级的ThinkPHP框架开发的，使用面向对象的开发结构和MVC模式的习惯养成与学习资源整合的平台。“学钱帮”主要面向大学生，平台内容独特丰富，涵盖了大学生面临的各类学习、生活方面的问题，更有多样化的功能。首先，平台通过独特的金钱奖惩机制对用户进行督促，用户可以根据自身需求，选择是否需要通过在学钱帮网站暂存金钱的方式来督促自己的学习，并可以选择一定的金额数，在其坚持单词记忆的时间里，如果用户每日坚持学习，可根据暂存金额数获得相应比例的金钱奖励，如果用户忘记学习，则也会相应的扣除一定比例的金钱。其次，平台通过好友的交互陪伴与互动来互相督促；而且，平台还有其它推荐功能、提醒功能、查询功能等。我们通过这种方式来督促用户养成良好生活和学习习惯。最后，本平台还有交互陪伴功能，学生可以邀请好友共同学习；平台还会给每天未完成的同学发送实时提醒；还会根据学生的学习内容智能推送用户可能感兴趣的消息；最重要的是在用户的个人资金上我们绝对保证用户的资金透明，用户可以随时查询自己的账户余额和交易记录，同时资金灵活，充值、提取非常方便。" class="headerlink" title="最近没有更新博客，一直在忙互联网+比赛的项目，我们所做的项目叫学钱帮， “学钱帮”是基于轻量级的ThinkPHP框架开发的，使用面向对象的开发结构和MVC模式的习惯养成与学习资源整合的平台。“学钱帮”主要面向大学生，平台内容独特丰富，涵盖了大学生面临的各类学习、生活方面的问题，更有多样化的功能。首先，平台通过独特的金钱奖惩机制对用户进行督促，用户可以根据自身需求，选择是否需要通过在学钱帮网站暂存金钱的方式来督促自己的学习，并可以选择一定的金额数，在其坚持单词记忆的时间里，如果用户每日坚持学习，可根据暂存金额数获得相应比例的金钱奖励，如果用户忘记学习，则也会相应的扣除一定比例的金钱。其次，平台通过好友的交互陪伴与互动来互相督促；而且，平台还有其它推荐功能、提醒功能、查询功能等。我们通过这种方式来督促用户养成良好生活和学习习惯。最后，本平台还有交互陪伴功能，学生可以邀请好友共同学习；平台还会给每天未完成的同学发送实时提醒；还会根据学生的学习内容智能推送用户可能感兴趣的消息；最重要的是在用户的个人资金上我们绝对保证用户的资金透明，用户可以随时查询自己的账户余额和交易记录，同时资金灵活，充值、提取非常方便。"></a>最近没有更新博客，一直在忙互联网+比赛的项目，我们所做的项目叫学钱帮， “学钱帮”是基于轻量级的ThinkPHP框架开发的，使用面向对象的开发结构和MVC模式的习惯养成与学习资源整合的平台。“学钱帮”主要面向大学生，平台内容独特丰富，涵盖了大学生面临的各类学习、生活方面的问题，更有多样化的功能。首先，平台通过独特的金钱奖惩机制对用户进行督促，用户可以根据自身需求，选择是否需要通过在学钱帮网站暂存金钱的方式来督促自己的学习，并可以选择一定的金额数，在其坚持单词记忆的时间里，如果用户每日坚持学习，可根据暂存金额数获得相应比例的金钱奖励，如果用户忘记学习，则也会相应的扣除一定比例的金钱。其次，平台通过好友的交互陪伴与互动来互相督促；而且，平台还有其它推荐功能、提醒功能、查询功能等。我们通过这种方式来督促用户养成良好生活和学习习惯。最后，本平台还有交互陪伴功能，学生可以邀请好友共同学习；平台还会给每天未完成的同学发送实时提醒；还会根据学生的学习内容智能推送用户可能感兴趣的消息；最重要的是在用户的个人资金上我们绝对保证用户的资金透明，用户可以随时查询自己的账户余额和交易记录，同时资金灵活，充值、提取非常方便。</h2><blockquote>
+<p>关键词:面向对象、习惯养成、学习资源、金钱奖惩、交互陪伴。</p>
+</blockquote>
+<h2 id="下面是项目界面的截图"><a href="#下面是项目界面的截图" class="headerlink" title="下面是项目界面的截图"></a>下面是项目界面的截图</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb1.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb2.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb3.jpg"
+                     
+                ><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb4.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb5.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb6.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb7.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb8.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb9.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb10.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb11.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb12.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb13.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb14.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb15.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb16.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb17.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb18.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb19.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb20.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb21.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb22.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb23.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb24.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb25.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/xqb26.jpg"
+                     
+                ></p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 学钱帮项目</li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2017-06-17 22:22:27</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 21:39:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2017/06/17/article85/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/PHP/">#PHP</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2017/06/18/article86/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">学钱帮网站开发总结</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2017/06/08/article-84/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">关于扩展功能新增Markdown编辑器说明</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">学钱帮项目</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%A6%E9%92%B1%E5%B8%AE%E9%A1%B9%E7%9B%AE"><span class="nav-text">学钱帮项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E8%BF%91%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%EF%BC%8C%E4%B8%80%E7%9B%B4%E5%9C%A8%E5%BF%99%E4%BA%92%E8%81%94%E7%BD%91-%E6%AF%94%E8%B5%9B%E7%9A%84%E9%A1%B9%E7%9B%AE%EF%BC%8C%E6%88%91%E4%BB%AC%E6%89%80%E5%81%9A%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%8F%AB%E5%AD%A6%E9%92%B1%E5%B8%AE%EF%BC%8C-%E2%80%9C%E5%AD%A6%E9%92%B1%E5%B8%AE%E2%80%9D%E6%98%AF%E5%9F%BA%E4%BA%8E%E8%BD%BB%E9%87%8F%E7%BA%A7%E7%9A%84ThinkPHP%E6%A1%86%E6%9E%B6%E5%BC%80%E5%8F%91%E7%9A%84%EF%BC%8C%E4%BD%BF%E7%94%A8%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BC%80%E5%8F%91%E7%BB%93%E6%9E%84%E5%92%8CMVC%E6%A8%A1%E5%BC%8F%E7%9A%84%E4%B9%A0%E6%83%AF%E5%85%BB%E6%88%90%E4%B8%8E%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90%E6%95%B4%E5%90%88%E7%9A%84%E5%B9%B3%E5%8F%B0%E3%80%82%E2%80%9C%E5%AD%A6%E9%92%B1%E5%B8%AE%E2%80%9D%E4%B8%BB%E8%A6%81%E9%9D%A2%E5%90%91%E5%A4%A7%E5%AD%A6%E7%94%9F%EF%BC%8C%E5%B9%B3%E5%8F%B0%E5%86%85%E5%AE%B9%E7%8B%AC%E7%89%B9%E4%B8%B0%E5%AF%8C%EF%BC%8C%E6%B6%B5%E7%9B%96%E4%BA%86%E5%A4%A7%E5%AD%A6%E7%94%9F%E9%9D%A2%E4%B8%B4%E7%9A%84%E5%90%84%E7%B1%BB%E5%AD%A6%E4%B9%A0%E3%80%81%E7%94%9F%E6%B4%BB%E6%96%B9%E9%9D%A2%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E6%9B%B4%E6%9C%89%E5%A4%9A%E6%A0%B7%E5%8C%96%E7%9A%84%E5%8A%9F%E8%83%BD%E3%80%82%E9%A6%96%E5%85%88%EF%BC%8C%E5%B9%B3%E5%8F%B0%E9%80%9A%E8%BF%87%E7%8B%AC%E7%89%B9%E7%9A%84%E9%87%91%E9%92%B1%E5%A5%96%E6%83%A9%E6%9C%BA%E5%88%B6%E5%AF%B9%E7%94%A8%E6%88%B7%E8%BF%9B%E8%A1%8C%E7%9D%A3%E4%BF%83%EF%BC%8C%E7%94%A8%E6%88%B7%E5%8F%AF%E4%BB%A5%E6%A0%B9%E6%8D%AE%E8%87%AA%E8%BA%AB%E9%9C%80%E6%B1%82%EF%BC%8C%E9%80%89%E6%8B%A9%E6%98%AF%E5%90%A6%E9%9C%80%E8%A6%81%E9%80%9A%E8%BF%87%E5%9C%A8%E5%AD%A6%E9%92%B1%E5%B8%AE%E7%BD%91%E7%AB%99%E6%9A%82%E5%AD%98%E9%87%91%E9%92%B1%E7%9A%84%E6%96%B9%E5%BC%8F%E6%9D%A5%E7%9D%A3%E4%BF%83%E8%87%AA%E5%B7%B1%E7%9A%84%E5%AD%A6%E4%B9%A0%EF%BC%8C%E5%B9%B6%E5%8F%AF%E4%BB%A5%E9%80%89%E6%8B%A9%E4%B8%80%E5%AE%9A%E7%9A%84%E9%87%91%E9%A2%9D%E6%95%B0%EF%BC%8C%E5%9C%A8%E5%85%B6%E5%9D%9A%E6%8C%81%E5%8D%95%E8%AF%8D%E8%AE%B0%E5%BF%86%E7%9A%84%E6%97%B6%E9%97%B4%E9%87%8C%EF%BC%8C%E5%A6%82%E6%9E%9C%E7%94%A8%E6%88%B7%E6%AF%8F%E6%97%A5%E5%9D%9A%E6%8C%81%E5%AD%A6%E4%B9%A0%EF%BC%8C%E5%8F%AF%E6%A0%B9%E6%8D%AE%E6%9A%82%E5%AD%98%E9%87%91%E9%A2%9D%E6%95%B0%E8%8E%B7%E5%BE%97%E7%9B%B8%E5%BA%94%E6%AF%94%E4%BE%8B%E7%9A%84%E9%87%91%E9%92%B1%E5%A5%96%E5%8A%B1%EF%BC%8C%E5%A6%82%E6%9E%9C%E7%94%A8%E6%88%B7%E5%BF%98%E8%AE%B0%E5%AD%A6%E4%B9%A0%EF%BC%8C%E5%88%99%E4%B9%9F%E4%BC%9A%E7%9B%B8%E5%BA%94%E7%9A%84%E6%89%A3%E9%99%A4%E4%B8%80%E5%AE%9A%E6%AF%94%E4%BE%8B%E7%9A%84%E9%87%91%E9%92%B1%E3%80%82%E5%85%B6%E6%AC%A1%EF%BC%8C%E5%B9%B3%E5%8F%B0%E9%80%9A%E8%BF%87%E5%A5%BD%E5%8F%8B%E7%9A%84%E4%BA%A4%E4%BA%92%E9%99%AA%E4%BC%B4%E4%B8%8E%E4%BA%92%E5%8A%A8%E6%9D%A5%E4%BA%92%E7%9B%B8%E7%9D%A3%E4%BF%83%EF%BC%9B%E8%80%8C%E4%B8%94%EF%BC%8C%E5%B9%B3%E5%8F%B0%E8%BF%98%E6%9C%89%E5%85%B6%E5%AE%83%E6%8E%A8%E8%8D%90%E5%8A%9F%E8%83%BD%E3%80%81%E6%8F%90%E9%86%92%E5%8A%9F%E8%83%BD%E3%80%81%E6%9F%A5%E8%AF%A2%E5%8A%9F%E8%83%BD%E7%AD%89%E3%80%82%E6%88%91%E4%BB%AC%E9%80%9A%E8%BF%87%E8%BF%99%E7%A7%8D%E6%96%B9%E5%BC%8F%E6%9D%A5%E7%9D%A3%E4%BF%83%E7%94%A8%E6%88%B7%E5%85%BB%E6%88%90%E8%89%AF%E5%A5%BD%E7%94%9F%E6%B4%BB%E5%92%8C%E5%AD%A6%E4%B9%A0%E4%B9%A0%E6%83%AF%E3%80%82%E6%9C%80%E5%90%8E%EF%BC%8C%E6%9C%AC%E5%B9%B3%E5%8F%B0%E8%BF%98%E6%9C%89%E4%BA%A4%E4%BA%92%E9%99%AA%E4%BC%B4%E5%8A%9F%E8%83%BD%EF%BC%8C%E5%AD%A6%E7%94%9F%E5%8F%AF%E4%BB%A5%E9%82%80%E8%AF%B7%E5%A5%BD%E5%8F%8B%E5%85%B1%E5%90%8C%E5%AD%A6%E4%B9%A0%EF%BC%9B%E5%B9%B3%E5%8F%B0%E8%BF%98%E4%BC%9A%E7%BB%99%E6%AF%8F%E5%A4%A9%E6%9C%AA%E5%AE%8C%E6%88%90%E7%9A%84%E5%90%8C%E5%AD%A6%E5%8F%91%E9%80%81%E5%AE%9E%E6%97%B6%E6%8F%90%E9%86%92%EF%BC%9B%E8%BF%98%E4%BC%9A%E6%A0%B9%E6%8D%AE%E5%AD%A6%E7%94%9F%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%86%85%E5%AE%B9%E6%99%BA%E8%83%BD%E6%8E%A8%E9%80%81%E7%94%A8%E6%88%B7%E5%8F%AF%E8%83%BD%E6%84%9F%E5%85%B4%E8%B6%A3%E7%9A%84%E6%B6%88%E6%81%AF%EF%BC%9B%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E6%98%AF%E5%9C%A8%E7%94%A8%E6%88%B7%E7%9A%84%E4%B8%AA%E4%BA%BA%E8%B5%84%E9%87%91%E4%B8%8A%E6%88%91%E4%BB%AC%E7%BB%9D%E5%AF%B9%E4%BF%9D%E8%AF%81%E7%94%A8%E6%88%B7%E7%9A%84%E8%B5%84%E9%87%91%E9%80%8F%E6%98%8E%EF%BC%8C%E7%94%A8%E6%88%B7%E5%8F%AF%E4%BB%A5%E9%9A%8F%E6%97%B6%E6%9F%A5%E8%AF%A2%E8%87%AA%E5%B7%B1%E7%9A%84%E8%B4%A6%E6%88%B7%E4%BD%99%E9%A2%9D%E5%92%8C%E4%BA%A4%E6%98%93%E8%AE%B0%E5%BD%95%EF%BC%8C%E5%90%8C%E6%97%B6%E8%B5%84%E9%87%91%E7%81%B5%E6%B4%BB%EF%BC%8C%E5%85%85%E5%80%BC%E3%80%81%E6%8F%90%E5%8F%96%E9%9D%9E%E5%B8%B8%E6%96%B9%E4%BE%BF%E3%80%82"><span class="nav-text">最近没有更新博客，一直在忙互联网+比赛的项目，我们所做的项目叫学钱帮， “学钱帮”是基于轻量级的ThinkPHP框架开发的，使用面向对象的开发结构和MVC模式的习惯养成与学习资源整合的平台。“学钱帮”主要面向大学生，平台内容独特丰富，涵盖了大学生面临的各类学习、生活方面的问题，更有多样化的功能。首先，平台通过独特的金钱奖惩机制对用户进行督促，用户可以根据自身需求，选择是否需要通过在学钱帮网站暂存金钱的方式来督促自己的学习，并可以选择一定的金额数，在其坚持单词记忆的时间里，如果用户每日坚持学习，可根据暂存金额数获得相应比例的金钱奖励，如果用户忘记学习，则也会相应的扣除一定比例的金钱。其次，平台通过好友的交互陪伴与互动来互相督促；而且，平台还有其它推荐功能、提醒功能、查询功能等。我们通过这种方式来督促用户养成良好生活和学习习惯。最后，本平台还有交互陪伴功能，学生可以邀请好友共同学习；平台还会给每天未完成的同学发送实时提醒；还会根据学生的学习内容智能推送用户可能感兴趣的消息；最重要的是在用户的个人资金上我们绝对保证用户的资金透明，用户可以随时查询自己的账户余额和交易记录，同时资金灵活，充值、提取非常方便。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E6%98%AF%E9%A1%B9%E7%9B%AE%E7%95%8C%E9%9D%A2%E7%9A%84%E6%88%AA%E5%9B%BE"><span class="nav-text">下面是项目界面的截图</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

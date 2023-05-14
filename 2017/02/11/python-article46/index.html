@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2017/02/11/python-article46/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="本文导航 - -ASCII - -EASCII （ISO&#x2F;8859-1） - -GBK - -Unicode - -UTF-8 - -Python 字符编码 - -str 与 unicode 的转换 - -str(s) 与 unicode(s) - -乱码 - -其他技巧 一旦走上了编程之路，如果你不把编码问题搞清楚，那么它将像幽灵一般纠缠你整个职业生涯，各种灵异事件会接踵而来，挥之不去">
+<meta property="og:type" content="article">
+<meta property="og:title" content="转:Python编码的前世今生">
+<meta property="og:url" content="http://example.com/2017/02/11/python-article46/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="本文导航 - -ASCII - -EASCII （ISO&#x2F;8859-1） - -GBK - -Unicode - -UTF-8 - -Python 字符编码 - -str 与 unicode 的转换 - -str(s) 与 unicode(s) - -乱码 - -其他技巧 一旦走上了编程之路，如果你不把编码问题搞清楚，那么它将像幽灵一般纠缠你整个职业生涯，各种灵异事件会接踵而来，挥之不去">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/python32.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/python33.jpg">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/python34.jpg">
+<meta property="article:published_time" content="2017-02-11T03:19:17.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:39:50.434Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="编码">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog-1252406596.costj.myqcloud.com/blog/python32.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            转:Python编码的前世今生 -
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"/images/zS9MZBsVYLI.jpg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">转:Python编码的前世今生</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2017-02-11 11:19:17</span>
+        <span class="mobile">2017-02-11 11:19</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 21:39:50</span>
+            <span class="mobile">2023-05-14 21:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/programme/">programme</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/programme/Python/">Python</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Python/">Python</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E7%BC%96%E7%A0%81/">编码</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p>本文导航 - -ASCII - -EASCII （ISO&#x2F;8859-1） - -GBK - -Unicode - -UTF-8 - -Python 字符编码 - -str 与 unicode 的转换 - -str(s) 与 unicode(s) - -乱码 - -其他技巧 一旦走上了编程之路，如果你不把编码问题搞清楚，那么它将像幽灵一般纠缠你整个职业生涯，各种灵异事件会接踵而来，挥之不去。只有充分发挥程序员死磕到底的精神你才有可能彻底摆脱编码问题带来的烦恼。 我第一次遇到编码问题是写 JavaWeb 相关的项目，一串字符从浏览器游离到应用程序代码中，翻江倒海沉浸到数据库中，随时随地都有可能踩到编码的地雷。 第二次遇到编码问题就是学 Python 的时候，在爬取网页数据时，编码问题又出现了，当时我的心情是崩溃的，用时下最ing的一句话就是：“我当时就懵逼了”。 为了搞清字符编码，我们得从计算机的起源开始，计算机中的所有数据，不论是文字、图片、视频、还是音频文件，本质上最终都是按照类似 01010101 的数字形式存储的。我们是幸运的，我们也是不幸的，幸运的是时代赋予了我们都有机会接触计算机，不幸的是，计算机不是我们国人发明的，所以计算机的标准得按美帝国人的习惯来设计，那么最开始计算机是通过什么样的方式来表现字符的呢？这要从计算机编码的发展史说起。 <strong>ASCII</strong> 每个做 JavaWeb 开发的新手都会遇到乱码问题，每个做 Python 爬虫的新手都会遇到编码问题，为什么编码问题那么蛋疼呢？ 这个问题要从1992年 Guido van Rossum 创造 Python 这门语言说起，那时的 Guido 绝对没想到的是 Python 这门语言在今天会如此受大家欢迎，也不会想到计算机发展速度会如此惊人。Guido 在当初设计这门语言时是不需要关心编码的，因为在英语世界里，字符的个数非常有限，26个字母（大小写）、10个数字、标点符号、控制符，也就是键盘上所有的键所对应的字符加起来也不过是一百多个字符而已。这在计算机中用一个字节的存储空间来表示一个字符是绰绰有余的，因为一个字节相当于8个比特位，8个比特位可以表示256个符号。于是聪明的美国人就制定了一套字符编码的标准叫 ASCII(American Standard Code for Information Interchange)，每个字符都对应唯一的一个数字，比如字符<code>A</code>对应的二进制数值是<code>01000001</code>，对应的十进制就是 65。最开始 ASCII 只定义了 128 个字符编码，包括 96 个文字和 32 个控制符号，一共 128 个字符，只需要一个字节的 7 位就能表示所有的字符，因此 ASCII 只使用了一个字节的后7位，最高位都为 0。每个字符与ASCII码的对应关系可查看网站ascii-code[2]。 <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/python32.jpg"
+                     
+                > <strong>EASCII （ISO&#x2F;8859-1）</strong> 然而计算机慢慢地普及到其他西欧地区时，他们发现还有很多西欧所特有的字符是 ASCII 编码表中没有的，于是后来出现了可扩展的 ASCII 叫 EASCII ，顾名思义，它是在 ASCII 的基础上扩展而来，把原来的 7 位扩充到 8 位，它完全兼容 ASCII，扩展出来的符号包括表格符号、计算符号、希腊字母和特殊的拉丁符号。然而 EASCII 时代是一个混乱的时代，大家没有统一标准，他们各自把最高位按照自己的标准实现了自己的一套字符编码标准，比较著名的就有 <strong>CP437</strong>， CP437 是 Windows 系统中使用的字符编码 <em>cp437</em> 另外一种被广泛使用的 EASCII 还有 **ISO&#x2F;8859-1(Latin-1)**，它是国际标准化组织（ISO）及国际电工委员会（IEC）联合制定的一系列8位元字符集的标准，ISO&#x2F;8859-1 只继承了 CP437 字符编码的 128-159 之间的字符，所以它是从 160 开始定义的，不幸的是这些众多的 ASCII 扩充字集之间互不兼容。 <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/python33.jpg"
+                     
+                > <em>iso8859-1</em> <strong>GBK</strong> 随着时代的进步，计算机开始普及到千家万户，比尔盖茨让每个人桌面都有一台电脑的梦想得以实现。但是计算机进入中国不得不面临的一个问题就是字符编码，虽然咱们国家的汉字是人类使用频率最多的文字，汉字博大精深，常见的汉字就有成千上万，这已经大大超出了 ASCII 编码所能表示的字符范围了，即使是 EASCII 也显得杯水车薪，于是聪明的中国人自己弄了一套编码叫 <strong>GB2312</strong>，又称GB0，1981由中国国家标准总局发布。GB2312 编码共收录了6763个汉字，同时它还兼容 ASCII。GB2312 的出现，基本满足了汉字的计算机处理需要，它所收录的汉字已经覆盖中国大陆 99.75% 的使用频率。不过 GB2312 还是不能 100% 满足中国汉字的需求，对一些罕见的字和繁体字 GB2312 没法处理，后来就在 GB2312 的基础上创建了一种叫 GBK 的编码。GBK 不仅收录了 27484 个汉字，同时还收录了藏文、蒙文、维吾尔文等主要的少数民族文字。同样 GBK 也是兼容 ASCII 编码的，对于英文字符用 1 个字节来表示，汉字用两个字节来标识。 <strong>Unicode</strong> 对于如何处理中国人自己的文字我们可以另立山头，按照我们自己的需求制定一套编码规范，但是计算机不止是美国人和中国人用啊，还有欧洲、亚洲其他国家的文字诸如日文、韩文全世界各地的文字加起来估计也有好几十万，这已经大大超出了 ASCII 码甚至 GBK 所能表示的范围了，况且人家为什么用采用你 GBK 标准呢？如此庞大的字符库究竟用什么方式来表示好呢？于是统一联盟国际组织提出了 Unicode 编码，Unicode 的学名是“Universal Multiple-Octet Coded Character Set”，简称为UCS。 Unicode 有两种格式：UCS-2 和 UCS-4。UCS-2 就是用两个字节编码，一共 16 个比特位，这样理论上最多可以表示 65536个字符，不过要表示全世界所有的字符显然 65536 个数字还远远不够，因为光汉字就有近 10 万个，因此 Unicode 4.0 规范定义了一组附加的字符编码，UCS-4 就是用 4 个字节（实际上只用了 31 位，最高位必须为 0）。 Unicode 理论上完全可以涵盖一切语言所用的符号。世界上任何一个字符都可以用一个 Unicode 编码来表示，一旦字符的 Unicode 编码确定下来后，就不会再改变了。但是 Unicode 有一定的局限性，一个 Unicode 字符在网络上传输或者最终存储起来的时候，并不见得每个字符都需要两个字节，比如一字符“<code>A</code>“，用一个字节就可以表示的字符，偏偏还要用两个字节，显然太浪费空间了。第二问题是，一个 Unicode 字符保存到计算机里面时就是一串 01 数字，那么计算机怎么知道一个 2 字节的 Unicode 字符是表示一个 2 字节的字符呢，还是表示两个 1 字节的字符呢，如果你不事先告诉计算机，那么计算机也会懵逼了。Unicode 只是规定如何编码，并没有规定如何传输、保存这个编码。例如“<code>汉</code>”字的 Unicode 编码是<code>6C49</code>，我可以用 4 个 ASCII 数字来传输、保存这个编码；也可以用 UTF-8 编码的 3 个连续的字节<code>E6 B1 89</code>来表示它。关键在于通信双方都要认可。因此 Unicode 编码有不同的实现方式，比如：UTF-8、UTF-16 等等。这里的 Unicode 就像英语一样，做为国与国之间交流世界通用的标准，每个国家有自己的语言，他们把标准的英文文档翻译成自己国家的文字，这是实现方式，就像 UTF-8。 <strong>UTF-8</strong> UTF-8（Unicode Transformation Format）作为 Unicode 的一种实现方式，广泛应用于互联网，它是一种变长的字符编码，可以根据具体情况用 1-4 个字节来表示一个字符。比如英文字符这些原本就可以用 ASCII 码表示的字符用 UTF-8 表示时就只需要一个字节的空间，和 ASCII 是一样的。对于多字节（n 个字节）的字符，第一个字节的前 n 为都设为 1，第 n+1 位设为 0，后面字节的前两位都设为 10。剩下的二进制位全部用该字符的 UNICODE 码填充。 <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/python34.jpg"
+                     
+                > 以汉字“<code>好</code>”为例，“<code>好</code>”对应的 Unicode 是<code>597D</code>，对应的区间是<code>0000 0800</code>--<code>0000 FFFF</code>，因此它用 UTF-8 表示时需要用 3 个字节来存储，<code>597D</code>用二进制表示是：<code>0101100101111101</code>，填充到<code>1110xxxx 10xxxxxx 10xxxxxx</code>得到<code>11100101 10100101 10111101</code>，转换成 16 进制：<code>E5A5BD</code>，因此“<code>好</code>”的 Unicode “<code>597D</code>”对应的 UTF-8 编码是“<code>E5A5BD</code>”。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">中文 好unicode 0101 100101 111101编码规则 1110xxxx 10xxxxxx 10xxxxxx--------------------------utf-8 11100101 10100101 10111101--------------------------16进制utf-8 e 5 a 5 b d</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>Python 字符编码</strong> 现在总算把理论说完了。再来说说 Python 中的编码问题。Python 的诞生时间比 Unicode 要早很多，Python 的默认编码是ASCII。 所以在 Python 源代码文件中如果不显式地指定编码的话，将出现语法错误</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#test.pyprint &quot;你好&quot;</span><br></pre></td></tr></table></figure></div>
+
+<p>上面是 test.py 脚本，运行 <code>python test.py</code>就会包如下错误：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File “test.py”, line 1 yntaxError: Non-ASCII character ‘\xe4′ in file test.py on line 1, but no encoding declared; see http://www.python.org/ ps/pep-0263.html for details</span><br></pre></td></tr></table></figure></div>
+
+<p>为了在源代码中支持非 ASCII 字符，必须在源文件的第一行或者第二行显示地指定编码格式：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># coding=utf-8</span><br></pre></td></tr></table></figure></div>
+
+<p>或者是：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#!/usr/bin/python# -*- coding: utf-8 -*-</span><br></pre></td></tr></table></figure></div>
+
+<p>在 Python 中和字符串相关的数据类型，分别是 <strong>str</strong>、<strong>unicode</strong> 两种，他们都是<strong>basestring</strong>的子类，可见 str 与 unicode 是两种不同类型的字符串对象。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">basestring/ \ / \str unicode</span><br></pre></td></tr></table></figure></div>
+
+<p>对于同一个汉字“<code>好</code>”，用 str 表示时，它对应的就是 UTF-8 编码<code>&#39;\xe5\xa5\xbd&#39;</code>，而用 Unicode 表示时，它对应的符号就是<code>u&#39;\u597d&#39;</code>，与<code>u&quot;好&quot;</code>是等同的。需要补充一点的是，str 类型的字符其具体的编码格式是 UTF-8 还是 GBK，还是其它格式，根据操作系统相关。比如在 Windows 系统中，cmd 命令行中显示的：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># windows终端&gt;&gt;&gt; a = &#x27;好&#x27;&gt;&gt;&gt; type(a)&lt;type &#x27;str&#x27;&gt;&gt;&gt;&gt; a&#x27;\xba\xc3&#x27;</span><br></pre></td></tr></table></figure></div>
+
+<p>而在 Linux 系统的命令行中显示的是：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># linux终端&gt;&gt;&gt; a=&#x27;好&#x27;&gt;&gt;&gt; type(a)&lt;type &#x27;str&#x27;&gt;&gt;&gt;&gt; a&#x27;\xe5\xa5\xbd&#x27;&gt;&gt;&gt; b=u&#x27;好&#x27;&gt;&gt;&gt; type(b)&lt;type &#x27;unicode&#x27;&gt;&gt;&gt;&gt; bu&#x27;\u597d&#x27;</span><br></pre></td></tr></table></figure></div>
+
+<p>不论是 Python3x、Java 还是其他编程语言，Unicode 编码都成为了语言的默认编码格式，而数据最后保存到介质中的时候，不同的介质可有用不同的方式，有些人喜欢用 UTF-8，有些人喜欢用 GBK，这都无所谓，只要平台统一的编码规范，具体怎么实现并不关心。 <em>encode</em> <strong>str 与 unicode 的转换</strong> 那么在 Python 中 str 和 unicode 之间是如何转换的呢？这两种类型的字符串类型之间的转换就是靠这两个方法：<code>decode</code>和<code>encode</code>。 <em>py-encode</em></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#从str类型转换到unicodes.decode(encoding) =====&gt; &lt;type &#x27;str&#x27;&gt; to &lt;type &#x27;unicode&#x27;&gt;#从unicode转换到stru.encode(encoding) =====&gt; &lt;type &#x27;unicode&#x27;&gt; to &lt;type &#x27;str&#x27;&gt;&gt;&gt;&gt; c = b.encode(&#x27;utf-8&#x27;)&gt;&gt;&gt; type(c)&lt;type &#x27;str&#x27;&gt;&gt;&gt;&gt; c&#x27;\xe5\xa5\xbd&#x27;&gt;&gt;&gt; d = c.decode(&#x27;utf-8&#x27;)&gt;&gt;&gt; type(d)&lt;type &#x27;unicode&#x27;&gt;&gt;&gt;&gt; du&#x27;\u597d&#x27;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个<code>&#39;\xe5\xa5\xbd&#39;</code>就是 Unicode<code>u&#39;好&#39;</code>通过函数<code>encode</code>编码得到的 UTF-8 编码的 str 类型的字符串。反之亦然，str 类型的 c 通过函数<code>decode</code>解码成 Unicode 字符串 d。 <strong>str(s) 与 unicode(s)</strong> <code>str(s)</code>和<code>unicode(s)</code>是两个工厂方法，分别返回 str 字符串对象和 Unicode 字符串对象，<code>str(s)</code>是<code>s.encode(‘ascii’)</code>的简写。实验：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; s3 = u&quot;你好&quot;&gt;&gt;&gt; s3u&#x27;\u4f60\u597d&#x27;&gt;&gt;&gt; str(s3)Traceback (most recent call last):File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;UnicodeEncodeError: &#x27;ascii&#x27; codec can&#x27;t encode characters in position 0-1: ordinal not in range(128)</span><br></pre></td></tr></table></figure></div>
+
+<p>上面 <code>s3</code>是 Unicode 类型的字符串，<code>str(s3)</code>相当于是执行<code>s3.encode(‘ascii’)</code>，因为“<code>你好</code>”两个汉字不能用 ASCII 码来表示，所以就报错了，指定正确的编码：<code>s3.encode(&#39;gbk&#39;)</code>或者<code>s3.encode(&#39;utf-8&#39;)</code>就不会出现这个问题了。类似的 Unicode 有同样的错误：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; s4 = &quot;你好&quot;&gt;&gt;&gt; unicode(s4)Traceback (most recent call last):File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;UnicodeDecodeError: &#x27;ascii&#x27; codec can&#x27;t decode byte 0xc4 in position 0: ordinal not in range(128)&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p><code>unicode(s4)</code>等效于<code>s4.decode(&#39;ascii&#39;)</code>，因此要正确的转换就要正确指定其编码<code>s4.decode(&#39;gbk&#39;)</code>或者<code>s4.decode(&#39;utf-8&#39;)</code>。 <strong>乱码</strong> 所有出现乱码的原因都可以归结为字符经过不同编码解码在编码的过程中使用的编码格式不一致，比如：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># encoding: utf-8&gt;&gt;&gt; a=&#x27;好&#x27;&gt;&gt;&gt; a&#x27;\xe5\xa5\xbd&#x27;&gt;&gt;&gt; b=a.decode(&quot;utf-8&quot;)&gt;&gt;&gt; bu&#x27;\u597d&#x27;&gt;&gt;&gt; c=b.encode(&quot;gbk&quot;)&gt;&gt;&gt; c&#x27;\xba\xc3&#x27;&gt;&gt;&gt; print c</span><br></pre></td></tr></table></figure></div>
+
+<p>UTF-8 编码的字符‘<code>好</code>’占用 3 个字节，解码成 Unicode 后，如果再用 GBK 来解码后，只有 2 个字节的长度了，最后出现了乱码的问题，因此防止乱码的最好方式就是始终坚持使用同一种编码格式对字符进行编码和解码操作。 <em>decode-encode</em> <strong>其他技巧</strong> 对于如 Unicode 形式的字符串（str 类型)：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = &#x27;id\u003d215903184\u0026index\u003d0\u0026st\u003d52\u0026sid&#x27;</span><br></pre></td></tr></table></figure></div>
+
+<p>转换成真正的 Unicode 需要使用：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.decode(&#x27;unicode-escape&#x27;)</span><br></pre></td></tr></table></figure></div>
+
+<p>测试：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; s = &#x27;id\u003d215903184\u0026index\u003d0\u0026st\u003d52\u0026sid\u003d95000\u0026i&#x27;&gt;&gt;&gt; print(type(s))&lt;type &#x27;str&#x27;&gt;&gt;&gt;&gt; s = s.decode(&#x27;unicode-escape&#x27;)&gt;&gt;&gt; su&#x27;id=215903184&amp;index=0&amp;st=52&amp;sid=95000&amp;i&#x27;&gt;&gt;&gt; print(type(s))&lt;type &#x27;unicode&#x27;&gt;&gt;&gt;&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>以上代码和概念都是基于 Python2.x。 以上代码和概念都是基于 Python2.x。 参考：</p>
+<blockquote>
+<p>转载自： <a class="link"   target="_blank" rel="noopener" href="http://foofish.net/blog/111/python-character-encode" >http://foofish.net/blog/111/python-character-encode <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a><br>作者： _zhijun</p>
+</blockquote>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 转:Python编码的前世今生</li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2017-02-11 11:19:17</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 21:39:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2017/02/11/python-article46/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Python/">#Python</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E7%BC%96%E7%A0%81/">#编码</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2017/02/11/python-article47/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">关于Python中使用SQL语句进行模糊查询</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2017/02/10/java-article45/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Java中导出jar包的方法以及错误处理</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">转:Python编码的前世今生</div>
+        
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

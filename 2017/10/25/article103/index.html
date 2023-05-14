@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2017/10/25/article103/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Rain.文件床–免费的文件暂存器特点：可保存七天，文件可预览，上传方便。文件床-网址filebed.rain1024.com 如题，平时经常使用图床，对写文档有很大的帮助。偶尔需要保存一些文件，或者共享一些文件时，只能使用网盘，邮箱或其他云什么的，这些都需要登录，无疑使整个过程繁琐了很多，我只是想暂时保存这个文件，等到了需要的时候再下载下来。所以我想到了做一个文件床，可以上传各种文件，当然也包括">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rain.文件床--免费的文件暂存器">
+<meta property="og:url" content="http://example.com/2017/10/25/article103/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="Rain.文件床–免费的文件暂存器特点：可保存七天，文件可预览，上传方便。文件床-网址filebed.rain1024.com 如题，平时经常使用图床，对写文档有很大的帮助。偶尔需要保存一些文件，或者共享一些文件时，只能使用网盘，邮箱或其他云什么的，这些都需要登录，无疑使整个过程繁琐了很多，我只是想暂时保存这个文件，等到了需要的时候再下载下来。所以我想到了做一个文件床，可以上传各种文件，当然也包括">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://cos.rain1024.com/blog/php/php27.jpg">
+<meta property="og:image" content="http://cos.rain1024.com/blog/php/php28.jpg">
+<meta property="og:image" content="http://cos.rain1024.com/blog/php/php29.jpg">
+<meta property="og:image" content="http://cos.rain1024.com/blog/php/php30.jpg">
+<meta property="article:published_time" content="2017-10-25T08:03:53.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:39:50.462Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="服务器">
+<meta property="article:tag" content="扩展功能">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cos.rain1024.com/blog/php/php27.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Rain.文件床--免费的文件暂存器 -
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"/images/zS9MZBsVYLI.jpg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">Rain.文件床--免费的文件暂存器</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2017-10-25 16:03:53</span>
+        <span class="mobile">2017-10-25 16:03</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 21:39:50</span>
+            <span class="mobile">2023-05-14 21:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/programme/">programme</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Technique/">Technique</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/programme/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Self/">Self</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/">扩展功能</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/PHP/">PHP</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h1 id="Rain-文件床–免费的文件暂存器"><a href="#Rain-文件床–免费的文件暂存器" class="headerlink" title="Rain.文件床–免费的文件暂存器"></a>Rain.文件床–免费的文件暂存器</h1><h3 id="特点：可保存七天，文件可预览，上传方便。"><a href="#特点：可保存七天，文件可预览，上传方便。" class="headerlink" title="特点：可保存七天，文件可预览，上传方便。"></a>特点：可保存七天，文件可预览，上传方便。</h3><h2 id="文件床-网址filebed-rain1024-com"><a href="#文件床-网址filebed-rain1024-com" class="headerlink" title="文件床-网址filebed.rain1024.com"></a><a class="link"   target="_blank" rel="noopener" href="http://filebed.rain1024.com/" >文件床-网址filebed.rain1024.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h2><h3 id="如题，平时经常使用图床，对写文档有很大的帮助。偶尔需要保存一些文件，或者共享一些文件时，只能使用网盘，邮箱或其他云什么的，这些都需要登录，无疑使整个过程繁琐了很多，我只是想暂时保存这个文件，等到了需要的时候再下载下来。所以我想到了做一个文件床，可以上传各种文件，当然也包括图片，页面非常简单，就是上传模块，文件列表模块，随时上传，随时下载，方便使用。网上也肯定有这样功能的网站，但我还是想自己写一个，用自己的域名来访问，还可以自己管理。"><a href="#如题，平时经常使用图床，对写文档有很大的帮助。偶尔需要保存一些文件，或者共享一些文件时，只能使用网盘，邮箱或其他云什么的，这些都需要登录，无疑使整个过程繁琐了很多，我只是想暂时保存这个文件，等到了需要的时候再下载下来。所以我想到了做一个文件床，可以上传各种文件，当然也包括图片，页面非常简单，就是上传模块，文件列表模块，随时上传，随时下载，方便使用。网上也肯定有这样功能的网站，但我还是想自己写一个，用自己的域名来访问，还可以自己管理。" class="headerlink" title="如题，平时经常使用图床，对写文档有很大的帮助。偶尔需要保存一些文件，或者共享一些文件时，只能使用网盘，邮箱或其他云什么的，这些都需要登录，无疑使整个过程繁琐了很多，我只是想暂时保存这个文件，等到了需要的时候再下载下来。所以我想到了做一个文件床，可以上传各种文件，当然也包括图片，页面非常简单，就是上传模块，文件列表模块，随时上传，随时下载，方便使用。网上也肯定有这样功能的网站，但我还是想自己写一个，用自己的域名来访问，还可以自己管理。"></a>如题，平时经常使用图床，对写文档有很大的帮助。偶尔需要保存一些文件，或者共享一些文件时，只能使用网盘，邮箱或其他云什么的，这些都需要登录，无疑使整个过程繁琐了很多，我只是想暂时保存这个文件，等到了需要的时候再下载下来。所以我想到了做一个文件床，可以上传各种文件，当然也包括图片，页面非常简单，就是上传模块，文件列表模块，随时上传，随时下载，方便使用。网上也肯定有这样功能的网站，但我还是想自己写一个，用自己的域名来访问，还可以自己管理。</h3><h3 id="关于使用：访问filebed-rain1024-com这个网址，就会看到上传框，选择你要上传的文件，这时上传框里会出现你的文件，大部分文件都是可以预览的，然后提交，这时你再下拉就会看到文件列表里有你刚刚上传的文件了，每个文件后面都有三个小图标，目前只支持下载，修改和删除需要在后台完成。上传的文件可以保存七天，七天以后就会过期，上传大小为3M以内。"><a href="#关于使用：访问filebed-rain1024-com这个网址，就会看到上传框，选择你要上传的文件，这时上传框里会出现你的文件，大部分文件都是可以预览的，然后提交，这时你再下拉就会看到文件列表里有你刚刚上传的文件了，每个文件后面都有三个小图标，目前只支持下载，修改和删除需要在后台完成。上传的文件可以保存七天，七天以后就会过期，上传大小为3M以内。" class="headerlink" title="关于使用：访问filebed.rain1024.com这个网址，就会看到上传框，选择你要上传的文件，这时上传框里会出现你的文件，大部分文件都是可以预览的，然后提交，这时你再下拉就会看到文件列表里有你刚刚上传的文件了，每个文件后面都有三个小图标，目前只支持下载，修改和删除需要在后台完成。上传的文件可以保存七天，七天以后就会过期，上传大小为3M以内。"></a>关于使用：访问filebed.rain1024.com这个网址，就会看到上传框，选择你要上传的文件，这时上传框里会出现你的文件，大部分文件都是可以预览的，然后提交，这时你再下拉就会看到文件列表里有你刚刚上传的文件了，每个文件后面都有三个小图标，目前只支持下载，修改和删除需要在后台完成。上传的文件可以保存七天，七天以后就会过期，上传大小为3M以内。</h3><h3 id="关于后台：后台模块是用来管理上传的文件的，目前支持对文件的的有效期延长，使文件过期，置顶文件，删除文件等操作，效果如下图，功能会随着开发逐步完善，请关注开发日志。"><a href="#关于后台：后台模块是用来管理上传的文件的，目前支持对文件的的有效期延长，使文件过期，置顶文件，删除文件等操作，效果如下图，功能会随着开发逐步完善，请关注开发日志。" class="headerlink" title="关于后台：后台模块是用来管理上传的文件的，目前支持对文件的的有效期延长，使文件过期，置顶文件，删除文件等操作，效果如下图，功能会随着开发逐步完善，请关注开发日志。"></a>关于后台：后台模块是用来管理上传的文件的，目前支持对文件的的有效期延长，使文件过期，置顶文件，删除文件等操作，效果如下图，功能会随着开发逐步完善，请关注开发日志。</h3><h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://cos.rain1024.com/blog/php/php27.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://cos.rain1024.com/blog/php/php28.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://cos.rain1024.com/blog/php/php29.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://cos.rain1024.com/blog/php/php30.jpg"
+                     
+                ></p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Rain.文件床--免费的文件暂存器</li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2017-10-25 16:03:53</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 21:39:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2017/10/25/article103/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%89%A9%E5%B1%95%E5%8A%9F%E8%83%BD/">#扩展功能</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/PHP/">#PHP</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2017/10/26/article104/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">蒙古文词典检索系统</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2017/10/18/article102/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">给哈斯老师做词典搜索时的一些些思考</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Rain.文件床--免费的文件暂存器</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Rain-%E6%96%87%E4%BB%B6%E5%BA%8A%E2%80%93%E5%85%8D%E8%B4%B9%E7%9A%84%E6%96%87%E4%BB%B6%E6%9A%82%E5%AD%98%E5%99%A8"><span class="nav-text">Rain.文件床–免费的文件暂存器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E7%82%B9%EF%BC%9A%E5%8F%AF%E4%BF%9D%E5%AD%98%E4%B8%83%E5%A4%A9%EF%BC%8C%E6%96%87%E4%BB%B6%E5%8F%AF%E9%A2%84%E8%A7%88%EF%BC%8C%E4%B8%8A%E4%BC%A0%E6%96%B9%E4%BE%BF%E3%80%82"><span class="nav-text">特点：可保存七天，文件可预览，上传方便。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%BA%8A-%E7%BD%91%E5%9D%80filebed-rain1024-com"><span class="nav-text">文件床-网址filebed.rain1024.com </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E9%A2%98%EF%BC%8C%E5%B9%B3%E6%97%B6%E7%BB%8F%E5%B8%B8%E4%BD%BF%E7%94%A8%E5%9B%BE%E5%BA%8A%EF%BC%8C%E5%AF%B9%E5%86%99%E6%96%87%E6%A1%A3%E6%9C%89%E5%BE%88%E5%A4%A7%E7%9A%84%E5%B8%AE%E5%8A%A9%E3%80%82%E5%81%B6%E5%B0%94%E9%9C%80%E8%A6%81%E4%BF%9D%E5%AD%98%E4%B8%80%E4%BA%9B%E6%96%87%E4%BB%B6%EF%BC%8C%E6%88%96%E8%80%85%E5%85%B1%E4%BA%AB%E4%B8%80%E4%BA%9B%E6%96%87%E4%BB%B6%E6%97%B6%EF%BC%8C%E5%8F%AA%E8%83%BD%E4%BD%BF%E7%94%A8%E7%BD%91%E7%9B%98%EF%BC%8C%E9%82%AE%E7%AE%B1%E6%88%96%E5%85%B6%E4%BB%96%E4%BA%91%E4%BB%80%E4%B9%88%E7%9A%84%EF%BC%8C%E8%BF%99%E4%BA%9B%E9%83%BD%E9%9C%80%E8%A6%81%E7%99%BB%E5%BD%95%EF%BC%8C%E6%97%A0%E7%96%91%E4%BD%BF%E6%95%B4%E4%B8%AA%E8%BF%87%E7%A8%8B%E7%B9%81%E7%90%90%E4%BA%86%E5%BE%88%E5%A4%9A%EF%BC%8C%E6%88%91%E5%8F%AA%E6%98%AF%E6%83%B3%E6%9A%82%E6%97%B6%E4%BF%9D%E5%AD%98%E8%BF%99%E4%B8%AA%E6%96%87%E4%BB%B6%EF%BC%8C%E7%AD%89%E5%88%B0%E4%BA%86%E9%9C%80%E8%A6%81%E7%9A%84%E6%97%B6%E5%80%99%E5%86%8D%E4%B8%8B%E8%BD%BD%E4%B8%8B%E6%9D%A5%E3%80%82%E6%89%80%E4%BB%A5%E6%88%91%E6%83%B3%E5%88%B0%E4%BA%86%E5%81%9A%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E5%BA%8A%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%B8%8A%E4%BC%A0%E5%90%84%E7%A7%8D%E6%96%87%E4%BB%B6%EF%BC%8C%E5%BD%93%E7%84%B6%E4%B9%9F%E5%8C%85%E6%8B%AC%E5%9B%BE%E7%89%87%EF%BC%8C%E9%A1%B5%E9%9D%A2%E9%9D%9E%E5%B8%B8%E7%AE%80%E5%8D%95%EF%BC%8C%E5%B0%B1%E6%98%AF%E4%B8%8A%E4%BC%A0%E6%A8%A1%E5%9D%97%EF%BC%8C%E6%96%87%E4%BB%B6%E5%88%97%E8%A1%A8%E6%A8%A1%E5%9D%97%EF%BC%8C%E9%9A%8F%E6%97%B6%E4%B8%8A%E4%BC%A0%EF%BC%8C%E9%9A%8F%E6%97%B6%E4%B8%8B%E8%BD%BD%EF%BC%8C%E6%96%B9%E4%BE%BF%E4%BD%BF%E7%94%A8%E3%80%82%E7%BD%91%E4%B8%8A%E4%B9%9F%E8%82%AF%E5%AE%9A%E6%9C%89%E8%BF%99%E6%A0%B7%E5%8A%9F%E8%83%BD%E7%9A%84%E7%BD%91%E7%AB%99%EF%BC%8C%E4%BD%86%E6%88%91%E8%BF%98%E6%98%AF%E6%83%B3%E8%87%AA%E5%B7%B1%E5%86%99%E4%B8%80%E4%B8%AA%EF%BC%8C%E7%94%A8%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D%E6%9D%A5%E8%AE%BF%E9%97%AE%EF%BC%8C%E8%BF%98%E5%8F%AF%E4%BB%A5%E8%87%AA%E5%B7%B1%E7%AE%A1%E7%90%86%E3%80%82"><span class="nav-text">如题，平时经常使用图床，对写文档有很大的帮助。偶尔需要保存一些文件，或者共享一些文件时，只能使用网盘，邮箱或其他云什么的，这些都需要登录，无疑使整个过程繁琐了很多，我只是想暂时保存这个文件，等到了需要的时候再下载下来。所以我想到了做一个文件床，可以上传各种文件，当然也包括图片，页面非常简单，就是上传模块，文件列表模块，随时上传，随时下载，方便使用。网上也肯定有这样功能的网站，但我还是想自己写一个，用自己的域名来访问，还可以自己管理。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E4%BD%BF%E7%94%A8%EF%BC%9A%E8%AE%BF%E9%97%AEfilebed-rain1024-com%E8%BF%99%E4%B8%AA%E7%BD%91%E5%9D%80%EF%BC%8C%E5%B0%B1%E4%BC%9A%E7%9C%8B%E5%88%B0%E4%B8%8A%E4%BC%A0%E6%A1%86%EF%BC%8C%E9%80%89%E6%8B%A9%E4%BD%A0%E8%A6%81%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%8C%E8%BF%99%E6%97%B6%E4%B8%8A%E4%BC%A0%E6%A1%86%E9%87%8C%E4%BC%9A%E5%87%BA%E7%8E%B0%E4%BD%A0%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%8C%E5%A4%A7%E9%83%A8%E5%88%86%E6%96%87%E4%BB%B6%E9%83%BD%E6%98%AF%E5%8F%AF%E4%BB%A5%E9%A2%84%E8%A7%88%E7%9A%84%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8F%90%E4%BA%A4%EF%BC%8C%E8%BF%99%E6%97%B6%E4%BD%A0%E5%86%8D%E4%B8%8B%E6%8B%89%E5%B0%B1%E4%BC%9A%E7%9C%8B%E5%88%B0%E6%96%87%E4%BB%B6%E5%88%97%E8%A1%A8%E9%87%8C%E6%9C%89%E4%BD%A0%E5%88%9A%E5%88%9A%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%96%87%E4%BB%B6%E4%BA%86%EF%BC%8C%E6%AF%8F%E4%B8%AA%E6%96%87%E4%BB%B6%E5%90%8E%E9%9D%A2%E9%83%BD%E6%9C%89%E4%B8%89%E4%B8%AA%E5%B0%8F%E5%9B%BE%E6%A0%87%EF%BC%8C%E7%9B%AE%E5%89%8D%E5%8F%AA%E6%94%AF%E6%8C%81%E4%B8%8B%E8%BD%BD%EF%BC%8C%E4%BF%AE%E6%94%B9%E5%92%8C%E5%88%A0%E9%99%A4%E9%9C%80%E8%A6%81%E5%9C%A8%E5%90%8E%E5%8F%B0%E5%AE%8C%E6%88%90%E3%80%82%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%96%87%E4%BB%B6%E5%8F%AF%E4%BB%A5%E4%BF%9D%E5%AD%98%E4%B8%83%E5%A4%A9%EF%BC%8C%E4%B8%83%E5%A4%A9%E4%BB%A5%E5%90%8E%E5%B0%B1%E4%BC%9A%E8%BF%87%E6%9C%9F%EF%BC%8C%E4%B8%8A%E4%BC%A0%E5%A4%A7%E5%B0%8F%E4%B8%BA3M%E4%BB%A5%E5%86%85%E3%80%82"><span class="nav-text">关于使用：访问filebed.rain1024.com这个网址，就会看到上传框，选择你要上传的文件，这时上传框里会出现你的文件，大部分文件都是可以预览的，然后提交，这时你再下拉就会看到文件列表里有你刚刚上传的文件了，每个文件后面都有三个小图标，目前只支持下载，修改和删除需要在后台完成。上传的文件可以保存七天，七天以后就会过期，上传大小为3M以内。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E5%90%8E%E5%8F%B0%EF%BC%9A%E5%90%8E%E5%8F%B0%E6%A8%A1%E5%9D%97%E6%98%AF%E7%94%A8%E6%9D%A5%E7%AE%A1%E7%90%86%E4%B8%8A%E4%BC%A0%E7%9A%84%E6%96%87%E4%BB%B6%E7%9A%84%EF%BC%8C%E7%9B%AE%E5%89%8D%E6%94%AF%E6%8C%81%E5%AF%B9%E6%96%87%E4%BB%B6%E7%9A%84%E7%9A%84%E6%9C%89%E6%95%88%E6%9C%9F%E5%BB%B6%E9%95%BF%EF%BC%8C%E4%BD%BF%E6%96%87%E4%BB%B6%E8%BF%87%E6%9C%9F%EF%BC%8C%E7%BD%AE%E9%A1%B6%E6%96%87%E4%BB%B6%EF%BC%8C%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E7%AD%89%E6%93%8D%E4%BD%9C%EF%BC%8C%E6%95%88%E6%9E%9C%E5%A6%82%E4%B8%8B%E5%9B%BE%EF%BC%8C%E5%8A%9F%E8%83%BD%E4%BC%9A%E9%9A%8F%E7%9D%80%E5%BC%80%E5%8F%91%E9%80%90%E6%AD%A5%E5%AE%8C%E5%96%84%EF%BC%8C%E8%AF%B7%E5%85%B3%E6%B3%A8%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97%E3%80%82"><span class="nav-text">关于后台：后台模块是用来管理上传的文件的，目前支持对文件的的有效期延长，使文件过期，置顶文件，删除文件等操作，效果如下图，功能会随着开发逐步完善，请关注开发日志。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%88%E6%9E%9C%E5%9B%BE"><span class="nav-text">效果图</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

@@ -18,12 +18,12 @@
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="自更新参数web接口预热工具痛点日常上线流程中经常需要对接口进行预热，因为服务器每次启动后都有一定次数访问失败，如果不处理将此请求直接抛出，会降低用户体验。当服务器数量较少时，我们可以在发布机器后，待机器启动使用本地hosts更改IP，请求对应服务器接口看（1.刷新接口，2.校验返回数据） 然而当服务器数量较多时，这样的验证过程非常麻烦，每次需要修改完hosts，再去ping一下看看修改成功没，再">
+        <meta name="description" content="痛点日常上线流程中经常需要对接口进行预热，因为服务器每次启动后都有一定次数访问失败，如果不处理将此请求直接抛出，会降低用户体验。当服务器数量较少时，我们可以在发布机器后，待机器启动使用本地hosts更改IP，请求对应服务器接口看（1.刷新接口，2.校验返回数据） 然而当服务器数量较多时，这样的验证过程非常麻烦，每次需要修改完hosts，再去ping一下看看修改成功没，再去请求接口，整个集群只能测试">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AlgoRain">
+<meta property="og:title" content="自更新参数web接口预热工具">
 <meta property="og:url" content="http://example.com/2023/05/13/%E8%87%AA%E6%9B%B4%E6%96%B0%E5%8F%82%E6%95%B0web%E6%8E%A5%E5%8F%A3%E9%A2%84%E7%83%AD%E5%B7%A5%E5%85%B7/index.html">
 <meta property="og:site_name" content="AlgoRain">
-<meta property="og:description" content="自更新参数web接口预热工具痛点日常上线流程中经常需要对接口进行预热，因为服务器每次启动后都有一定次数访问失败，如果不处理将此请求直接抛出，会降低用户体验。当服务器数量较少时，我们可以在发布机器后，待机器启动使用本地hosts更改IP，请求对应服务器接口看（1.刷新接口，2.校验返回数据） 然而当服务器数量较多时，这样的验证过程非常麻烦，每次需要修改完hosts，再去ping一下看看修改成功没，再">
+<meta property="og:description" content="痛点日常上线流程中经常需要对接口进行预热，因为服务器每次启动后都有一定次数访问失败，如果不处理将此请求直接抛出，会降低用户体验。当服务器数量较少时，我们可以在发布机器后，待机器启动使用本地hosts更改IP，请求对应服务器接口看（1.刷新接口，2.校验返回数据） 然而当服务器数量较多时，这样的验证过程非常麻烦，每次需要修改完hosts，再去ping一下看看修改成功没，再去请求接口，整个集群只能测试">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://uos.rain1024.com/image/202305132220363.png">
 <meta property="og:image" content="http://uos.rain1024.com/image/202305132150712.png">
@@ -32,8 +32,8 @@
 <meta property="og:image" content="http://uos.rain1024.com/image/202305132222635.png">
 <meta property="og:image" content="http://example.com/Users/algorain/SynologyDrive/document/markdown/%E7%9F%A5%E8%AF%86%E8%8A%B1%E5%9B%AD/assets/image-20230513224102398.png">
 <meta property="og:image" content="http://uos.rain1024.com/image/202305132213121.png">
-<meta property="article:published_time" content="2023-05-13T13:40:10.435Z">
-<meta property="article:modified_time" content="2023-05-13T14:42:38.859Z">
+<meta property="article:published_time" content="2023-05-13T02:51:30.000Z">
+<meta property="article:modified_time" content="2023-05-14T14:10:12.475Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://uos.rain1024.com/image/202305132220363.png">
@@ -47,6 +47,8 @@
     <!--- Page Info-->
     
     <title>
+        
+            自更新参数web接口预热工具 -
         
         知识花园
     </title>
@@ -207,7 +209,7 @@
             
             
                 <div class="article-title">
-                    <h1 class="article-title-regular"></h1>
+                    <h1 class="article-title-regular">自更新参数web接口预热工具</h1>
                 </div>
             
                 
@@ -229,15 +231,15 @@
                             <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2023-05-13 21:40:10</span>
-        <span class="mobile">2023-05-13 21:40</span>
+        <span class="desktop">2023-05-13 10:51:30</span>
+        <span class="mobile">2023-05-13 10:51</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2023-05-13 22:42:38</span>
-            <span class="mobile">2023-05-13 22:42</span>
+            <span class="desktop">2023-05-14 22:10:12</span>
+            <span class="mobile">2023-05-14 22:10</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -261,7 +263,7 @@
             
 
             <div class="article-content markdown-body">
-                <h1 id="自更新参数web接口预热工具"><a href="#自更新参数web接口预热工具" class="headerlink" title="自更新参数web接口预热工具"></a>自更新参数web接口预热工具</h1><h3 id="痛点"><a href="#痛点" class="headerlink" title="痛点"></a>痛点</h3><p>日常上线流程中经常需要对接口进行预热，因为服务器每次启动后都有一定次数访问失败，如果不处理将此请求直接抛出，会降低用户体验。当服务器数量较少时，我们可以在发布机器后，待机器启动使用本地hosts更改IP，请求对应服务器接口看（1.刷新接口，2.校验返回数据）</p>
+                <h3 id="痛点"><a href="#痛点" class="headerlink" title="痛点"></a>痛点</h3><p>日常上线流程中经常需要对接口进行预热，因为服务器每次启动后都有一定次数访问失败，如果不处理将此请求直接抛出，会降低用户体验。当服务器数量较少时，我们可以在发布机器后，待机器启动使用本地hosts更改IP，请求对应服务器接口看（1.刷新接口，2.校验返回数据）</p>
 <p>然而当服务器数量较多时，这样的验证过程非常麻烦，每次需要修改完hosts，再去ping一下看看修改成功没，再去请求接口，整个集群只能测试几台机器，不能完全覆盖，主要存在两个问题：</p>
 <ol>
 <li>可能存在上线后有机器没起来等问题，对于数据的校验不够完善，只能看看大致返回的量，看不出具体缺失数据。</li>
@@ -365,12 +367,12 @@
                 <div class="post-copyright-info">
                     <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> </li>
+        <li><strong>Title:</strong> 自更新参数web接口预热工具</li>
         <li><strong>Author:</strong> algorain</li>
-        <li><strong>Created at:</strong> 2023-05-13 21:40:10</li>
+        <li><strong>Created at:</strong> 2023-05-13 10:51:30</li>
         
             <li>
-                <strong>Updated at:</strong> 2023-05-13 22:42:38
+                <strong>Updated at:</strong> 2023-05-14 22:10:12
             </li>
         
         <li>
@@ -411,10 +413,10 @@
                         <div class="article-next">
                             <a class="next"
                             rel="next"
-                            href="/2022/03/21/%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95/"
+                            href="/2023/05/11/%E5%8D%8E%E4%B8%BA%E6%95%B0%E5%AD%97%E8%83%BD%E6%BA%90%E7%94%9F%E6%80%81%E5%A4%A7%E4%BC%9A/"
                             >
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item"></span>
+                                    <span class="post-nav-title-item">华为数字能源生态大会</span>
                                     <span class="post-nav-item">Next posts</span>
                                 </span>
                                 <span class="right arrow-icon flex-center">
@@ -479,8 +481,8 @@
                 <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title"></div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%87%AA%E6%9B%B4%E6%96%B0%E5%8F%82%E6%95%B0web%E6%8E%A5%E5%8F%A3%E9%A2%84%E7%83%AD%E5%B7%A5%E5%85%B7"><span class="nav-text">自更新参数web接口预热工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%97%9B%E7%82%B9"><span class="nav-text">痛点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE%EF%BC%9A"><span class="nav-text">服务端配置：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E6%9C%8D%E5%8A%A1"><span class="nav-text">python服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#start-parameters%E6%A8%A1%E5%9D%97"><span class="nav-text">start_parameters模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#server-verify%E6%A8%A1%E5%9D%97"><span class="nav-text">server_verify模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web%E6%A8%A1%E5%9D%97"><span class="nav-text">web模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E5%88%86%E4%B8%BA%E4%B8%89%E7%B1%BB%E5%A4%84%E7%90%86"><span class="nav-text">下面分为三类处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%9C%8D%E5%8A%A1%E9%A2%84%E7%83%AD%EF%BC%9A"><span class="nav-text">自动服务预热：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%8A%A8%E9%A2%84%E7%83%AD%EF%BC%9A"><span class="nav-text">主动预热：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A5%E6%96%87%E5%AF%B9%E6%AF%94%EF%BC%9A"><span class="nav-text">报文对比：</span></a></li></ol></li></ol></li></ol>
+        <div class="page-title">自更新参数web接口预热工具</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%97%9B%E7%82%B9"><span class="nav-text">痛点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E9%85%8D%E7%BD%AE%EF%BC%9A"><span class="nav-text">服务端配置：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python%E6%9C%8D%E5%8A%A1"><span class="nav-text">python服务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#start-parameters%E6%A8%A1%E5%9D%97"><span class="nav-text">start_parameters模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#server-verify%E6%A8%A1%E5%9D%97"><span class="nav-text">server_verify模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web%E6%A8%A1%E5%9D%97"><span class="nav-text">web模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E5%88%86%E4%B8%BA%E4%B8%89%E7%B1%BB%E5%A4%84%E7%90%86"><span class="nav-text">下面分为三类处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%9C%8D%E5%8A%A1%E9%A2%84%E7%83%AD%EF%BC%9A"><span class="nav-text">自动服务预热：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E5%8A%A8%E9%A2%84%E7%83%AD%EF%BC%9A"><span class="nav-text">主动预热：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A5%E6%96%87%E5%AF%B9%E6%AF%94%EF%BC%9A"><span class="nav-text">报文对比：</span></a></li></ol>
 
     </div>
 </div>

@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2017/08/06/article93/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="重写Python脚本时关于建立框架的想法今天本来想再写一个脚本放到服务器里运行，想到脚本的功能时我发现里面有很多功能其实和以前的脚本有些重复了，比如数据库的方法，邮箱的方法，下载方法等等，假如每个脚本里都有这些方法，如果有一天，我换了一个环境，改变了数据库密码，或者想改变邮箱的smtp地址，这时就懵逼了，有多少脚本就需要改多少次数据。有人可能说不用担心，总会有简单的办法，或许这一次有办法，但下一次">
+<meta property="og:type" content="article">
+<meta property="og:title" content="重写Python脚本时关于建立框架的想法">
+<meta property="og:url" content="http://example.com/2017/08/06/article93/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="重写Python脚本时关于建立框架的想法今天本来想再写一个脚本放到服务器里运行，想到脚本的功能时我发现里面有很多功能其实和以前的脚本有些重复了，比如数据库的方法，邮箱的方法，下载方法等等，假如每个脚本里都有这些方法，如果有一天，我换了一个环境，改变了数据库密码，或者想改变邮箱的smtp地址，这时就懵逼了，有多少脚本就需要改多少次数据。有人可能说不用担心，总会有简单的办法，或许这一次有办法，但下一次">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-08-06T10:31:41.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:39:50.459Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="脚本">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            重写Python脚本时关于建立框架的想法 -
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"/images/zS9MZBsVYLI.jpg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">重写Python脚本时关于建立框架的想法</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2017-08-06 18:31:41</span>
+        <span class="mobile">2017-08-06 18:31</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 21:39:50</span>
+            <span class="mobile">2023-05-14 21:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/programme/">programme</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Technique/">Technique</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/programme/Python/">Python</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Python/">Python</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E8%84%9A%E6%9C%AC/">脚本</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="重写Python脚本时关于建立框架的想法"><a href="#重写Python脚本时关于建立框架的想法" class="headerlink" title="重写Python脚本时关于建立框架的想法"></a>重写Python脚本时关于建立框架的想法</h2><h3 id="今天本来想再写一个脚本放到服务器里运行，想到脚本的功能时我发现里面有很多功能其实和以前的脚本有些重复了，比如数据库的方法，邮箱的方法，下载方法等等，假如每个脚本里都有这些方法，如果有一天，我换了一个环境，改变了数据库密码，或者想改变邮箱的smtp地址，这时就懵逼了，有多少脚本就需要改多少次数据。有人可能说不用担心，总会有简单的办法，或许这一次有办法，但下一次以及以后呢？每个互相独立的脚本很好写，很好运行，很好维护，但当你需要维护的脚本太多了该怎么办，你如果只是写一两个脚本就心满意足，那这些完全不用考虑。"><a href="#今天本来想再写一个脚本放到服务器里运行，想到脚本的功能时我发现里面有很多功能其实和以前的脚本有些重复了，比如数据库的方法，邮箱的方法，下载方法等等，假如每个脚本里都有这些方法，如果有一天，我换了一个环境，改变了数据库密码，或者想改变邮箱的smtp地址，这时就懵逼了，有多少脚本就需要改多少次数据。有人可能说不用担心，总会有简单的办法，或许这一次有办法，但下一次以及以后呢？每个互相独立的脚本很好写，很好运行，很好维护，但当你需要维护的脚本太多了该怎么办，你如果只是写一两个脚本就心满意足，那这些完全不用考虑。" class="headerlink" title="今天本来想再写一个脚本放到服务器里运行，想到脚本的功能时我发现里面有很多功能其实和以前的脚本有些重复了，比如数据库的方法，邮箱的方法，下载方法等等，假如每个脚本里都有这些方法，如果有一天，我换了一个环境，改变了数据库密码，或者想改变邮箱的smtp地址，这时就懵逼了，有多少脚本就需要改多少次数据。有人可能说不用担心，总会有简单的办法，或许这一次有办法，但下一次以及以后呢？每个互相独立的脚本很好写，很好运行，很好维护，但当你需要维护的脚本太多了该怎么办，你如果只是写一两个脚本就心满意足，那这些完全不用考虑。"></a>今天本来想再写一个脚本放到服务器里运行，想到脚本的功能时我发现里面有很多功能其实和以前的脚本有些重复了，比如数据库的方法，邮箱的方法，下载方法等等，假如每个脚本里都有这些方法，如果有一天，我换了一个环境，改变了数据库密码，或者想改变邮箱的smtp地址，这时就懵逼了，有多少脚本就需要改多少次数据。有人可能说不用担心，总会有简单的办法，或许这一次有办法，但下一次以及以后呢？每个互相独立的脚本很好写，很好运行，很好维护，但当你需要维护的脚本太多了该怎么办，你如果只是写一两个脚本就心满意足，那这些完全不用考虑。</h3><h3 id="或许是套着框架写代码写习惯了，我理所应当的想到了引入框架的概念，将各个逻辑分层，对一些固定的操作封装起来，使用控制层和模型层的概念，即使前期只有少量的脚本，但也要将整个结构框架构建起来，一点点的充实和完善，不用等到后期一大堆脚本文件的时候，弄的自己手忙脚乱，提高代码的可维护性，可移植性，可扩展性，会让整个结构看起来简洁高效。"><a href="#或许是套着框架写代码写习惯了，我理所应当的想到了引入框架的概念，将各个逻辑分层，对一些固定的操作封装起来，使用控制层和模型层的概念，即使前期只有少量的脚本，但也要将整个结构框架构建起来，一点点的充实和完善，不用等到后期一大堆脚本文件的时候，弄的自己手忙脚乱，提高代码的可维护性，可移植性，可扩展性，会让整个结构看起来简洁高效。" class="headerlink" title="或许是套着框架写代码写习惯了，我理所应当的想到了引入框架的概念，将各个逻辑分层，对一些固定的操作封装起来，使用控制层和模型层的概念，即使前期只有少量的脚本，但也要将整个结构框架构建起来，一点点的充实和完善，不用等到后期一大堆脚本文件的时候，弄的自己手忙脚乱，提高代码的可维护性，可移植性，可扩展性，会让整个结构看起来简洁高效。"></a>或许是套着框架写代码写习惯了，我理所应当的想到了引入框架的概念，将各个逻辑分层，对一些固定的操作封装起来，使用控制层和模型层的概念，即使前期只有少量的脚本，但也要将整个结构框架构建起来，一点点的充实和完善，不用等到后期一大堆脚本文件的时候，弄的自己手忙脚乱，提高代码的可维护性，可移植性，可扩展性，会让整个结构看起来简洁高效。</h3><h3 id="当然，这些只是我的一些想法，很简单，现在的代码量不大，我也尝试着去建立这个结构，一点点的去完善，使得更实用，更方便，首先建立类，运用类将固定的一些方法和常量封装起来，留出接口，使其他脚本能够调用即可。然后提取公有的方法，建立公有类。"><a href="#当然，这些只是我的一些想法，很简单，现在的代码量不大，我也尝试着去建立这个结构，一点点的去完善，使得更实用，更方便，首先建立类，运用类将固定的一些方法和常量封装起来，留出接口，使其他脚本能够调用即可。然后提取公有的方法，建立公有类。" class="headerlink" title="当然，这些只是我的一些想法，很简单，现在的代码量不大，我也尝试着去建立这个结构，一点点的去完善，使得更实用，更方便，首先建立类，运用类将固定的一些方法和常量封装起来，留出接口，使其他脚本能够调用即可。然后提取公有的方法，建立公有类。"></a>当然，这些只是我的一些想法，很简单，现在的代码量不大，我也尝试着去建立这个结构，一点点的去完善，使得更实用，更方便，首先建立类，运用类将固定的一些方法和常量封装起来，留出接口，使其他脚本能够调用即可。然后提取公有的方法，建立公有类。</h3>
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 重写Python脚本时关于建立框架的想法</li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2017-08-06 18:31:41</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 21:39:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2017/08/06/article93/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Python/">#Python</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E8%84%9A%E6%9C%AC/">#脚本</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2017/08/06/article94/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">对阿里云学生主机和腾讯云学生主机的评测</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2017/08/06/article92/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">对阿里云OSS对象存储的评价</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">重写Python脚本时关于建立框架的想法</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%86%99Python%E8%84%9A%E6%9C%AC%E6%97%B6%E5%85%B3%E4%BA%8E%E5%BB%BA%E7%AB%8B%E6%A1%86%E6%9E%B6%E7%9A%84%E6%83%B3%E6%B3%95"><span class="nav-text">重写Python脚本时关于建立框架的想法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8A%E5%A4%A9%E6%9C%AC%E6%9D%A5%E6%83%B3%E5%86%8D%E5%86%99%E4%B8%80%E4%B8%AA%E8%84%9A%E6%9C%AC%E6%94%BE%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8C%E8%BF%90%E8%A1%8C%EF%BC%8C%E6%83%B3%E5%88%B0%E8%84%9A%E6%9C%AC%E7%9A%84%E5%8A%9F%E8%83%BD%E6%97%B6%E6%88%91%E5%8F%91%E7%8E%B0%E9%87%8C%E9%9D%A2%E6%9C%89%E5%BE%88%E5%A4%9A%E5%8A%9F%E8%83%BD%E5%85%B6%E5%AE%9E%E5%92%8C%E4%BB%A5%E5%89%8D%E7%9A%84%E8%84%9A%E6%9C%AC%E6%9C%89%E4%BA%9B%E9%87%8D%E5%A4%8D%E4%BA%86%EF%BC%8C%E6%AF%94%E5%A6%82%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E9%82%AE%E7%AE%B1%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E4%B8%8B%E8%BD%BD%E6%96%B9%E6%B3%95%E7%AD%89%E7%AD%89%EF%BC%8C%E5%81%87%E5%A6%82%E6%AF%8F%E4%B8%AA%E8%84%9A%E6%9C%AC%E9%87%8C%E9%83%BD%E6%9C%89%E8%BF%99%E4%BA%9B%E6%96%B9%E6%B3%95%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%E4%B8%80%E5%A4%A9%EF%BC%8C%E6%88%91%E6%8D%A2%E4%BA%86%E4%B8%80%E4%B8%AA%E7%8E%AF%E5%A2%83%EF%BC%8C%E6%94%B9%E5%8F%98%E4%BA%86%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%86%E7%A0%81%EF%BC%8C%E6%88%96%E8%80%85%E6%83%B3%E6%94%B9%E5%8F%98%E9%82%AE%E7%AE%B1%E7%9A%84smtp%E5%9C%B0%E5%9D%80%EF%BC%8C%E8%BF%99%E6%97%B6%E5%B0%B1%E6%87%B5%E9%80%BC%E4%BA%86%EF%BC%8C%E6%9C%89%E5%A4%9A%E5%B0%91%E8%84%9A%E6%9C%AC%E5%B0%B1%E9%9C%80%E8%A6%81%E6%94%B9%E5%A4%9A%E5%B0%91%E6%AC%A1%E6%95%B0%E6%8D%AE%E3%80%82%E6%9C%89%E4%BA%BA%E5%8F%AF%E8%83%BD%E8%AF%B4%E4%B8%8D%E7%94%A8%E6%8B%85%E5%BF%83%EF%BC%8C%E6%80%BB%E4%BC%9A%E6%9C%89%E7%AE%80%E5%8D%95%E7%9A%84%E5%8A%9E%E6%B3%95%EF%BC%8C%E6%88%96%E8%AE%B8%E8%BF%99%E4%B8%80%E6%AC%A1%E6%9C%89%E5%8A%9E%E6%B3%95%EF%BC%8C%E4%BD%86%E4%B8%8B%E4%B8%80%E6%AC%A1%E4%BB%A5%E5%8F%8A%E4%BB%A5%E5%90%8E%E5%91%A2%EF%BC%9F%E6%AF%8F%E4%B8%AA%E4%BA%92%E7%9B%B8%E7%8B%AC%E7%AB%8B%E7%9A%84%E8%84%9A%E6%9C%AC%E5%BE%88%E5%A5%BD%E5%86%99%EF%BC%8C%E5%BE%88%E5%A5%BD%E8%BF%90%E8%A1%8C%EF%BC%8C%E5%BE%88%E5%A5%BD%E7%BB%B4%E6%8A%A4%EF%BC%8C%E4%BD%86%E5%BD%93%E4%BD%A0%E9%9C%80%E8%A6%81%E7%BB%B4%E6%8A%A4%E7%9A%84%E8%84%9A%E6%9C%AC%E5%A4%AA%E5%A4%9A%E4%BA%86%E8%AF%A5%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%8C%E4%BD%A0%E5%A6%82%E6%9E%9C%E5%8F%AA%E6%98%AF%E5%86%99%E4%B8%80%E4%B8%A4%E4%B8%AA%E8%84%9A%E6%9C%AC%E5%B0%B1%E5%BF%83%E6%BB%A1%E6%84%8F%E8%B6%B3%EF%BC%8C%E9%82%A3%E8%BF%99%E4%BA%9B%E5%AE%8C%E5%85%A8%E4%B8%8D%E7%94%A8%E8%80%83%E8%99%91%E3%80%82"><span class="nav-text">今天本来想再写一个脚本放到服务器里运行，想到脚本的功能时我发现里面有很多功能其实和以前的脚本有些重复了，比如数据库的方法，邮箱的方法，下载方法等等，假如每个脚本里都有这些方法，如果有一天，我换了一个环境，改变了数据库密码，或者想改变邮箱的smtp地址，这时就懵逼了，有多少脚本就需要改多少次数据。有人可能说不用担心，总会有简单的办法，或许这一次有办法，但下一次以及以后呢？每个互相独立的脚本很好写，很好运行，很好维护，但当你需要维护的脚本太多了该怎么办，你如果只是写一两个脚本就心满意足，那这些完全不用考虑。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%96%E8%AE%B8%E6%98%AF%E5%A5%97%E7%9D%80%E6%A1%86%E6%9E%B6%E5%86%99%E4%BB%A3%E7%A0%81%E5%86%99%E4%B9%A0%E6%83%AF%E4%BA%86%EF%BC%8C%E6%88%91%E7%90%86%E6%89%80%E5%BA%94%E5%BD%93%E7%9A%84%E6%83%B3%E5%88%B0%E4%BA%86%E5%BC%95%E5%85%A5%E6%A1%86%E6%9E%B6%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E5%B0%86%E5%90%84%E4%B8%AA%E9%80%BB%E8%BE%91%E5%88%86%E5%B1%82%EF%BC%8C%E5%AF%B9%E4%B8%80%E4%BA%9B%E5%9B%BA%E5%AE%9A%E7%9A%84%E6%93%8D%E4%BD%9C%E5%B0%81%E8%A3%85%E8%B5%B7%E6%9D%A5%EF%BC%8C%E4%BD%BF%E7%94%A8%E6%8E%A7%E5%88%B6%E5%B1%82%E5%92%8C%E6%A8%A1%E5%9E%8B%E5%B1%82%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E5%8D%B3%E4%BD%BF%E5%89%8D%E6%9C%9F%E5%8F%AA%E6%9C%89%E5%B0%91%E9%87%8F%E7%9A%84%E8%84%9A%E6%9C%AC%EF%BC%8C%E4%BD%86%E4%B9%9F%E8%A6%81%E5%B0%86%E6%95%B4%E4%B8%AA%E7%BB%93%E6%9E%84%E6%A1%86%E6%9E%B6%E6%9E%84%E5%BB%BA%E8%B5%B7%E6%9D%A5%EF%BC%8C%E4%B8%80%E7%82%B9%E7%82%B9%E7%9A%84%E5%85%85%E5%AE%9E%E5%92%8C%E5%AE%8C%E5%96%84%EF%BC%8C%E4%B8%8D%E7%94%A8%E7%AD%89%E5%88%B0%E5%90%8E%E6%9C%9F%E4%B8%80%E5%A4%A7%E5%A0%86%E8%84%9A%E6%9C%AC%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%BC%84%E7%9A%84%E8%87%AA%E5%B7%B1%E6%89%8B%E5%BF%99%E8%84%9A%E4%B9%B1%EF%BC%8C%E6%8F%90%E9%AB%98%E4%BB%A3%E7%A0%81%E7%9A%84%E5%8F%AF%E7%BB%B4%E6%8A%A4%E6%80%A7%EF%BC%8C%E5%8F%AF%E7%A7%BB%E6%A4%8D%E6%80%A7%EF%BC%8C%E5%8F%AF%E6%89%A9%E5%B1%95%E6%80%A7%EF%BC%8C%E4%BC%9A%E8%AE%A9%E6%95%B4%E4%B8%AA%E7%BB%93%E6%9E%84%E7%9C%8B%E8%B5%B7%E6%9D%A5%E7%AE%80%E6%B4%81%E9%AB%98%E6%95%88%E3%80%82"><span class="nav-text">或许是套着框架写代码写习惯了，我理所应当的想到了引入框架的概念，将各个逻辑分层，对一些固定的操作封装起来，使用控制层和模型层的概念，即使前期只有少量的脚本，但也要将整个结构框架构建起来，一点点的充实和完善，不用等到后期一大堆脚本文件的时候，弄的自己手忙脚乱，提高代码的可维护性，可移植性，可扩展性，会让整个结构看起来简洁高效。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%93%E7%84%B6%EF%BC%8C%E8%BF%99%E4%BA%9B%E5%8F%AA%E6%98%AF%E6%88%91%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95%EF%BC%8C%E5%BE%88%E7%AE%80%E5%8D%95%EF%BC%8C%E7%8E%B0%E5%9C%A8%E7%9A%84%E4%BB%A3%E7%A0%81%E9%87%8F%E4%B8%8D%E5%A4%A7%EF%BC%8C%E6%88%91%E4%B9%9F%E5%B0%9D%E8%AF%95%E7%9D%80%E5%8E%BB%E5%BB%BA%E7%AB%8B%E8%BF%99%E4%B8%AA%E7%BB%93%E6%9E%84%EF%BC%8C%E4%B8%80%E7%82%B9%E7%82%B9%E7%9A%84%E5%8E%BB%E5%AE%8C%E5%96%84%EF%BC%8C%E4%BD%BF%E5%BE%97%E6%9B%B4%E5%AE%9E%E7%94%A8%EF%BC%8C%E6%9B%B4%E6%96%B9%E4%BE%BF%EF%BC%8C%E9%A6%96%E5%85%88%E5%BB%BA%E7%AB%8B%E7%B1%BB%EF%BC%8C%E8%BF%90%E7%94%A8%E7%B1%BB%E5%B0%86%E5%9B%BA%E5%AE%9A%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E5%92%8C%E5%B8%B8%E9%87%8F%E5%B0%81%E8%A3%85%E8%B5%B7%E6%9D%A5%EF%BC%8C%E7%95%99%E5%87%BA%E6%8E%A5%E5%8F%A3%EF%BC%8C%E4%BD%BF%E5%85%B6%E4%BB%96%E8%84%9A%E6%9C%AC%E8%83%BD%E5%A4%9F%E8%B0%83%E7%94%A8%E5%8D%B3%E5%8F%AF%E3%80%82%E7%84%B6%E5%90%8E%E6%8F%90%E5%8F%96%E5%85%AC%E6%9C%89%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E5%BB%BA%E7%AB%8B%E5%85%AC%E6%9C%89%E7%B1%BB%E3%80%82"><span class="nav-text">当然，这些只是我的一些想法，很简单，现在的代码量不大，我也尝试着去建立这个结构，一点点的去完善，使得更实用，更方便，首先建立类，运用类将固定的一些方法和常量封装起来，留出接口，使其他脚本能够调用即可。然后提取公有的方法，建立公有类。</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

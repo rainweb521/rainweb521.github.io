@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2018/06/22/article126/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="基于Hadoop搭建HDFS伪分布式环境的安装步骤 本次实验中，老师使用的是hadoop用户，我是直接使用root用户，所以没有sudo，环境变量也是&#x2F;etc&#x2F;profile，其他的基本一样。  JDK安装  查看已经上传的jdk文件，并安装 安装命令： yum localinstall -y jdk-8u171-linux-x64.rpm  添加到系统环境变量： ~&amp;#x2F">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于Hadoop搭建HDFS伪分布式环境的安装步骤">
+<meta property="og:url" content="http://example.com/2018/06/22/article126/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="基于Hadoop搭建HDFS伪分布式环境的安装步骤 本次实验中，老师使用的是hadoop用户，我是直接使用root用户，所以没有sudo，环境变量也是&#x2F;etc&#x2F;profile，其他的基本一样。  JDK安装  查看已经上传的jdk文件，并安装 安装命令： yum localinstall -y jdk-8u171-linux-x64.rpm  添加到系统环境变量： ~&amp;#x2F">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpslqz6j30fe0auwfc.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsljn6j30fe0173yd.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsm2jwj30fe0au3yy.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsk8k7j30fe056wet.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsk4gkj30fe04ndfz.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpskjwtj30fe06274c.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsp52oj30fe054weq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsngwzj30fe01qq2t.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsqmapj30fe0avabc.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpss3hmj30fe09u0tm.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpspuhkj30fe0aswfc.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsufetj30fe01zq2w.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpstog7j30fe0ap0te.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpstvqbj30fe0aodgk.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsuko8j30fe01qa9w.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsxdo6j30fe02n0sq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsybsqj30fe08gjrz.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpt2ts9j30fe0atq4l.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsy8n3j30fe0awq48.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsyd6bj30fe02rgll.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsztvxj30fe095q3a.jpg">
+<meta property="article:published_time" content="2018-06-22T00:52:03.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:39:50.472Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="大数据">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpslqz6j30fe0auwfc.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            基于Hadoop搭建HDFS伪分布式环境的安装步骤 -
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"/images/zS9MZBsVYLI.jpg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">基于Hadoop搭建HDFS伪分布式环境的安装步骤</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2018-06-22 08:52:03</span>
+        <span class="mobile">2018-06-22 08:52</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 21:39:50</span>
+            <span class="mobile">2023-05-14 21:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Programme/">Programme</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p>基于Hadoop搭建HDFS伪分布式环境的安装步骤 本次实验中，老师使用的是hadoop用户，我是直接使用root用户，所以没有sudo，环境变量也是&#x2F;etc&#x2F;profile，其他的基本一样。</p>
+<ol>
+<li>JDK安装</li>
+</ol>
+<p>查看已经上传的jdk文件，并安装 安装命令： yum localinstall -y jdk-8u171-linux-x64.rpm <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpslqz6j30fe0auwfc.jpg"
+                     
+                > 添加到系统环境变量： ~&#x2F;.bash_profile ​ export JAVA_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.8.0_171-amd64 ​ export PATH&#x3D;$JAVA_HOME&#x2F;bin:$PATH:$HOME&#x2F;bin <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsljn6j30fe0173yd.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsm2jwj30fe0au3yy.jpg"
+                     
+                > 使得环境变量生效：source ~&#x2F;.bash_profile ​ 验证java是否配置成功: java -version <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsk8k7j30fe056wet.jpg"
+                     
+                ></p>
+<ol>
+<li>安装SSH</li>
+</ol>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsk4gkj30fe04ndfz.jpg"
+                     
+                > 在安装ssh是出错，用xshell进行ssh连接，发现可以连通，所以不再安装 <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpskjwtj30fe06274c.jpg"
+                     
+                ></p>
+<ol>
+<li>安装sshd的时候，发现服务中sshd服务以及启动，所以不安装了</li>
+</ol>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsp52oj30fe054weq.jpg"
+                     
+                ></p>
+<ol>
+<li>安装Hadoop</li>
+</ol>
+<p>下载并解压Hadoop， <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsngwzj30fe01qq2t.jpg"
+                     
+                > 已经下载并放到桌面上，直接解压，安装 解压：tar -zxvf Hadoop-2.6.0-cdh5.7.0.tar.gz <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsqmapj30fe0avabc.jpg"
+                     
+                > 查看目录，并进入&#x2F;etc&#x2F;Hadoop&#x2F; <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpss3hmj30fe09u0tm.jpg"
+                     
+                ></p>
+<ol>
+<li>修改配置文件</li>
+</ol>
+<p>hadoop配置文件的修改($HADDOP_HOME&#x2F;etc&#x2F;hadoop) hadoop-env.sh ​ export JAVA_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;jdk1.8.0_171-amd64 <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpspuhkj30fe0aswfc.jpg"
+                     
+                > ​ core-site.xml ​  ​ fs.defaultFS ​ hdfs:&#x2F;&#x2F;localhost:9000 ​  ​ 由于hadoop伪分布式存储默认使用宿主系统的临时文件夹，会导致每次宿主系统重启后丢失，需要手动制定一个目录 ​  ​ hadoop.tmp.dir ​ &#x2F;home&#x2F;hadoop&#x2F;app&#x2F;tmp ​  ​ hdfs-site.xml ​  ​ dfs.replication ​ 1 ​  <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsufetj30fe01zq2w.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpstog7j30fe0ap0te.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpstvqbj30fe0aodgk.jpg"
+                     
+                ></p>
+<ol>
+<li>给Hadoop配置环境变量</li>
+</ol>
+<p>添加环境变量： ​ export HADOOP_HOME&#x3D;&#x2F;home&#x2F;hadoop&#x2F;app&#x2F;hadoop-2.6.0-cdh5.7.0 ​ export PATH&#x3D;$HADOOP_HOME&#x2F;bin:$HADOOP_HOME&#x2F;sbin:$PATH <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsuko8j30fe01qa9w.jpg"
+                     
+                > <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsxdo6j30fe02n0sq.jpg"
+                     
+                > 使环境变量生效 source &#x2F;etc&#x2F;profile 查看Hadoop <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsybsqj30fe08gjrz.jpg"
+                     
+                ></p>
+<ol>
+<li>启动hdfs</li>
+</ol>
+<p>格式化分布式文件系统（仅第一次执行即可，不可重复执行）： ​ hdfs namenode -format <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpt2ts9j30fe0atq4l.jpg"
+                     
+                > 启动: start-dfs.sh <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsy8n3j30fe0awq48.jpg"
+                     
+                > 验证是否启动成功： ​ jps ​ NameNode ​ SecondaryNameNode ​ DataNode <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsyd6bj30fe02rgll.jpg"
+                     
+                > 浏览器访问方式：<a class="link"   target="_blank" rel="noopener" href="http://localhost:50070/" >http://localhost:50070 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://ww1.sinaimg.cn/mw690/006npsefly1fsjnpsztvxj30fe095q3a.jpg"
+                     
+                > 8) 关闭hdfs ​ stop-dfs.sh</p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 基于Hadoop搭建HDFS伪分布式环境的安装步骤</li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2018-06-22 08:52:03</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 21:39:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2018/06/22/article126/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">#大数据</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2018/06/24/article127/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">新的征程</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2018/06/11/article125/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">人事管理系统</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">基于Hadoop搭建HDFS伪分布式环境的安装步骤</div>
+        
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

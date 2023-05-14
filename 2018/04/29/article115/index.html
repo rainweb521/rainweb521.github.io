@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2018/04/29/article115/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="在内网使用windows server搭建WAMP环境下面的操作流程，可以供在学校内网搭建服务器的同学使用，因为内网连外网需要通过校园网来登录账号，而外网的例如阿里云则不存在这些问题，因为它们就是暴露在外网的。前几天老师在学校服务器上给我申请了一个云服务器空间，来做实验用，机器的的配置还是很可观的，8核16G内存，做实验是绰绰有余。负责服务器的老师在问我要什么系统时，我想当然的说，centos7，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在内网使用windows server搭建WAMP环境">
+<meta property="og:url" content="http://example.com/2018/04/29/article115/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="在内网使用windows server搭建WAMP环境下面的操作流程，可以供在学校内网搭建服务器的同学使用，因为内网连外网需要通过校园网来登录账号，而外网的例如阿里云则不存在这些问题，因为它们就是暴露在外网的。前几天老师在学校服务器上给我申请了一个云服务器空间，来做实验用，机器的的配置还是很可观的，8核16G内存，做实验是绰绰有余。负责服务器的老师在问我要什么系统时，我想当然的说，centos7，">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-04-29T09:23:14.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:39:50.468Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="技术心得">
+<meta property="article:tag" content="技术知识">
+<meta property="article:tag" content="服务器">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            在内网使用windows server搭建WAMP环境 -
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"/images/zS9MZBsVYLI.jpg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">在内网使用windows server搭建WAMP环境</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2018-04-29 17:23:14</span>
+        <span class="mobile">2018-04-29 17:23</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 21:39:50</span>
+            <span class="mobile">2023-05-14 21:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Technique/">Technique</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/">技术心得</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%8A%80%E6%9C%AF%E7%9F%A5%E8%AF%86/">技术知识</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h1 id="在内网使用windows-server搭建WAMP环境"><a href="#在内网使用windows-server搭建WAMP环境" class="headerlink" title="在内网使用windows server搭建WAMP环境"></a>在内网使用windows server搭建WAMP环境</h1><h2 id="下面的操作流程，可以供在学校内网搭建服务器的同学使用，因为内网连外网需要通过校园网来登录账号，而外网的例如阿里云则不存在这些问题，因为它们就是暴露在外网的。"><a href="#下面的操作流程，可以供在学校内网搭建服务器的同学使用，因为内网连外网需要通过校园网来登录账号，而外网的例如阿里云则不存在这些问题，因为它们就是暴露在外网的。" class="headerlink" title="下面的操作流程，可以供在学校内网搭建服务器的同学使用，因为内网连外网需要通过校园网来登录账号，而外网的例如阿里云则不存在这些问题，因为它们就是暴露在外网的。"></a>下面的操作流程，可以供在学校内网搭建服务器的同学使用，因为内网连外网需要通过校园网来登录账号，而外网的例如阿里云则不存在这些问题，因为它们就是暴露在外网的。</h2><h2 id="前几天老师在学校服务器上给我申请了一个云服务器空间，来做实验用，机器的的配置还是很可观的，8核16G内存，做实验是绰绰有余。负责服务器的老师在问我要什么系统时，我想当然的说，centos7，但安装好以后我是懵逼的，面对命令行界面来搭建开发环境本来没有问题，但这是内网，连外网需要登录校园卡账号，平时都是在游览器里输入的，换成了命令行，简直不知从何做起。"><a href="#前几天老师在学校服务器上给我申请了一个云服务器空间，来做实验用，机器的的配置还是很可观的，8核16G内存，做实验是绰绰有余。负责服务器的老师在问我要什么系统时，我想当然的说，centos7，但安装好以后我是懵逼的，面对命令行界面来搭建开发环境本来没有问题，但这是内网，连外网需要登录校园卡账号，平时都是在游览器里输入的，换成了命令行，简直不知从何做起。" class="headerlink" title="前几天老师在学校服务器上给我申请了一个云服务器空间，来做实验用，机器的的配置还是很可观的，8核16G内存，做实验是绰绰有余。负责服务器的老师在问我要什么系统时，我想当然的说，centos7，但安装好以后我是懵逼的，面对命令行界面来搭建开发环境本来没有问题，但这是内网，连外网需要登录校园卡账号，平时都是在游览器里输入的，换成了命令行，简直不知从何做起。"></a>前几天老师在学校服务器上给我申请了一个云服务器空间，来做实验用，机器的的配置还是很可观的，8核16G内存，做实验是绰绰有余。负责服务器的老师在问我要什么系统时，我想当然的说，centos7，但安装好以后我是懵逼的，面对命令行界面来搭建开发环境本来没有问题，但这是内网，连外网需要登录校园卡账号，平时都是在游览器里输入的，换成了命令行，简直不知从何做起。</h2><h2 id="我想到了安装一个界面，但，没网。自己又在云服务器里各种折腾，最后删掉了原来的主机，安装了一个windows-server2008，默默的接受了这个现实，接下来，我找到了自己最常用的宝塔面板，然后用笔记本远程连接服务器，安装宝塔，这些操作官方给的都很简单了，就是比Linux里多了一个IIS服务器，想着先试试，后来放了系统发现有问题，和本机运行不一样，又切换成了Apache，至于MySQL，ftp都可以选择性的安装，宝塔在windows里是一个程序界面，也可以在浏览器中打开，就是对应的IP-端口号888，建议在浏览器中操作，功能比较齐全，程序里比较简单，有些软件不能安装。在网页里有一个软件管理菜单，有很多功能，比如宝塔一键部署源码，还有各种PHP版本，DNS，又拍云，七牛，阿里的接口，Tomcat，Redis，Memcached，MongoDB等很多好用的功能，只可惜windows版本不支持gitlab。"><a href="#我想到了安装一个界面，但，没网。自己又在云服务器里各种折腾，最后删掉了原来的主机，安装了一个windows-server2008，默默的接受了这个现实，接下来，我找到了自己最常用的宝塔面板，然后用笔记本远程连接服务器，安装宝塔，这些操作官方给的都很简单了，就是比Linux里多了一个IIS服务器，想着先试试，后来放了系统发现有问题，和本机运行不一样，又切换成了Apache，至于MySQL，ftp都可以选择性的安装，宝塔在windows里是一个程序界面，也可以在浏览器中打开，就是对应的IP-端口号888，建议在浏览器中操作，功能比较齐全，程序里比较简单，有些软件不能安装。在网页里有一个软件管理菜单，有很多功能，比如宝塔一键部署源码，还有各种PHP版本，DNS，又拍云，七牛，阿里的接口，Tomcat，Redis，Memcached，MongoDB等很多好用的功能，只可惜windows版本不支持gitlab。" class="headerlink" title="我想到了安装一个界面，但，没网。自己又在云服务器里各种折腾，最后删掉了原来的主机，安装了一个windows server2008，默默的接受了这个现实，接下来，我找到了自己最常用的宝塔面板，然后用笔记本远程连接服务器，安装宝塔，这些操作官方给的都很简单了，就是比Linux里多了一个IIS服务器，想着先试试，后来放了系统发现有问题，和本机运行不一样，又切换成了Apache，至于MySQL，ftp都可以选择性的安装，宝塔在windows里是一个程序界面，也可以在浏览器中打开，就是对应的IP+端口号888，建议在浏览器中操作，功能比较齐全，程序里比较简单，有些软件不能安装。在网页里有一个软件管理菜单，有很多功能，比如宝塔一键部署源码，还有各种PHP版本，DNS，又拍云，七牛，阿里的接口，Tomcat，Redis，Memcached，MongoDB等很多好用的功能，只可惜windows版本不支持gitlab。"></a>我想到了安装一个界面，但，没网。自己又在云服务器里各种折腾，最后删掉了原来的主机，安装了一个windows server2008，默默的接受了这个现实，接下来，我找到了自己最常用的宝塔面板，然后用笔记本远程连接服务器，安装宝塔，这些操作官方给的都很简单了，就是比Linux里多了一个IIS服务器，想着先试试，后来放了系统发现有问题，和本机运行不一样，又切换成了Apache，至于MySQL，ftp都可以选择性的安装，宝塔在windows里是一个程序界面，也可以在浏览器中打开，就是对应的IP+端口号888，建议在浏览器中操作，功能比较齐全，程序里比较简单，有些软件不能安装。在网页里有一个软件管理菜单，有很多功能，比如宝塔一键部署源码，还有各种PHP版本，DNS，又拍云，七牛，阿里的接口，Tomcat，Redis，Memcached，MongoDB等很多好用的功能，只可惜windows版本不支持gitlab。</h2><h2 id="自此，环境就搭建完了，建议安装一个KOD可道云，网页版的，当云盘或者在线编辑器很好使，而且内网的网速足够快，上百MB的传输速度，不花流量，超越各种云盘。我们学校的校园网支持外网用VPN接入，回家也可以使用，只是网速就随外网宽带速率了。我还打算弄一个内网穿透，这样不用VPN，在任意地方都可以访问这台服务器，能折腾的事情有很多，以后再慢慢做。博客先更到这里。"><a href="#自此，环境就搭建完了，建议安装一个KOD可道云，网页版的，当云盘或者在线编辑器很好使，而且内网的网速足够快，上百MB的传输速度，不花流量，超越各种云盘。我们学校的校园网支持外网用VPN接入，回家也可以使用，只是网速就随外网宽带速率了。我还打算弄一个内网穿透，这样不用VPN，在任意地方都可以访问这台服务器，能折腾的事情有很多，以后再慢慢做。博客先更到这里。" class="headerlink" title="自此，环境就搭建完了，建议安装一个KOD可道云，网页版的，当云盘或者在线编辑器很好使，而且内网的网速足够快，上百MB的传输速度，不花流量，超越各种云盘。我们学校的校园网支持外网用VPN接入，回家也可以使用，只是网速就随外网宽带速率了。我还打算弄一个内网穿透，这样不用VPN，在任意地方都可以访问这台服务器，能折腾的事情有很多，以后再慢慢做。博客先更到这里。"></a>自此，环境就搭建完了，建议安装一个KOD可道云，网页版的，当云盘或者在线编辑器很好使，而且内网的网速足够快，上百MB的传输速度，不花流量，超越各种云盘。我们学校的校园网支持外网用VPN接入，回家也可以使用，只是网速就随外网宽带速率了。我还打算弄一个内网穿透，这样不用VPN，在任意地方都可以访问这台服务器，能折腾的事情有很多，以后再慢慢做。博客先更到这里。</h2>
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 在内网使用windows server搭建WAMP环境</li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2018-04-29 17:23:14</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 21:39:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2018/04/29/article115/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%8A%80%E6%9C%AF%E5%BF%83%E5%BE%97/">#技术心得</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%8A%80%E6%9C%AF%E7%9F%A5%E8%AF%86/">#技术知识</a>&nbsp;
+                        </li>
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">#服务器</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2018/05/01/article116/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">SendEmail--邮件分发管理系统</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2018/03/22/article114/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">PHP使用summernote编辑器</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">在内网使用windows server搭建WAMP环境</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E5%86%85%E7%BD%91%E4%BD%BF%E7%94%A8windows-server%E6%90%AD%E5%BB%BAWAMP%E7%8E%AF%E5%A2%83"><span class="nav-text">在内网使用windows server搭建WAMP环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E9%9D%A2%E7%9A%84%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BE%9B%E5%9C%A8%E5%AD%A6%E6%A0%A1%E5%86%85%E7%BD%91%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%90%8C%E5%AD%A6%E4%BD%BF%E7%94%A8%EF%BC%8C%E5%9B%A0%E4%B8%BA%E5%86%85%E7%BD%91%E8%BF%9E%E5%A4%96%E7%BD%91%E9%9C%80%E8%A6%81%E9%80%9A%E8%BF%87%E6%A0%A1%E5%9B%AD%E7%BD%91%E6%9D%A5%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7%EF%BC%8C%E8%80%8C%E5%A4%96%E7%BD%91%E7%9A%84%E4%BE%8B%E5%A6%82%E9%98%BF%E9%87%8C%E4%BA%91%E5%88%99%E4%B8%8D%E5%AD%98%E5%9C%A8%E8%BF%99%E4%BA%9B%E9%97%AE%E9%A2%98%EF%BC%8C%E5%9B%A0%E4%B8%BA%E5%AE%83%E4%BB%AC%E5%B0%B1%E6%98%AF%E6%9A%B4%E9%9C%B2%E5%9C%A8%E5%A4%96%E7%BD%91%E7%9A%84%E3%80%82"><span class="nav-text">下面的操作流程，可以供在学校内网搭建服务器的同学使用，因为内网连外网需要通过校园网来登录账号，而外网的例如阿里云则不存在这些问题，因为它们就是暴露在外网的。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E5%87%A0%E5%A4%A9%E8%80%81%E5%B8%88%E5%9C%A8%E5%AD%A6%E6%A0%A1%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%BB%99%E6%88%91%E7%94%B3%E8%AF%B7%E4%BA%86%E4%B8%80%E4%B8%AA%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A9%BA%E9%97%B4%EF%BC%8C%E6%9D%A5%E5%81%9A%E5%AE%9E%E9%AA%8C%E7%94%A8%EF%BC%8C%E6%9C%BA%E5%99%A8%E7%9A%84%E7%9A%84%E9%85%8D%E7%BD%AE%E8%BF%98%E6%98%AF%E5%BE%88%E5%8F%AF%E8%A7%82%E7%9A%84%EF%BC%8C8%E6%A0%B816G%E5%86%85%E5%AD%98%EF%BC%8C%E5%81%9A%E5%AE%9E%E9%AA%8C%E6%98%AF%E7%BB%B0%E7%BB%B0%E6%9C%89%E4%BD%99%E3%80%82%E8%B4%9F%E8%B4%A3%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E8%80%81%E5%B8%88%E5%9C%A8%E9%97%AE%E6%88%91%E8%A6%81%E4%BB%80%E4%B9%88%E7%B3%BB%E7%BB%9F%E6%97%B6%EF%BC%8C%E6%88%91%E6%83%B3%E5%BD%93%E7%84%B6%E7%9A%84%E8%AF%B4%EF%BC%8Ccentos7%EF%BC%8C%E4%BD%86%E5%AE%89%E8%A3%85%E5%A5%BD%E4%BB%A5%E5%90%8E%E6%88%91%E6%98%AF%E6%87%B5%E9%80%BC%E7%9A%84%EF%BC%8C%E9%9D%A2%E5%AF%B9%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%95%8C%E9%9D%A2%E6%9D%A5%E6%90%AD%E5%BB%BA%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%9C%AC%E6%9D%A5%E6%B2%A1%E6%9C%89%E9%97%AE%E9%A2%98%EF%BC%8C%E4%BD%86%E8%BF%99%E6%98%AF%E5%86%85%E7%BD%91%EF%BC%8C%E8%BF%9E%E5%A4%96%E7%BD%91%E9%9C%80%E8%A6%81%E7%99%BB%E5%BD%95%E6%A0%A1%E5%9B%AD%E5%8D%A1%E8%B4%A6%E5%8F%B7%EF%BC%8C%E5%B9%B3%E6%97%B6%E9%83%BD%E6%98%AF%E5%9C%A8%E6%B8%B8%E8%A7%88%E5%99%A8%E9%87%8C%E8%BE%93%E5%85%A5%E7%9A%84%EF%BC%8C%E6%8D%A2%E6%88%90%E4%BA%86%E5%91%BD%E4%BB%A4%E8%A1%8C%EF%BC%8C%E7%AE%80%E7%9B%B4%E4%B8%8D%E7%9F%A5%E4%BB%8E%E4%BD%95%E5%81%9A%E8%B5%B7%E3%80%82"><span class="nav-text">前几天老师在学校服务器上给我申请了一个云服务器空间，来做实验用，机器的的配置还是很可观的，8核16G内存，做实验是绰绰有余。负责服务器的老师在问我要什么系统时，我想当然的说，centos7，但安装好以后我是懵逼的，面对命令行界面来搭建开发环境本来没有问题，但这是内网，连外网需要登录校园卡账号，平时都是在游览器里输入的，换成了命令行，简直不知从何做起。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E5%88%B0%E4%BA%86%E5%AE%89%E8%A3%85%E4%B8%80%E4%B8%AA%E7%95%8C%E9%9D%A2%EF%BC%8C%E4%BD%86%EF%BC%8C%E6%B2%A1%E7%BD%91%E3%80%82%E8%87%AA%E5%B7%B1%E5%8F%88%E5%9C%A8%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%87%8C%E5%90%84%E7%A7%8D%E6%8A%98%E8%85%BE%EF%BC%8C%E6%9C%80%E5%90%8E%E5%88%A0%E6%8E%89%E4%BA%86%E5%8E%9F%E6%9D%A5%E7%9A%84%E4%B8%BB%E6%9C%BA%EF%BC%8C%E5%AE%89%E8%A3%85%E4%BA%86%E4%B8%80%E4%B8%AAwindows-server2008%EF%BC%8C%E9%BB%98%E9%BB%98%E7%9A%84%E6%8E%A5%E5%8F%97%E4%BA%86%E8%BF%99%E4%B8%AA%E7%8E%B0%E5%AE%9E%EF%BC%8C%E6%8E%A5%E4%B8%8B%E6%9D%A5%EF%BC%8C%E6%88%91%E6%89%BE%E5%88%B0%E4%BA%86%E8%87%AA%E5%B7%B1%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E5%AE%9D%E5%A1%94%E9%9D%A2%E6%9D%BF%EF%BC%8C%E7%84%B6%E5%90%8E%E7%94%A8%E7%AC%94%E8%AE%B0%E6%9C%AC%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E5%AE%89%E8%A3%85%E5%AE%9D%E5%A1%94%EF%BC%8C%E8%BF%99%E4%BA%9B%E6%93%8D%E4%BD%9C%E5%AE%98%E6%96%B9%E7%BB%99%E7%9A%84%E9%83%BD%E5%BE%88%E7%AE%80%E5%8D%95%E4%BA%86%EF%BC%8C%E5%B0%B1%E6%98%AF%E6%AF%94Linux%E9%87%8C%E5%A4%9A%E4%BA%86%E4%B8%80%E4%B8%AAIIS%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E6%83%B3%E7%9D%80%E5%85%88%E8%AF%95%E8%AF%95%EF%BC%8C%E5%90%8E%E6%9D%A5%E6%94%BE%E4%BA%86%E7%B3%BB%E7%BB%9F%E5%8F%91%E7%8E%B0%E6%9C%89%E9%97%AE%E9%A2%98%EF%BC%8C%E5%92%8C%E6%9C%AC%E6%9C%BA%E8%BF%90%E8%A1%8C%E4%B8%8D%E4%B8%80%E6%A0%B7%EF%BC%8C%E5%8F%88%E5%88%87%E6%8D%A2%E6%88%90%E4%BA%86Apache%EF%BC%8C%E8%87%B3%E4%BA%8EMySQL%EF%BC%8Cftp%E9%83%BD%E5%8F%AF%E4%BB%A5%E9%80%89%E6%8B%A9%E6%80%A7%E7%9A%84%E5%AE%89%E8%A3%85%EF%BC%8C%E5%AE%9D%E5%A1%94%E5%9C%A8windows%E9%87%8C%E6%98%AF%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E7%95%8C%E9%9D%A2%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E6%89%93%E5%BC%80%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%AF%B9%E5%BA%94%E7%9A%84IP-%E7%AB%AF%E5%8F%A3%E5%8F%B7888%EF%BC%8C%E5%BB%BA%E8%AE%AE%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%8A%9F%E8%83%BD%E6%AF%94%E8%BE%83%E9%BD%90%E5%85%A8%EF%BC%8C%E7%A8%8B%E5%BA%8F%E9%87%8C%E6%AF%94%E8%BE%83%E7%AE%80%E5%8D%95%EF%BC%8C%E6%9C%89%E4%BA%9B%E8%BD%AF%E4%BB%B6%E4%B8%8D%E8%83%BD%E5%AE%89%E8%A3%85%E3%80%82%E5%9C%A8%E7%BD%91%E9%A1%B5%E9%87%8C%E6%9C%89%E4%B8%80%E4%B8%AA%E8%BD%AF%E4%BB%B6%E7%AE%A1%E7%90%86%E8%8F%9C%E5%8D%95%EF%BC%8C%E6%9C%89%E5%BE%88%E5%A4%9A%E5%8A%9F%E8%83%BD%EF%BC%8C%E6%AF%94%E5%A6%82%E5%AE%9D%E5%A1%94%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%E6%BA%90%E7%A0%81%EF%BC%8C%E8%BF%98%E6%9C%89%E5%90%84%E7%A7%8DPHP%E7%89%88%E6%9C%AC%EF%BC%8CDNS%EF%BC%8C%E5%8F%88%E6%8B%8D%E4%BA%91%EF%BC%8C%E4%B8%83%E7%89%9B%EF%BC%8C%E9%98%BF%E9%87%8C%E7%9A%84%E6%8E%A5%E5%8F%A3%EF%BC%8CTomcat%EF%BC%8CRedis%EF%BC%8CMemcached%EF%BC%8CMongoDB%E7%AD%89%E5%BE%88%E5%A4%9A%E5%A5%BD%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%8C%E5%8F%AA%E5%8F%AF%E6%83%9Cwindows%E7%89%88%E6%9C%AC%E4%B8%8D%E6%94%AF%E6%8C%81gitlab%E3%80%82"><span class="nav-text">我想到了安装一个界面，但，没网。自己又在云服务器里各种折腾，最后删掉了原来的主机，安装了一个windows server2008，默默的接受了这个现实，接下来，我找到了自己最常用的宝塔面板，然后用笔记本远程连接服务器，安装宝塔，这些操作官方给的都很简单了，就是比Linux里多了一个IIS服务器，想着先试试，后来放了系统发现有问题，和本机运行不一样，又切换成了Apache，至于MySQL，ftp都可以选择性的安装，宝塔在windows里是一个程序界面，也可以在浏览器中打开，就是对应的IP+端口号888，建议在浏览器中操作，功能比较齐全，程序里比较简单，有些软件不能安装。在网页里有一个软件管理菜单，有很多功能，比如宝塔一键部署源码，还有各种PHP版本，DNS，又拍云，七牛，阿里的接口，Tomcat，Redis，Memcached，MongoDB等很多好用的功能，只可惜windows版本不支持gitlab。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E6%AD%A4%EF%BC%8C%E7%8E%AF%E5%A2%83%E5%B0%B1%E6%90%AD%E5%BB%BA%E5%AE%8C%E4%BA%86%EF%BC%8C%E5%BB%BA%E8%AE%AE%E5%AE%89%E8%A3%85%E4%B8%80%E4%B8%AAKOD%E5%8F%AF%E9%81%93%E4%BA%91%EF%BC%8C%E7%BD%91%E9%A1%B5%E7%89%88%E7%9A%84%EF%BC%8C%E5%BD%93%E4%BA%91%E7%9B%98%E6%88%96%E8%80%85%E5%9C%A8%E7%BA%BF%E7%BC%96%E8%BE%91%E5%99%A8%E5%BE%88%E5%A5%BD%E4%BD%BF%EF%BC%8C%E8%80%8C%E4%B8%94%E5%86%85%E7%BD%91%E7%9A%84%E7%BD%91%E9%80%9F%E8%B6%B3%E5%A4%9F%E5%BF%AB%EF%BC%8C%E4%B8%8A%E7%99%BEMB%E7%9A%84%E4%BC%A0%E8%BE%93%E9%80%9F%E5%BA%A6%EF%BC%8C%E4%B8%8D%E8%8A%B1%E6%B5%81%E9%87%8F%EF%BC%8C%E8%B6%85%E8%B6%8A%E5%90%84%E7%A7%8D%E4%BA%91%E7%9B%98%E3%80%82%E6%88%91%E4%BB%AC%E5%AD%A6%E6%A0%A1%E7%9A%84%E6%A0%A1%E5%9B%AD%E7%BD%91%E6%94%AF%E6%8C%81%E5%A4%96%E7%BD%91%E7%94%A8VPN%E6%8E%A5%E5%85%A5%EF%BC%8C%E5%9B%9E%E5%AE%B6%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%EF%BC%8C%E5%8F%AA%E6%98%AF%E7%BD%91%E9%80%9F%E5%B0%B1%E9%9A%8F%E5%A4%96%E7%BD%91%E5%AE%BD%E5%B8%A6%E9%80%9F%E7%8E%87%E4%BA%86%E3%80%82%E6%88%91%E8%BF%98%E6%89%93%E7%AE%97%E5%BC%84%E4%B8%80%E4%B8%AA%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F%EF%BC%8C%E8%BF%99%E6%A0%B7%E4%B8%8D%E7%94%A8VPN%EF%BC%8C%E5%9C%A8%E4%BB%BB%E6%84%8F%E5%9C%B0%E6%96%B9%E9%83%BD%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%E8%BF%99%E5%8F%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E8%83%BD%E6%8A%98%E8%85%BE%E7%9A%84%E4%BA%8B%E6%83%85%E6%9C%89%E5%BE%88%E5%A4%9A%EF%BC%8C%E4%BB%A5%E5%90%8E%E5%86%8D%E6%85%A2%E6%85%A2%E5%81%9A%E3%80%82%E5%8D%9A%E5%AE%A2%E5%85%88%E6%9B%B4%E5%88%B0%E8%BF%99%E9%87%8C%E3%80%82"><span class="nav-text">自此，环境就搭建完了，建议安装一个KOD可道云，网页版的，当云盘或者在线编辑器很好使，而且内网的网速足够快，上百MB的传输速度，不花流量，超越各种云盘。我们学校的校园网支持外网用VPN接入，回家也可以使用，只是网速就随外网宽带速率了。我还打算弄一个内网穿透，这样不用VPN，在任意地方都可以访问这台服务器，能折腾的事情有很多，以后再慢慢做。博客先更到这里。</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

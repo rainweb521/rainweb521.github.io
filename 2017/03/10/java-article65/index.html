@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2017/03/10/java-article65/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="Java网络编程 Java网络API1. InetAddress类方法 功能 public static InetAddress getLocalHost 获取本机对应的InetAddress对象 public static InetAddress getByName(String host) 根据主机获得对应的InetAddress对象，参数host可以是ip地址或域名 public stati">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java网络编程的四种类">
+<meta property="og:url" content="http://example.com/2017/03/10/java-article65/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="Java网络编程 Java网络API1. InetAddress类方法 功能 public static InetAddress getLocalHost 获取本机对应的InetAddress对象 public static InetAddress getByName(String host) 根据主机获得对应的InetAddress对象，参数host可以是ip地址或域名 public stati">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-03-10T02:04:26.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:39:50.446Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="JAVA">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Java网络编程的四种类 -
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"/images/zS9MZBsVYLI.jpg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">Java网络编程的四种类</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2017-03-10 10:04:26</span>
+        <span class="mobile">2017-03-10 10:04</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 21:39:50</span>
+            <span class="mobile">2023-05-14 21:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/programme/">programme</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/programme/JAVA/">JAVA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/JAVA/">JAVA</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <p>Java网络编程</p>
+<h2 id="Java网络API"><a href="#Java网络API" class="headerlink" title="Java网络API"></a>Java网络API</h2><h2 id="1-InetAddress类"><a href="#1-InetAddress类" class="headerlink" title="1. InetAddress类"></a>1. InetAddress类</h2><p>方法</p>
+<p>功能</p>
+<p>public static InetAddress getLocalHost</p>
+<p>获取本机对应的InetAddress对象</p>
+<p>public static InetAddress getByName(String host)</p>
+<p>根据主机获得对应的InetAddress对象，参数host可以是ip地址或域名</p>
+<p>public static InetAddress[] getAllByName(String host)</p>
+<p>根据主机获得具有相同名字的一组InetAddress对象</p>
+<p>public static InetAddress getByAddress(byte[] addr)</p>
+<p>获取a对象ddr所封装的IP地址对应的InetAddress</p>
+<p>public String getCanonicalHost()</p>
+<p>获取此IP地址的全限定域名</p>
+<p>public bytes[] getHostAddress()</p>
+<p>获取该InetAddress对象对应的IP地址字符串</p>
+<p>public String getHostName()</p>
+<p>获取该InetAddress对象的主机名称</p>
+<p>public boolean isReachable(int timeout)</p>
+<p>判断是否可以到达该地址</p>
+<h3 id="示例代码："><a href="#示例代码：" class="headerlink" title="示例代码："></a>示例代码：</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">package com.rain.demo;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.net.InetAddress;</span><br><span class="line">import java.net.UnknownHostException;</span><br><span class="line">/**</span><br><span class="line"> * Created by w-pc on 2017/02/27.</span><br><span class="line"> * java网络编程</span><br><span class="line"> */</span><br><span class="line">public class InetAddressDemo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            //本机操作，获取本机地址信息</span><br><span class="line">            InetAddress loca = InetAddress.getLocalHost();</span><br><span class="line">            System.out.println(&quot;本机的全限定域名:&quot;+loca.getCanonicalHostName());</span><br><span class="line">            System.out.println(&quot;本机的IP地址：&quot;+loca.getHostAddress());</span><br><span class="line">            System.out.println(&quot;本机的主机名称：&quot;+loca.getHostName());</span><br><span class="line">            System.out.println(&quot;本机的名称与IP：&quot;+loca.toString());</span><br><span class="line">            System.out.println(&quot;是否可以到达：&quot;+loca.isReachable(5000));</span><br><span class="line">            System.out.println(&quot;*********************************************************&quot;);</span><br><span class="line">            //访问我服务器上的博客</span><br><span class="line">            InetAddress loca_blog = InetAddress.getByName(&quot;www.rainweb.site&quot;);</span><br><span class="line">            System.out.println(&quot;博客的全限定域名:&quot;+loca_blog.getCanonicalHostName());</span><br><span class="line">            System.out.println(&quot;博客的IP地址：&quot;+loca_blog.getHostAddress());</span><br><span class="line">            System.out.println(&quot;博客的主机名称：&quot;+loca_blog.getHostName());</span><br><span class="line">            System.out.println(&quot;博客的名称与IP：&quot;+loca_blog.toString());</span><br><span class="line">            System.out.println(&quot;是否可以到达：&quot;+loca_blog.isReachable(5000));</span><br><span class="line">            System.out.println(&quot;*********************************************************&quot;);</span><br><span class="line">            //访问测试IP地址127.0.0.1</span><br><span class="line">            InetAddress loca_try = InetAddress.getByAddress(new byte[]&#123;127,0,0,1&#125;);</span><br><span class="line">            System.out.println(&quot;全限定域名:&quot;+loca_try.getCanonicalHostName());</span><br><span class="line">            System.out.println(&quot;IP地址：&quot;+loca_try.getHostAddress());</span><br><span class="line">            System.out.println(&quot;主机名称：&quot;+loca_try.getHostName());</span><br><span class="line">            System.out.println(&quot;名称与IP：&quot;+loca_try.toString());</span><br><span class="line">            System.out.println(&quot;是否可以到达：&quot;+loca_try.isReachable(5000));</span><br><span class="line">        &#125; catch (UnknownHostException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">本机的全限定域名:W-PC</span><br><span class="line">本机的IP地址：192.168.225.1</span><br><span class="line">本机的主机名称：W-PC</span><br><span class="line">本机的名称与IP：W-PC/192.168.225.1</span><br><span class="line">是否可以到达：true</span><br><span class="line">*********************************************************</span><br><span class="line">博客的全限定域名:59.111.97.112</span><br><span class="line">博客的IP地址：59.111.97.112</span><br><span class="line">博客的主机名称：www.rainweb.site</span><br><span class="line">博客的名称与IP：www.rainweb.site/59.111.97.112</span><br><span class="line">是否可以到达：true</span><br><span class="line">*********************************************************</span><br><span class="line">全限定域名:127.0.0.1</span><br><span class="line">IP地址：127.0.0.1</span><br><span class="line">主机名称：127.0.0.1</span><br><span class="line">名称与IP：127.0.0.1/127.0.0.1</span><br><span class="line">是否可以到达：true</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="2-URL类"><a href="#2-URL类" class="headerlink" title="2. URL类"></a>2. URL类</h2><p><code>protocol://host:port/resourceName</code></p>
+<ul>
+<li>protocol是协议名</li>
+<li>host是主机名</li>
+<li>port是端口号</li>
+<li>resourceName是资源名</li>
+</ul>
+<p>方法</p>
+<p>功能描述</p>
+<p>public URL(String spec)</p>
+<p>构造方法，根据指定的字符串来创建一个URL对象</p>
+<p>public URL(String protocol,String host,int port,String file)</p>
+<p>构造方法，根据指定的协议，主机名，端口号和文件资源来创建一个URL对象</p>
+<p>public URL(String protocol String host,String file)</p>
+<p>构造方法，根据指定的协议，主机名和文件资源来创建URL对象</p>
+<p>方法</p>
+<p>功能描述</p>
+<p>public String getProtocol</p>
+<p>返回协议名</p>
+<p>public String getHost()</p>
+<p>返回主机名</p>
+<p>public int getPort()</p>
+<p>返回端口号，如没有则返回-1</p>
+<p>public String getFile()</p>
+<p>返回文件名</p>
+<p>public String getRef()</p>
+<p>返回URL的锚</p>
+<p>public String getQuery()</p>
+<p>返回URL的查询信息</p>
+<p>public String getPath()</p>
+<p>返回URL的路径</p>
+<p>public URLConnection openConnection()</p>
+<p>返回一个URLConnection对象</p>
+<p>public final InputStream openStream()</p>
+<p>返回一个用于读取该URL资源的InputStream流</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">package com.rain.demo;</span><br><span class="line"></span><br><span class="line">import java.net.MalformedURLException;</span><br><span class="line">import java.net.URL;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by w-pc on 2017/03/08.</span><br><span class="line"> */</span><br><span class="line">public class URLDemo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String url = &quot;http://www.rainweb.site:80/index.php&quot;;</span><br><span class="line">        try &#123;</span><br><span class="line">            URL blog = new URL(url);</span><br><span class="line">            System.out.println(&quot;返回协议名：&quot;+blog.getProtocol());</span><br><span class="line">            System.out.println(&quot;返回主机名：&quot;+blog.getHost());</span><br><span class="line">            System.out.println(&quot;返回端口号：&quot;+blog.getPort());</span><br><span class="line">            System.out.println(&quot;返回文件名：&quot;+blog.getFile());</span><br><span class="line">            System.out.println(&quot;返回URL的锚：&quot;+blog.getRef());</span><br><span class="line">            System.out.println(&quot;返回URL的查询信息：&quot;+blog.getQuery());</span><br><span class="line">            System.out.println(&quot;返回URL的路径：&quot;+blog.getPath());</span><br><span class="line">            System.out.println(&quot;&quot;);</span><br><span class="line">        &#125;catch (MalformedURLException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="结果："><a href="#结果：" class="headerlink" title="结果："></a>结果：</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">返回协议名：http</span><br><span class="line">返回主机名：www.rainweb.site</span><br><span class="line">返回端口号：80</span><br><span class="line">返回文件名：/index.php</span><br><span class="line">返回URL的锚：null</span><br><span class="line">返回URL的查询信息：null</span><br><span class="line">返回URL的路径：/index.php</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="3-URLConnection类"><a href="#3-URLConnection类" class="headerlink" title="3.URLConnection类"></a>3.URLConnection类</h2><p>URLConnection代表与URL指定的数据源的动态连接，该类提供一些比URL类更强大的服务器交互控制的方法，允许使用POST或PUT和其他HTTP请求方法将数据送回服务器。URLConnection是一个抽象类。</p>
+<p>方法</p>
+<p>功能描述</p>
+<p>public int getContentLength()</p>
+<p>获得文件的长度</p>
+<p>public String getContentType()</p>
+<p>获得文件的类型</p>
+<p>public long getDate()</p>
+<p>获得文件创建的时间</p>
+<p>public long getLastModified()</p>
+<p>获得文件最后修改的时间</p>
+<p>public InputStream getInputStream()</p>
+<p>获得输入流，以便读取文件的数据</p>
+<p>public OuputStream getOutputStream()</p>
+<p>获得输出流，以便输出数据</p>
+<p>public void setRequestProperty(String key,String value)</p>
+<p>设置请求属性值</p>
+<h3 id="获取网页源代码"><a href="#获取网页源代码" class="headerlink" title="获取网页源代码"></a>获取网页源代码</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">package com.rain.demo;</span><br><span class="line"></span><br><span class="line">import java.io.BufferedReader;</span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.InputStreamReader;</span><br><span class="line">import java.net.MalformedURLException;</span><br><span class="line">import java.net.URL;</span><br><span class="line">import java.net.URLConnection;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Created by w-pc on 2017/03/08.</span><br><span class="line"> */</span><br><span class="line">public class URLDemo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        String url = &quot;http://www.rainweb.site:80/index.php&quot;;</span><br><span class="line">        try &#123;</span><br><span class="line">            //构建URL对象</span><br><span class="line">            URL blog = new URL(url);</span><br><span class="line">            //由URL对象获取URLConnection对象</span><br><span class="line">            URLConnection urlConn = blog.openConnection();</span><br><span class="line">            //设置请求属性，字符集</span><br><span class="line">            urlConn.setRequestProperty(&quot;Charset&quot;, &quot;UTF-8&quot;);</span><br><span class="line">            //由URLConnection获取输入流，并构造BufferedReader对象</span><br><span class="line">            BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));</span><br><span class="line">            String inputLine;</span><br><span class="line">            while ((inputLine = br.readLine()) != null)&#123;</span><br><span class="line">                System.out.println(inputLine);</span><br><span class="line">            &#125;</span><br><span class="line">            br.close();</span><br><span class="line">        &#125;catch (MalformedURLException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h2 id="4-URKDecoder类和URLEncoder类的使用"><a href="#4-URKDecoder类和URLEncoder类的使用" class="headerlink" title="4.URKDecoder类和URLEncoder类的使用"></a>4.URKDecoder类和URLEncoder类的使用</h2><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">package com.qst.chapter06;</span><br><span class="line">import java.io.UnsupportedEncodingException;</span><br><span class="line">import java.net.URLDecoder;</span><br><span class="line">import java.net.URLEncoder;</span><br><span class="line">public class URLDecoderDemo &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            // 将普通字符串转换成application/x-www-form-urlencoded字符串</span><br><span class="line">            String urlStr = URLEncoder.encode(&quot;Java 8高级应用与开发&quot;, &quot;GBK&quot;);</span><br><span class="line">            System.out.println(urlStr);</span><br><span class="line"></span><br><span class="line">            // 将application/x-www-form-urlencoded字符串 转换成普通字符串</span><br><span class="line">            String keyWord = URLDecoder.decode(</span><br><span class="line">                    &quot;Java+8%B8%DF%BC%B6%D3%A6%D3%C3%D3%EB%BF%AA%B7%A2&quot;, &quot;GBK&quot;);</span><br><span class="line">            System.out.println(keyWord);</span><br><span class="line">        &#125; catch (UnsupportedEncodingException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Java网络编程的四种类</li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2017-03-10 10:04:26</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 21:39:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2017/03/10/java-article65/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/JAVA/">#JAVA</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2017/03/15/java-article66/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Java基于TCP的网络编程</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2017/03/07/php-article64/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">ThinkPHP学习总结</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Java网络编程的四种类</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E7%BD%91%E7%BB%9CAPI"><span class="nav-text">Java网络API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-InetAddress%E7%B1%BB"><span class="nav-text">1. InetAddress类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="nav-text">示例代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C"><span class="nav-text">结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-URL%E7%B1%BB"><span class="nav-text">2. URL类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%EF%BC%9A"><span class="nav-text">结果：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-URLConnection%E7%B1%BB"><span class="nav-text">3.URLConnection类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E7%BD%91%E9%A1%B5%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="nav-text">获取网页源代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-URKDecoder%E7%B1%BB%E5%92%8CURLEncoder%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-text">4.URKDecoder类和URLEncoder类的使用</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2020/02/07/《headfirst设计模式》第九章迭代器与组合模式-读书笔记/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="《HeadFirst设计模式》第九章迭代器与组合模式-读书笔记案例代码链接：https:&#x2F;&#x2F;github.com&#x2F;rainweb521&#x2F;My-tutorial&#x2F;tree&#x2F;master&#x2F;Design\_patterns 1. 菜单的迭代本例中餐厅和煎饼屋合并了，他们需要在客人点餐的时候，能够把二者的菜单内容都打印出来，但是他们之前分别使用ArrayList和数组来存储菜单内容，这样打印的时候就会有重">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《HeadFirst设计模式》第九章迭代器与组合模式-读书笔记">
+<meta property="og:url" content="http://example.com/2020/02/07/%E3%80%8Aheadfirst%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E7%AC%AC%E4%B9%9D%E7%AB%A0%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="《HeadFirst设计模式》第九章迭代器与组合模式-读书笔记案例代码链接：https:&#x2F;&#x2F;github.com&#x2F;rainweb521&#x2F;My-tutorial&#x2F;tree&#x2F;master&#x2F;Design\_patterns 1. 菜单的迭代本例中餐厅和煎饼屋合并了，他们需要在客人点餐的时候，能够把二者的菜单内容都打印出来，但是他们之前分别使用ArrayList和数组来存储菜单内容，这样打印的时候就会有重">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://cos.rain1024.com/markdown/image-20191030195935389.png">
+<meta property="og:image" content="http://cos.rain1024.com/markdown/image-20191030200809061.png">
+<meta property="og:image" content="http://cos.rain1024.com/markdown/image-20191031075616469.png">
+<meta property="article:published_time" content="2020-02-07T02:07:22.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:39:50.490Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cos.rain1024.com/markdown/image-20191030195935389.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            《HeadFirst设计模式》第九章迭代器与组合模式-读书笔记 -
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"/images/zS9MZBsVYLI.jpg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">《HeadFirst设计模式》第九章迭代器与组合模式-读书笔记</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2020-02-07 10:07:22</span>
+        <span class="mobile">2020-02-07 10:07</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 21:39:50</span>
+            <span class="mobile">2023-05-14 21:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h1 id="《HeadFirst设计模式》第九章迭代器与组合模式-读书笔记"><a href="#《HeadFirst设计模式》第九章迭代器与组合模式-读书笔记" class="headerlink" title="《HeadFirst设计模式》第九章迭代器与组合模式-读书笔记"></a>《HeadFirst设计模式》第九章迭代器与组合模式-读书笔记</h1><h3 id="案例代码链接：https-github-com-rainweb521-My-tutorial-tree-master-Design-patterns"><a href="#案例代码链接：https-github-com-rainweb521-My-tutorial-tree-master-Design-patterns" class="headerlink" title="案例代码链接：https://github.com/rainweb521/My-tutorial/tree/master/Design\_patterns"></a>案例代码链接：<a class="link"   target="_blank" rel="noopener" href="https://github.com/rainweb521/My-tutorial/tree/master/Design/_patterns" >https://github.com/rainweb521/My-tutorial/tree/master/Design\_patterns <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></h3><h2 id="1-菜单的迭代"><a href="#1-菜单的迭代" class="headerlink" title="1. 菜单的迭代"></a>1. 菜单的迭代</h2><h4 id="本例中餐厅和煎饼屋合并了，他们需要在客人点餐的时候，能够把二者的菜单内容都打印出来，但是他们之前分别使用ArrayList和数组来存储菜单内容，这样打印的时候就会有重复，多次调用的问题。"><a href="#本例中餐厅和煎饼屋合并了，他们需要在客人点餐的时候，能够把二者的菜单内容都打印出来，但是他们之前分别使用ArrayList和数组来存储菜单内容，这样打印的时候就会有重复，多次调用的问题。" class="headerlink" title="本例中餐厅和煎饼屋合并了，他们需要在客人点餐的时候，能够把二者的菜单内容都打印出来，但是他们之前分别使用ArrayList和数组来存储菜单内容，这样打印的时候就会有重复，多次调用的问题。"></a>本例中餐厅和煎饼屋合并了，他们需要在客人点餐的时候，能够把二者的菜单内容都打印出来，但是他们之前分别使用ArrayList和数组来存储菜单内容，这样打印的时候就会有重复，多次调用的问题。</h4><p>这是基础菜单</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">public class MenuItem &#123;</span><br><span class="line">    String name;</span><br><span class="line">    String description;</span><br><span class="line">    boolean vegetarian;</span><br><span class="line">    double price;</span><br><span class="line">    public MenuItem(String name, String description, boolean vegetarian, double price) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.description = description;</span><br><span class="line">        this.vegetarian = vegetarian;</span><br><span class="line">        this.price = price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getDescription() &#123;</span><br><span class="line">        return description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setDescription(String description) &#123;</span><br><span class="line">        this.description = description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public boolean getVegetarian() &#123;</span><br><span class="line">        return vegetarian;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setVegetarian(boolean vegetarian) &#123;</span><br><span class="line">        this.vegetarian = vegetarian;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public double getPrice() &#123;</span><br><span class="line">        return price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setPrice(double price) &#123;</span><br><span class="line">        this.price = price;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="这是煎饼屋的菜单"><a href="#这是煎饼屋的菜单" class="headerlink" title="这是煎饼屋的菜单"></a>这是煎饼屋的菜单</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class PancakeHouseMenu &#123;</span><br><span class="line">    ArrayList menuItems;</span><br><span class="line">    public PancakeHouseMenu() &#123;</span><br><span class="line">        menuItems = new ArrayList();</span><br><span class="line">        addItem(&quot;K&amp;B Pancake Breakfast&quot;,&quot;Pancakes with scrambled eggs , and toast&quot;,</span><br><span class="line">                true,2.99);</span><br><span class="line">    &#125;</span><br><span class="line">    public void addItem(String name, String description, boolean vegetarian, double price)&#123;</span><br><span class="line">        MenuItem menuItem = new MenuItem(name,description,vegetarian,price);</span><br><span class="line">        menuItems.add(menuItem);</span><br><span class="line">    &#125;</span><br><span class="line">    public ArrayList getMenuItems()&#123;</span><br><span class="line">        return menuItems;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="这是餐厅的菜单"><a href="#这是餐厅的菜单" class="headerlink" title="这是餐厅的菜单"></a>这是餐厅的菜单</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public class DinerMenu &#123;</span><br><span class="line">    static final int MAX_ITEMS = 6;</span><br><span class="line">    int numberOfItems = 0 ;</span><br><span class="line">    MenuItem[] menuItems;</span><br><span class="line"></span><br><span class="line">    public DinerMenu() &#123;</span><br><span class="line">        menuItems = new MenuItem[MAX_ITEMS];</span><br><span class="line">        addItem(&quot;Vegetarian BLT&quot;,</span><br><span class="line">                &quot;(Fakin&#x27;) BAcon with lettuce &amp; tomato on whole wheat&quot;,true,2.99);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void addItem(String name, String description, boolean vegetarian, double price) &#123;</span><br><span class="line">        MenuItem menuItem = new MenuItem(name,description,vegetarian,price);</span><br><span class="line">        if (numberOfItems &gt;= MAX_ITEMS)&#123;</span><br><span class="line">            System.out.println(&quot;Sorry,meny is full&quot;);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            menuItems[numberOfItems]  = menuItem;</span><br><span class="line">            numberOfItems += 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public MenuItem[] getMenuItems() &#123;</span><br><span class="line">        return menuItems;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>如果想要打印两份菜单，就需要实例化这两个类，然后通过getMenuItems方法获取菜单组，再分别循环打印出来。 若以后再增加菜单，就需要继续这样更改代码，实现新的循环。</p>
+</blockquote>
+<h2 id="2-封装遍历"><a href="#2-封装遍历" class="headerlink" title="2.封装遍历"></a>2.封装遍历</h2><p>我们新建一个对象，将它称为迭代器，利用它来封装“遍历集合内的每个对象的过程”。 创建统一的迭代器接口</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public interface Iterator &#123;</span><br><span class="line">    boolean hasNext();</span><br><span class="line">    Object next();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>接下来实现具体的迭代器，首先是餐厅的</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class DinnerMenuIterator implements Iterator &#123;</span><br><span class="line">    MenuItem[] menuItems;</span><br><span class="line">    int position = 0;</span><br><span class="line"></span><br><span class="line">    public DinnerMenuIterator(MenuItem[] menuItems) &#123;</span><br><span class="line">        this.menuItems = menuItems;</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean hasNext() &#123;</span><br><span class="line">        if (position&gt;=menuItems.length  menuItems[position]==null)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public Object next() &#123;</span><br><span class="line">        MenuItem menuItem = menuItems[position];</span><br><span class="line">        position+=1;</span><br><span class="line">        return menuItem;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在DinerMenu中加入迭代器方法</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Iterator createIterator()&#123;</span><br><span class="line">       return new DinnerMenuIterator(menuItems);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>实现煎饼屋的迭代器对象</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class PancakeHouseIterator implements Iterator&#123;</span><br><span class="line">    ArrayList&lt;MenuItem&gt; menuItems;</span><br><span class="line">    int position = 0;</span><br><span class="line"></span><br><span class="line">    public PancakeHouseIterator(ArrayList&lt;MenuItem&gt; menuItems) &#123;</span><br><span class="line">        this.menuItems = menuItems;</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean hasNext() &#123;</span><br><span class="line">        if (position&gt;=menuItems.size()  menuItems.get(position)==null)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public MenuItem next() &#123;</span><br><span class="line">        MenuItem menuItem = menuItems.get(position);</span><br><span class="line">        position+=1;</span><br><span class="line">        return menuItem;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在PancakeHouseMenu中加入迭代器方法</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Iterator createIterator()&#123;</span><br><span class="line">        return new PancakeHouseIterator(menuItems);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>修正女招待的代码 我们需要将迭代器代码整合进女招待中。我们应该摆脱原本冗余的部分。整合的做法相当直接:首先创建一个 printmenuo方法,传入一个迭代器当做此方法的参数,然后对每一个菜单都使用 createlterator()方法来检索迭代器,并将迭代器传入新方法</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class Waitress &#123;</span><br><span class="line">    PancakeHouseMenu pancakeHouseMenu;</span><br><span class="line">    DinerMenu dinerMenu;</span><br><span class="line">    public Waitress(PancakeHouseMenu pancakeHouseMenu, DinerMenu dinerMenu) &#123;</span><br><span class="line">        this.pancakeHouseMenu = pancakeHouseMenu;</span><br><span class="line">        this.dinerMenu = dinerMenu;</span><br><span class="line">    &#125;</span><br><span class="line">    public void printMenu()&#123;</span><br><span class="line">        Iterator pancakeHouseMenuIterator = pancakeHouseMenu.createIterator();</span><br><span class="line">        Iterator dinerMenuIterator = dinerMenu.createIterator();</span><br><span class="line">        printMenu(pancakeHouseMenuIterator);</span><br><span class="line">        printMenu(dinerMenuIterator);</span><br><span class="line">    &#125;</span><br><span class="line">    private void printMenu(Iterator iterator) &#123;</span><br><span class="line">        while (iterator.hasNext())&#123;</span><br><span class="line">            MenuItem menuItem = (MenuItem) iterator.next();</span><br><span class="line">            System.out.println(menuItem.getName());</span><br><span class="line">            System.out.println(menuItem.getDescription());</span><br><span class="line">            System.out.println(menuItem.getVegetarian());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<blockquote>
+<p>到目前为止,我们做了些什么? 首先,我们让厨师们非常快乐。他们可以保持他们自己的实现又可以摆平差别。只要我们给他们这两个迭代器( Pancake Housemenulteratori和Dinermenuiterator),他们只需要加入一个 create Iterator()方法,一切就大功告成了。 这个过程中,我们也帮了我们自己。女招待将会更容易维护和扩展。</p>
+</blockquote>
+<h4 id="类的变化"><a href="#类的变化" class="headerlink" title="类的变化"></a>类的变化</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://cos.rain1024.com/markdown/image-20191030195935389.png"
+                     
+                ></p>
+<h4 id="进一步完善"><a href="#进一步完善" class="headerlink" title="进一步完善"></a>进一步完善</h4><p>因为ArrayList本身是支持Iterator的，所以直接调用自身的iterator方法即可</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public Iterator createIterator()&#123;</span><br><span class="line">        return (Iterator) menuItems.iterator();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们只需要给菜单一个共同的接口,然后再稍微改一下女招待。这个Menu接口相当简单:可能退早需要在里面多加入一些方法,例如 ladditem(),但是目前,我们还是让厨师控制他们的菜单,不要把那些方法放在公开接口中</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public interface Menu &#123;</span><br><span class="line">    public Iterator createIterator();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>现在,我们需要让煎饼屋菜单类和餐厂菜单类都实现Menu接口,然后更新女招待的代码如下:</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Waitress &#123;</span><br><span class="line">    Menu pancakeHouseMenu;</span><br><span class="line">    Menu dinerMenu;</span><br><span class="line">    public Waitress(Menu pancakeHouseMenu, Menu dinerMenu) &#123;</span><br><span class="line">        this.pancakeHouseMenu = pancakeHouseMenu;</span><br><span class="line">        this.dinerMenu = dinerMenu;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这样我们就实现了针对接口编程，而不是针对实现编程。</p>
+<h4 id="完整的类图就出现了，整个项目的结构如下"><a href="#完整的类图就出现了，整个项目的结构如下" class="headerlink" title="完整的类图就出现了，整个项目的结构如下"></a>完整的类图就出现了，整个项目的结构如下</h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://cos.rain1024.com/markdown/image-20191030200809061.png"
+                     
+                ></p>
+<h2 id="3-迭代器模式和单一职责"><a href="#3-迭代器模式和单一职责" class="headerlink" title="3.迭代器模式和单一职责"></a>3.迭代器模式和单一职责</h2><blockquote>
+<p>迭代器模式：提供一种方法顺序访问一个聚合对象中的各个元素，而又不暴露其内部的表示。</p>
+</blockquote>
+<p>这很有意义:这个模式给你提供了一种方法,可以顺序访问一个聚集对象中的元素,而又不用知道内部是如何表示的。你已经在前面的两个菜单实现中看到了这一点。在设计中使用迭代器的影响是明显的:如果你有一个统一的方法访问聚合中的每一个对象,你就可以编写多态的代码和这些聚合搭配,使用如同前面的 printmenu方法一样,只要有了送代器这个方法根本不管菜单项究竟是由数组还是由 Arraylist(或者其他能创建迭代器的东西)来保存的。 另一个对你的设计造成重要影响的,<strong>是迭代器模式把在元素之间游走的责任交给迭代器,而不是聚合对象。</strong> 这不仅让聚合的接口和实现变得更简洁,也可以让聚合更专注在它所应该专注的事情上面(也就是管理对象集合),而不必去理会遍历的事情</p>
+<blockquote>
+<p>迭代器模式让我们能游走于聚合内的每一个元素,而又不暴露其内部的表示。 把游走的任务放在迭代器上,而不是聚合上。 这样简化了聚合的接和突现,也让责任各得其所。</p>
+</blockquote>
+<h4 id="单一职责"><a href="#单一职责" class="headerlink" title="单一职责"></a>单一职责</h4><blockquote>
+<p>设计原则：一个类应该只有一个引起变化的原因。</p>
+</blockquote>
+<p>类的每个责任都有改变的潜在区城。超过个责任,意味着超过个改变的区域。 这个原则告诉我们量让每个类保持单一责任。</p>
+<h2 id="4-新加入的咖啡店"><a href="#4-新加入的咖啡店" class="headerlink" title="4.新加入的咖啡店"></a>4.新加入的咖啡店</h2><p>新的需求出现了，咖啡店也加入了这份菜单中，要将它们继续整合在一个框架中。 先看咖啡厅的代码，已经将之前的接口加了进去</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class CafeMenu implements Menu &#123;</span><br><span class="line">    Hashtable menuItems = new Hashtable();</span><br><span class="line"></span><br><span class="line">    public CafeMenu() &#123;</span><br><span class="line">        addItem(&quot;Veggie Burger and Air Fries&quot;,</span><br><span class="line">                &quot;Veggie burger on a whole wheat bun , lettuce,tomato , and fries&quot;,</span><br><span class="line">                true,3.99);</span><br><span class="line">    &#125;</span><br><span class="line">    private void addItem(String name, String description, boolean vegetarian, double price) &#123;</span><br><span class="line">        MenuItem menuItem = new MenuItem(name, description, vegetarian, price);</span><br><span class="line">        menuItems.put(menuItem.getName(),menuItem);</span><br><span class="line">    &#125;</span><br><span class="line">    public Iterator createIterator() &#123;</span><br><span class="line">        return (Iterator) menuItems.values().iterator();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>修改女招待的代码</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public class Waitress &#123;</span><br><span class="line">    Menu pancakeHouseMenu;</span><br><span class="line">    Menu dinerMenu;</span><br><span class="line">    Menu cafeMenu;</span><br><span class="line">    public Waitress(Menu pancakeHouseMenu, Menu dinerMenu,Menu cafeMenu) &#123;</span><br><span class="line">        this.pancakeHouseMenu = pancakeHouseMenu;</span><br><span class="line">        this.dinerMenu = dinerMenu;</span><br><span class="line">        this.cafeMenu = cafeMenu;</span><br><span class="line">    &#125;</span><br><span class="line">    public void printMenu()&#123;</span><br><span class="line">        Iterator pancakeHouseMenuIterator = pancakeHouseMenu.createIterator();</span><br><span class="line">        Iterator dinerMenuIterator = dinerMenu.createIterator();</span><br><span class="line">        Iterator cafeMenuIterator = cafeMenu.createIterator();</span><br><span class="line">        printMenu(pancakeHouseMenuIterator);</span><br><span class="line">        printMenu(dinerMenuIterator);</span><br><span class="line">        printMenu(cafeMenuIterator);</span><br><span class="line">    &#125;</span><br><span class="line">    private void printMenu(Iterator iterator) &#123;</span><br><span class="line">        while (iterator.hasNext())&#123;</span><br><span class="line">            MenuItem menuItem = (MenuItem) iterator.next();</span><br><span class="line">            System.out.println(menuItem.getName());</span><br><span class="line">            System.out.println(menuItem.getDescription());</span><br><span class="line">            System.out.println(menuItem.getVegetarian());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这样就加入了新的咖啡厅菜单</p>
+<h4 id="但是，这样程序中还是调用了三次printMenu方法，而且每次有新的菜单加入，都必须打开女招待加入更多的代码，好像违反了开放-关闭原则。"><a href="#但是，这样程序中还是调用了三次printMenu方法，而且每次有新的菜单加入，都必须打开女招待加入更多的代码，好像违反了开放-关闭原则。" class="headerlink" title="但是，这样程序中还是调用了三次printMenu方法，而且每次有新的菜单加入，都必须打开女招待加入更多的代码，好像违反了开放-关闭原则。"></a>但是，这样程序中还是调用了三次printMenu方法，而且每次有新的菜单加入，都必须打开女招待加入更多的代码，好像违反了开放-关闭原则。</h4><p>这次将这些菜单全都打包进一个 Arraylist,然后取得它的迭代器,遍历每一个菜单。这样再增加菜单也不怕了。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public class Waitress &#123;</span><br><span class="line">    ArrayList menus;</span><br><span class="line">    public Waitress(ArrayList menus) &#123;</span><br><span class="line">        this.menus = menus;</span><br><span class="line">    &#125;</span><br><span class="line">    public void printMenu()&#123;</span><br><span class="line">        Iterator iterator = (Iterator) menus.iterator();</span><br><span class="line">        while (iterator.hasNext())&#123;</span><br><span class="line">            Menu menu = (Menu) iterator.next();</span><br><span class="line">            printMenu(menu.createIterator());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    private void printMenu(Iterator iterator) &#123;</span><br><span class="line">        while (iterator.hasNext())&#123;</span><br><span class="line">            MenuItem menuItem = (MenuItem) iterator.next();</span><br><span class="line">            System.out.println(menuItem.getName());</span><br><span class="line">            System.out.println(menuItem.getDescription());</span><br><span class="line">            System.out.println(menuItem.getVegetarian());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="最后就全部完成了，彻底解耦了。"><a href="#最后就全部完成了，彻底解耦了。" class="headerlink" title="最后就全部完成了，彻底解耦了。"></a>最后就全部完成了，彻底解耦了。</h4><h2 id="5-添加一份子菜单"><a href="#5-添加一份子菜单" class="headerlink" title="5.添加一份子菜单"></a>5.添加一份子菜单</h2><p>我们需要在餐厅菜单中添加一份甜点子菜单，这就需要支持菜单中的菜单了。 如下图，正是我们想要的样子。 <img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://cos.rain1024.com/markdown/image-20191031075616469.png"
+                     
+                > 但我们不能把甜点菜单赋值给菜单项数组。 这时候就需要重构了 事实是，我们已经到达了一个复杂级别，如果现在不重新设计，就无法容纳未来增加的菜单或子菜单等需求。 所以，在我们的新设计中，真正需要些什么呢?</p>
+<ul>
+<li>我们需要某种树形结构，可以容纳菜单、子菜 单和菜单项。</li>
+<li>我们需要确定能够在每个菜单的各个项之间游: 走，而且至少要像现在用迭代器一-样方便。</li>
+<li>我们也需要能够更有弹性地在菜单项之间游走。 比方说，可能只需要遍历甜点菜单，或者可以 遍历餐厅的整个菜单( 包括甜点菜单在内)。</li>
+</ul>
+<h2 id="6-组合模式"><a href="#6-组合模式" class="headerlink" title="6. 组合模式"></a>6. 组合模式</h2><p>我们要介绍另一个模式解决这个难题。我们并没有放弃迭代器一一它仍然是我们解決方案中的一部分，然而,管理菜单的问题已经到了一个迭代器无法解决的新维度。所以,我们将倒退几步,改用组合模式( Composite Pattern)来实现这一部分。</p>
+<blockquote>
+<p>组合模式：允许你将对象组合成树形结构来表现“整体&#x2F;部分”层次结构。组合能让客户以一致的方式处理个别对象以及对象组合。</p>
+</blockquote>
+<p>组合模式让我们能用树形方式创建对象的结,树里面包含了组合以及个别的对象。 使组合结构,我们能把相同的操作应用在组合和个别对象上。换句话说,在大多数情況下, 我们可以忽略对象组合和个别对象之间的差别。 让我们以菜单为例思考这一切:这个模式能够创建个树形结构,在同一个结构中处理嵌套菜单和菜单项组。通过将菜单和项放在相同的结构中,我们创建了个“整体部分”层次结构,即由菜单和菜单项组成的对象树。但是可以将它视为一个整体,像是一个丰富的大菜单。 且有了丰富的大菜单,我们就可以使用这个模式来“统一处理个别对象和组合对象”。这意味着什么? 它意味着,如果我们有了一个树形结构的菜单、子菜单和可能还带有菜单项的子菜单,那么任何一个菜单都是种“组合”。因为它既可以包含其他菜单,也可以包含菜单项。个别对象只是菜单项一一并未持有其他对象。 就像你将看到的,使用一个遵照组合模式的设计,让我们能够写出简单的代码,就能够对整个菜单结构应用相同的操作(例如打印!)。</p>
+<h2 id="7-使用组合模式设计菜单"><a href="#7-使用组合模式设计菜单" class="headerlink" title="7.使用组合模式设计菜单"></a>7.使用组合模式设计菜单</h2><p>我们要如何在菜单上应用组合模式呢?一开始,我们需要创建一个组件接口来作为菜单和菜单项的共同接口,让我们能够用统一的做法来处理菜单和菜单项。换句话说,我们可以针对单或菜单项调用相同的方法。</p>
+<h4 id="实现菜单组件"><a href="#实现菜单组件" class="headerlink" title="实现菜单组件"></a>实现菜单组件</h4><p>好了,我们要开始编写菜单组件的抽象类;请记住,菜单组件的角色是为叶节点和组合节点提供一个共同的接口。现在你可能想问:“那么菜单组件不就扮演了两个角色吗?”可能是这样的,我们稍后再讨论这一点。然而,目前我们要为这些方法提供默认的实现,这样,如果菜单项(叶节点)或者菜单(组合)不想实现某些方法的时候(例如叶节点不想实现getchild方法),就可以不实现这些方法。</p>
+<blockquote>
+<p>所有的组件都必须实现Menu Component接口; 然而,叶节点和组合节点的角色不同,所以有些方法可能并不适合某种节点。面对这种情况,有时候,你最好是抛出运行时异常。</p>
+</blockquote>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public abstract class MenuComponent &#123;</span><br><span class="line">    public void add(MenuComponent menuComponent)&#123;</span><br><span class="line">        throw new UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br><span class="line">    public void remove(MenuComponent menuComponent)&#123;</span><br><span class="line">        throw new UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br><span class="line">    public MenuComponent getChild(int i)&#123;</span><br><span class="line">        throw new UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br><span class="line">    public String getName()&#123;</span><br><span class="line">        throw new UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br><span class="line">    public String getDescription()&#123;</span><br><span class="line">        throw new UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br><span class="line">    public double getPrice()&#123;</span><br><span class="line">        throw new UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean isVegetarian()&#123;</span><br><span class="line">        throw new UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br><span class="line">    public void print()&#123;</span><br><span class="line">        throw new UnsupportedOperationException();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="实现菜单项"><a href="#实现菜单项" class="headerlink" title="实现菜单项"></a>实现菜单项</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public class MenuItem extends MenuComponent &#123;</span><br><span class="line">    String name;</span><br><span class="line">    String description;</span><br><span class="line">    boolean vegetarian;</span><br><span class="line">    double price;</span><br><span class="line"></span><br><span class="line">    public MenuItem(String name, String description, boolean vegetarian, double price) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.description = description;</span><br><span class="line">        this.vegetarian = vegetarian;</span><br><span class="line">        this.price = price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getDescription() &#123;</span><br><span class="line">        return description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public boolean isVegetarian() &#123;</span><br><span class="line">        return vegetarian;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public double getPrice() &#123;</span><br><span class="line">        return price;</span><br><span class="line">    &#125;</span><br><span class="line">    public void print()&#123;</span><br><span class="line">        System.out.println(&quot;&quot;+getName());</span><br><span class="line">        System.out.println(getPrice());</span><br><span class="line">        System.out.println(getDescription());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="实现组合菜单"><a href="#实现组合菜单" class="headerlink" title="实现组合菜单"></a>实现组合菜单</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">public class Menu extends MenuComponent &#123;</span><br><span class="line">    ArrayList menuComponents = new ArrayList();</span><br><span class="line">    String name;</span><br><span class="line">    String description;</span><br><span class="line"></span><br><span class="line">    public Menu(String name, String description) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">        this.description = description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void add(MenuComponent menuComponent) &#123;</span><br><span class="line">        menuComponents.add(menuComponent);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void remove(MenuComponent menuComponent) &#123;</span><br><span class="line">        menuComponents.remove(menuComponent);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public MenuComponent getChild(int i) &#123;</span><br><span class="line">        return (MenuComponent) menuComponents.get(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getDescription() &#123;</span><br><span class="line">        return description;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void print() &#123;</span><br><span class="line">//        这里使用递归的方式，将所有的子菜单也打印出来</span><br><span class="line">        System.out.println(getName());</span><br><span class="line">        System.out.println(getDescription());</span><br><span class="line">        Iterator iterator = menuComponents.iterator();</span><br><span class="line">        while (iterator.hasNext())&#123;</span><br><span class="line">            MenuComponent menuComponent = (MenuComponent) iterator.next();</span><br><span class="line">            menuComponent.print();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="最后我们更新女招待的代码，让她来打印菜单"><a href="#最后我们更新女招待的代码，让她来打印菜单" class="headerlink" title="最后我们更新女招待的代码，让她来打印菜单"></a>最后我们更新女招待的代码，让她来打印菜单</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class Waitress &#123;</span><br><span class="line">    MenuComponent allMenus;</span><br><span class="line"></span><br><span class="line">    public Waitress(MenuComponent allMenus) &#123;</span><br><span class="line">        this.allMenus = allMenus;</span><br><span class="line">    &#125;</span><br><span class="line">    public void printMent()&#123;</span><br><span class="line">        allMenus.print();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>女招待的代码变得很简单，她只要调用最顶层的组件，就可以打印整个菜单层次，太棒了。</p>
+<h4 id="编写测试程序"><a href="#编写测试程序" class="headerlink" title="编写测试程序"></a>编写测试程序</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public class MenuTestDrive &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        MenuComponent pancakeHouseMenu = new Menu(&quot;PANCAKE HOUSE MENU&quot;,&quot;Breakfast&quot;);</span><br><span class="line">        MenuComponent dinerMenu = new Menu(&quot;DINER MENU&quot;,&quot;Lunch&quot;);</span><br><span class="line">        MenuComponent cafeMenu = new Menu(&quot;CAFE MENU&quot;,&quot;Dinner&quot;);</span><br><span class="line">        MenuComponent dessertMenu = new Menu(&quot;DESSERT MENU&quot;,&quot;Dessert of course!&quot;);</span><br><span class="line">        MenuComponent allMenus = new Menu(&quot;ALL MENUS&quot;,&quot;ALL menus combined&quot;);</span><br><span class="line">        allMenus.add(pancakeHouseMenu);</span><br><span class="line">        allMenus.add(dessertMenu);</span><br><span class="line">        allMenus.add(dinerMenu);</span><br><span class="line">        dinerMenu.add(new MenuItem(</span><br><span class="line">                &quot;Pasta&quot;,</span><br><span class="line">                &quot;Spaghetti with Marinara Sauce ,and a slice of sourdough bread&quot;,</span><br><span class="line">                true,</span><br><span class="line">                3.89</span><br><span class="line">        ));</span><br><span class="line">        dinerMenu.add(dessertMenu);</span><br><span class="line">        dessertMenu.add(new MenuItem(</span><br><span class="line">                &quot;Apple Pie&quot;,</span><br><span class="line">                &quot;Apple pie with a flakey crust, topped with vanilla ice cream&quot;,</span><br><span class="line">                true,</span><br><span class="line">                1.59</span><br><span class="line">        ));</span><br><span class="line">        Waitress waitress = new Waitress(allMenus);</span><br><span class="line">        waitress.printMent();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 《HeadFirst设计模式》第九章迭代器与组合模式-读书笔记</li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2020-02-07 10:07:22</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 21:39:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2020/02/07/《headfirst设计模式》第九章迭代器与组合模式-读书笔记/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2020/02/12/%E4%B8%AD%E5%9E%8B%E7%B3%BB%E7%BB%9F%E5%A6%82%E4%BD%95%E4%B8%80%E6%AD%A5%E6%AD%A5%E4%BB%8E1%E5%BC%80%E5%A7%8B%E5%88%B0%E6%94%AF%E6%92%9110%E4%B8%87%E7%94%A8%E6%88%B7/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">中型系统如何一步步从1开始到支撑10万用户</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2020/01/15/java-8-%E4%B8%AD%E7%9A%84-streams-api-%E8%AF%A6%E8%A7%A3/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Java 8 中的 Streams API 详解</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">《HeadFirst设计模式》第九章迭代器与组合模式-读书笔记</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E3%80%8AHeadFirst%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B%E7%AC%AC%E4%B9%9D%E7%AB%A0%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%B8%8E%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0"><span class="nav-text">《HeadFirst设计模式》第九章迭代器与组合模式-读书笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%E4%BB%A3%E7%A0%81%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps-github-com-rainweb521-My-tutorial-tree-master-Design-patterns"><span class="nav-text">案例代码链接：https:&#x2F;&#x2F;github.com&#x2F;rainweb521&#x2F;My-tutorial&#x2F;tree&#x2F;master&#x2F;Design\_patterns </span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E8%8F%9C%E5%8D%95%E7%9A%84%E8%BF%AD%E4%BB%A3"><span class="nav-text">1. 菜单的迭代</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%B0%81%E8%A3%85%E9%81%8D%E5%8E%86"><span class="nav-text">2.封装遍历</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3"><span class="nav-text">3.迭代器模式和单一职责</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E6%96%B0%E5%8A%A0%E5%85%A5%E7%9A%84%E5%92%96%E5%95%A1%E5%BA%97"><span class="nav-text">4.新加入的咖啡店</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%B7%BB%E5%8A%A0%E4%B8%80%E4%BB%BD%E5%AD%90%E8%8F%9C%E5%8D%95"><span class="nav-text">5.添加一份子菜单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F"><span class="nav-text">6. 组合模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E4%BD%BF%E7%94%A8%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1%E8%8F%9C%E5%8D%95"><span class="nav-text">7.使用组合模式设计菜单</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>

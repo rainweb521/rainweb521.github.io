@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="algorain">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2017/02/15/sendemail/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="想了一下还是把邮件发送功能弄了上来，希望大家友好使用，暂不对IP进行限制，这是我自己写的，不是用的插件，在主菜单的功能下拉列表中，如果有需要的直接填写收件邮箱和标题内容即可，发件邮箱是我用域名在网易注册的，www_rainweb_&amp;#115;&amp;#105;&amp;#116;&amp;#101;&amp;#x40;&amp;#49;&amp;#54;&amp;#x33;&amp;#46;&amp;#x63;&amp;#x6f;&amp;#x6d; ，不用回复，本功能属于测试版，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于新增发送邮件功能的说明">
+<meta property="og:url" content="http://example.com/2017/02/15/sendemail/index.html">
+<meta property="og:site_name" content="AlgoRain">
+<meta property="og:description" content="想了一下还是把邮件发送功能弄了上来，希望大家友好使用，暂不对IP进行限制，这是我自己写的，不是用的插件，在主菜单的功能下拉列表中，如果有需要的直接填写收件邮箱和标题内容即可，发件邮箱是我用域名在网易注册的，www_rainweb_&amp;#115;&amp;#105;&amp;#116;&amp;#101;&amp;#x40;&amp;#49;&amp;#54;&amp;#x33;&amp;#46;&amp;#x63;&amp;#x6f;&amp;#x6d; ，不用回复，本功能属于测试版，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://blog-1252406596.costj.myqcloud.com/blog/email4.jpg">
+<meta property="article:published_time" content="2017-02-15T10:35:53.000Z">
+<meta property="article:modified_time" content="2023-05-14T13:39:50.440Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="邮件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blog-1252406596.costj.myqcloud.com/blog/email4.jpg">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            关于新增发送邮件功能的说明 -
+        
+        知识花园
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<link rel="stylesheet" href="/assets/fonts.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en","path":"search.xml"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[""]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"busuanzi_counter":{"enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"pjax":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":false,"style":"static","image":{"light":"http://uos.rain1024.com/image/202305141930001.jpeg","dark":"/images/zS9MZBsVYLI.jpg"},"title":"给时光以生命，而不是给生命以时光","subtitle":{"text":[],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"links":{"github":"https://github.com/rainweb521","instagram":null,"zhihu":"https://www.zhihu.com/column/rain1024","twitter":null,"email":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.1.3","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":true,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"info","announcement":null,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}}};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="main-content-container">
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                知识花园
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                        <li class="navbar-item search search-popup-trigger">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fa-solid fa-magnifying-glass"></i></div>
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer">
+        <ul class="drawer-navbar-list">
+            
+                
+                    <li class="drawer-navbar-item flex-center">
+                        <a class="" 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            
+            
+                <div class="article-title">
+                    <h1 class="article-title-regular">关于新增发送邮件功能的说明</h1>
+                </div>
+            
+                
+            
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/redefine-avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">algorain</span>
+                            
+                                <span class="author-label"></span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2017-02-15 18:35:53</span>
+        <span class="mobile">2017-02-15 18:35</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-05-14 21:39:50</span>
+            <span class="mobile">2023-05-14 21:39</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa-regular fa-folders"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Technique/">Technique</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E9%82%AE%E4%BB%B6/">邮件</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content markdown-body">
+                <h2 id="想了一下还是把邮件发送功能弄了上来，希望大家友好使用，暂不对IP进行限制，这是我自己写的，不是用的插件，在主菜单的功能下拉列表中，如果有需要的直接填写收件邮箱和标题内容即可，发件邮箱是我用域名在网易注册的，www-rainweb-115-105-116-101-x40-49-54-x33-46-x63-x6f-x6d-，不用回复，本功能属于测试版，由于服务器资源有限，可发送文本内容，暂不支持附件发送，请在标题和内容中填写有意义的文字，例如“我是中国人”等等，如果只是字母数字如“test，demo1”等可能会被系统拦截为垃圾邮件或者发送失败。后续会发布更多功能，请继续支持。"><a href="#想了一下还是把邮件发送功能弄了上来，希望大家友好使用，暂不对IP进行限制，这是我自己写的，不是用的插件，在主菜单的功能下拉列表中，如果有需要的直接填写收件邮箱和标题内容即可，发件邮箱是我用域名在网易注册的，www-rainweb-115-105-116-101-x40-49-54-x33-46-x63-x6f-x6d-，不用回复，本功能属于测试版，由于服务器资源有限，可发送文本内容，暂不支持附件发送，请在标题和内容中填写有意义的文字，例如“我是中国人”等等，如果只是字母数字如“test，demo1”等可能会被系统拦截为垃圾邮件或者发送失败。后续会发布更多功能，请继续支持。" class="headerlink" title="想了一下还是把邮件发送功能弄了上来，希望大家友好使用，暂不对IP进行限制，这是我自己写的，不是用的插件，在主菜单的功能下拉列表中，如果有需要的直接填写收件邮箱和标题内容即可，发件邮箱是我用域名在网易注册的，www_rainweb_&#115;&#105;&#116;&#101;&#x40;&#49;&#54;&#x33;&#46;&#x63;&#x6f;&#x6d;，不用回复，本功能属于测试版，由于服务器资源有限，可发送文本内容，暂不支持附件发送，请在标题和内容中填写有意义的文字，例如“我是中国人”等等，如果只是字母数字如“test，demo1”等可能会被系统拦截为垃圾邮件或者发送失败。后续会发布更多功能，请继续支持。"></a>想了一下还是把邮件发送功能弄了上来，希望大家友好使用，暂不对IP进行限制，这是我自己写的，不是用的插件，在主菜单的功能下拉列表中，如果有需要的直接填写收件邮箱和标题内容即可，发件邮箱是我用域名在网易注册的，www_rainweb_<a class="link"   href="mailto:&#115;&#105;&#116;&#101;&#x40;&#49;&#54;&#x33;&#46;&#x63;&#x6f;&#x6d;" >&#115;&#105;&#116;&#101;&#x40;&#49;&#54;&#x33;&#46;&#x63;&#x6f;&#x6d; <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，不用回复，本功能属于测试版，由于服务器资源有限，可发送文本内容，暂不支持附件发送，请在标题和内容中填写有意义的文字，例如“我是中国人”等等，如果只是字母数字如“test，demo1”等可能会被系统拦截为垃圾邮件或者发送失败。后续会发布更多功能，请继续支持。</h2><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="http://blog-1252406596.costj.myqcloud.com/blog/email4.jpg"
+                     
+                ></p>
+
+            </div>
+
+            
+                <div class="post-copyright-info">
+                    <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 关于新增发送邮件功能的说明</li>
+        <li><strong>Author:</strong> algorain</li>
+        <li><strong>Created at:</strong> 2017-02-15 18:35:53</li>
+        
+            <li>
+                <strong>Updated at:</strong> 2023-05-14 21:39:50
+            </li>
+        
+        <li>
+            <strong>Link:</strong> http://www.rain1024.com/2017/02/15/sendemail/
+        </li>
+        <li>
+            <strong>License:</strong> This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+        </li>
+    </ul>
+</div>
+
+                </div>
+            
+
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/%E9%82%AE%E4%BB%B6/">#邮件</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
+
+            
+
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                            rel="prev"
+                            href="/2017/02/16/c-article60/"
+                            >
+                                <span class="left arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </span>
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">C++书上例题分析总结</span>
+                                    <span class="post-nav-item">Prev posts</span>
+                                </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                            rel="next"
+                            href="/2017/02/14/java-article58/"
+                            >
+                                <span class="title flex-center">
+                                    <span class="post-nav-title-item">Java中常用的24种文件操作方法</span>
+                                    <span class="post-nav-item">Next posts</span>
+                                </span>
+                                <span class="right arrow-icon flex-center">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
+
+
+            
+                <div class="comment-container">
+                    <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fa-solid fa-comments"></i>&nbsp;Comments
+    </div>
+    
+
+        
+            
+ 
+    <div id="waline"></div>
+    <script type="module"  data-pjax>
+        import { init } from 'https://evan.beee.top/js/waline.mjs';
+
+        function loadWaline() {
+            init({
+                el: '#waline',
+                serverURL: 'https://example.example.com',
+                lang: 'zh-CN',
+                dark: 'body[class~="dark-mode"]',
+                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
+            });
+        }
+
+        if ('true') {
+            const loadWalineTimeout = setTimeout(() => {
+                loadWaline();
+                clearTimeout(loadWalineTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadWaline);
+        }
+        
+    </script>
+
+
+
+        
+    
+</div>
+
+                </div>
+            
+        </div>
+
+        
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">关于新增发送邮件功能的说明</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%83%B3%E4%BA%86%E4%B8%80%E4%B8%8B%E8%BF%98%E6%98%AF%E6%8A%8A%E9%82%AE%E4%BB%B6%E5%8F%91%E9%80%81%E5%8A%9F%E8%83%BD%E5%BC%84%E4%BA%86%E4%B8%8A%E6%9D%A5%EF%BC%8C%E5%B8%8C%E6%9C%9B%E5%A4%A7%E5%AE%B6%E5%8F%8B%E5%A5%BD%E4%BD%BF%E7%94%A8%EF%BC%8C%E6%9A%82%E4%B8%8D%E5%AF%B9IP%E8%BF%9B%E8%A1%8C%E9%99%90%E5%88%B6%EF%BC%8C%E8%BF%99%E6%98%AF%E6%88%91%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%EF%BC%8C%E4%B8%8D%E6%98%AF%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6%EF%BC%8C%E5%9C%A8%E4%B8%BB%E8%8F%9C%E5%8D%95%E7%9A%84%E5%8A%9F%E8%83%BD%E4%B8%8B%E6%8B%89%E5%88%97%E8%A1%A8%E4%B8%AD%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%89%E9%9C%80%E8%A6%81%E7%9A%84%E7%9B%B4%E6%8E%A5%E5%A1%AB%E5%86%99%E6%94%B6%E4%BB%B6%E9%82%AE%E7%AE%B1%E5%92%8C%E6%A0%87%E9%A2%98%E5%86%85%E5%AE%B9%E5%8D%B3%E5%8F%AF%EF%BC%8C%E5%8F%91%E4%BB%B6%E9%82%AE%E7%AE%B1%E6%98%AF%E6%88%91%E7%94%A8%E5%9F%9F%E5%90%8D%E5%9C%A8%E7%BD%91%E6%98%93%E6%B3%A8%E5%86%8C%E7%9A%84%EF%BC%8Cwww-rainweb-115-105-116-101-x40-49-54-x33-46-x63-x6f-x6d-%EF%BC%8C%E4%B8%8D%E7%94%A8%E5%9B%9E%E5%A4%8D%EF%BC%8C%E6%9C%AC%E5%8A%9F%E8%83%BD%E5%B1%9E%E4%BA%8E%E6%B5%8B%E8%AF%95%E7%89%88%EF%BC%8C%E7%94%B1%E4%BA%8E%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%B5%84%E6%BA%90%E6%9C%89%E9%99%90%EF%BC%8C%E5%8F%AF%E5%8F%91%E9%80%81%E6%96%87%E6%9C%AC%E5%86%85%E5%AE%B9%EF%BC%8C%E6%9A%82%E4%B8%8D%E6%94%AF%E6%8C%81%E9%99%84%E4%BB%B6%E5%8F%91%E9%80%81%EF%BC%8C%E8%AF%B7%E5%9C%A8%E6%A0%87%E9%A2%98%E5%92%8C%E5%86%85%E5%AE%B9%E4%B8%AD%E5%A1%AB%E5%86%99%E6%9C%89%E6%84%8F%E4%B9%89%E7%9A%84%E6%96%87%E5%AD%97%EF%BC%8C%E4%BE%8B%E5%A6%82%E2%80%9C%E6%88%91%E6%98%AF%E4%B8%AD%E5%9B%BD%E4%BA%BA%E2%80%9D%E7%AD%89%E7%AD%89%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%8F%AA%E6%98%AF%E5%AD%97%E6%AF%8D%E6%95%B0%E5%AD%97%E5%A6%82%E2%80%9Ctest%EF%BC%8Cdemo1%E2%80%9D%E7%AD%89%E5%8F%AF%E8%83%BD%E4%BC%9A%E8%A2%AB%E7%B3%BB%E7%BB%9F%E6%8B%A6%E6%88%AA%E4%B8%BA%E5%9E%83%E5%9C%BE%E9%82%AE%E4%BB%B6%E6%88%96%E8%80%85%E5%8F%91%E9%80%81%E5%A4%B1%E8%B4%A5%E3%80%82%E5%90%8E%E7%BB%AD%E4%BC%9A%E5%8F%91%E5%B8%83%E6%9B%B4%E5%A4%9A%E5%8A%9F%E8%83%BD%EF%BC%8C%E8%AF%B7%E7%BB%A7%E7%BB%AD%E6%94%AF%E6%8C%81%E3%80%82"><span class="nav-text">想了一下还是把邮件发送功能弄了上来，希望大家友好使用，暂不对IP进行限制，这是我自己写的，不是用的插件，在主菜单的功能下拉列表中，如果有需要的直接填写收件邮箱和标题内容即可，发件邮箱是我用域名在网易注册的，www_rainweb_site@163.com ，不用回复，本功能属于测试版，由于服务器资源有限，可发送文本内容，暂不支持附件发送，请在标题和内容中填写有意义的文字，例如“我是中国人”等等，如果只是字母数字如“test，demo1”等可能会被系统拦截为垃圾邮件或者发送失败。后续会发布更多功能，请继续支持。</span></a></li></ol>
+
+    </div>
+</div>
+            </div>
+        
+    </div>
+</div>
+
+
+                
+
+            </div>
+            
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info">
+            &copy;
+            
+              <span>2017</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">algorain</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv" class="busuanzi_container_site_uv">
+                        VISITOR COUNT&nbsp;<span id="busuanzi_value_site_uv" class="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="busuanzi_container_site_pv">
+                        TOTAL PAGE VIEWS&nbsp;<span id="busuanzi_value_site_pv" class="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            <span class="powered-by-container">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" href="https://hexo.io">Hexo</a></span>
+                <br>
+            <span class="theme-version-container">THEME&nbsp;<a class="theme-version" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.1.3</a>
+        </div>
+        
+        
+        
+            <div id="start_div" style="display:none">
+                2017/01/20 11:45:14
+            </div>
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+        
+            <script async data-pjax>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fa-solid fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa-solid fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa-solid fa-spinner fa-spin-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/layouts/navbarShrink.js"></script>
+
+<script src="/js/tools/scrollTopBottom.js"></script>
+
+<script src="/js/tools/lightDarkSwitch.js"></script>
+
+
+
+    
+<script src="/js/tools/localSearch.js"></script>
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/layouts/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/tools/tocToggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/layouts/toc.js"></script>
+
+<script src="/js/plugins/tabs.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax',
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            Global.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            Global.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            Global.refresh();
+        });
+    });
+</script>
+
+
+
+
+</body>
+</html>
